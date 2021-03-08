@@ -59,19 +59,29 @@ export default function EditContent() {
               <div className="Edit-ft3">Desativar comentários</div>
               <div className="Edit-ft5 mt-2">
                 A seção de comentários ficará para todos os membros do curso.
-            </div>
+              </div>
             </div>
           </div>
-          
+
           <div className="row mt-5">
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_save w-100" onClick={Handle_Save}>Adicionar conteúdo</button>
+              <button
+                type="button"
+                className="but_save w-100"
+                onClick={Handle_Save}
+              >
+                Adicionar conteúdo
+              </button>
             </div>
             <div className="col-xl-3 col-6">
-              <button type="button" className="but_cancel w-100">Cancelar</button>
+              <button type="button" className="but_cancel w-100">
+                Cancelar
+              </button>
             </div>
             <div className="col-xl-3 col-6">
-              <button type="button" className="but_cancel w-100">Excluir conteúdo</button>
+              <button type="button" className="but_delete w-100">
+                Excluir conteúdo
+              </button>
             </div>
           </div>
         </div>

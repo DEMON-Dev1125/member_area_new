@@ -1,0 +1,25 @@
+.tag_style {
+  background-color: rgba(7, 121, 228, 0.1);
+  border-radius: 5px;
+  line-height: 19px;
+  color: #0779e4;
+  font-size: 16px;
+  padding: 5px;
+  width: auto;
+}
+
+.img_style img {
+  border: 3px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.dialog_img {
+  border: 3px solid black;
+  border-radius: 20px;
+}
+.MuiPaper-rounded {
+  border-radius: 20px !important;
+}
+.show_member {
+  cursor: pointer;
+}

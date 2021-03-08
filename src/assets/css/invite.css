@@ -1,0 +1,25 @@
+.link_url {
+  text-overflow: ellipsis;
+  line-height: 19px;
+  color: #0779e4;
+  font-size: 24px;
+  border: none;
+  outline-style: none;
+}
+.link_url:focus {
+  border: none;
+  outline-style: none;
+}
+.btn_copy {
+  border: none;
+  outline-style: none;
+  color: #ffffff;
+  border-radius: 10px;
+  background-color: #0779e4;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+.show_memeber {
+  cursor: pointer;
+}

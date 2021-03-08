@@ -60,7 +60,6 @@ export default function Editor() {
                 onChange={Handle_Setsigla}
               />
             </div>
-
           </div>
           <div className="Edit-ft3 mt-5">URL da página de vendas</div>
           <input
@@ -86,15 +85,23 @@ export default function Editor() {
               <div className="Edit-ft3">Ativar moderação de comentários</div>
               <div className="Edit-ft5 mt-1">
                 Todos os comentários serão revisados por seus administradores.
-                </div>
+              </div>
             </div>
           </div>
           <div className="row mt-5">
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_save w-100" onClick={Handle_Save}>Salvar edição</button>
+              <button
+                type="button"
+                className="but_save w-100"
+                onClick={Handle_Save}
+              >
+                Salvar edição
+              </button>
             </div>
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_cancel w-100">Cancelar</button>
+              <button type="button" className="but_cancel w-100">
+                Cancelar
+              </button>
             </div>
           </div>
         </div>

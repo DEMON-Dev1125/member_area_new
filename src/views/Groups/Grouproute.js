@@ -1,12 +1,12 @@
-/**************************This is content route define part***************** */
 import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import GroupIndex from "./Group.js";
 import NewGroup from "./Newgroup.js";
 import GroupAdd from "./Groupadd.js";
 import GroupEdit from "./Groupedit.js";
+import EditClass from "./Editclass.js";
 
-export default function CententRoute() {
+export default function Grouproute() {
   let history = useHistory();
   return (
     <Switch>
@@ -26,6 +26,10 @@ export default function CententRoute() {
       <Route
         path="/main/group/groupedit"
         component={(props) => <GroupEdit {...props} />}
+      />
+      <Route
+        path="/main/group/editclass"
+        component={(props) => <EditClass {...props} />}
       />
     </Switch>
   );

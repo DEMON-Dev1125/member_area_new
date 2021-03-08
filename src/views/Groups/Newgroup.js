@@ -16,17 +16,11 @@ import { SelectionState } from "draft-js";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
-    minWidth: () => {
-      if (window.innerWidth < 575) return "100%";
-      else return 264;
-    },
+    width: "100%",
   },
   formControl2: {
     margin: theme.spacing(0),
-    minWidth: () => {
-      if (window.innerWidth < 575) return "100%";
-      else return 637;
-    },
+    width: "100%",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -80,30 +74,28 @@ export default function EditContent() {
           </button>
           <div className="Edit-ft1 mt-5">MÉTODO REMOTO 3.0</div>
           <div className="Edit-ft2">Nova turma</div>
-          <div className="container-fluid">
-            <div className="row mt-5">
-              <div className="col-lg-9">
-                <div className="Edit-ft3">Nome da turma</div>
+          <div className="row mt-5">
+            <div className="col-lg-8">
+              <div className="Edit-ft3">Nome da turma</div>
+              <input
+                type="text"
+                className="Edit-warp mt-3 w-100 Edit-ft4"
+                placeholder="Turma A"
+                value={newgroup}
+                onChange={Handle_Newgroup}
+              />
+            </div>
+            <div className="col-lg-4">
+              <div className="Edit-ft3">Prazo de acesso</div>
+              <div className="position-relative">
                 <input
                   type="text"
-                  className="Edit-warp w-100 Edit-ft4"
-                  placeholder="Nome da turma"
-                  value={newgroup}
-                  onChange={Handle_Newgroup}
+                  className="Edit-warp mt-3 Edit-ft4 w-100"
+                  placeholder="01"
+                  value={itemaccess}
+                  onChange={Handle_Itemaccess}
                 />
-              </div>
-              <div className="col-lg-3">
-                <div className="Edit-ft3">Prazo de acesso</div>
-                <div className="position-relative">
-                  <input
-                    type="text"
-                    className="Edit-warp mgt-15 Edit-ft4 w-100"
-                    placeholder="01"
-                    value={itemaccess}
-                    onChange={Handle_Itemaccess}
-                  />
-                  <div className="item-day Edit-ft1">DIAS</div>
-                </div>
+                <div className="item-day Edit-ft1">DIAS</div>
               </div>
             </div>
           </div>
@@ -113,7 +105,7 @@ export default function EditContent() {
               <div className="Edit-ft3">Turma padrão</div>
               <div className="Edit-ft5">
                 Ingressar membros novos nesta turma.
-            </div>
+              </div>
             </div>
           </div>
           <div className="mt-5">
@@ -159,7 +151,7 @@ export default function EditContent() {
               </div>
               <div className="topmargin">
                 <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative ht-45 new_group_select">
+                <div className="mt-1 position-relative new_group_select">
                   <FormControl
                     variant="outlined"
                     className={`${classes.formControl}`}
@@ -184,158 +176,106 @@ export default function EditContent() {
           </div>
           <div className="group-new5">
             <div className="Edit-ft3">Regras de Liberação de Aulas</div>
-            <div className="Edit-ft5 mgt-10">
+            <div className="Edit-ft5 mt-3">
               Programe aulas específicas quando as regras de módulos não forem
               aplicáveis.
-          </div>
+            </div>
           </div>
           <div className={`${drpdwnCls}`}>
-            <div className="d-flex justify-content-between mgb-10">
-              <div className="">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="d-flex ">
-                  <div className="mgt-10 position-relative ht-45 new_group_select">
-                    <FormControl
-                      variant="outlined"
-                      className={`${classes.formControl2}`}
-                    >
-                      <Select
-                        native
-                        defaultValue="Aula"
-                        id="grouped-native-select"
-                        onChange={Handle_Role3}
-                      >
-                        <optgroup className="opt-group" label="1 - Introdução">
-                          <option value={0} hidden className="opt-item">
-                            Aula
-                        </option>
-                          <option value={1}>
-                            Como melhorar o seu Aprendizado?
-                        </option>
-                          <option value={2}>Revolução Digital</option>
-                          <option value={3}>O que é Home Office?</option>
-                          <option value={4}>Área de Atuação</option>
-                          <option value={5}>Vantagens do Home Office</option>
-                          <option value={6}>Boas Práticas Home Office</option>
-                        </optgroup>
-                      </Select>
-                    </FormControl>
-                  </div>
-                  <div
-                    className="but-plus mgt-19 mgl-30"
-                    onClick={() => showLearning()}
+            <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+            <div className="row">
+              <div className="col-10 col-xl-11">
+                <div className="mt-1 position-relative ht-45 new_group_select">
+                  <FormControl
+                    variant="outlined"
+                    className={`${classes.formControl2}`}
                   >
-                    <i className="fas fa-plus"></i>
-                  </div>
+                    <Select
+                      native
+                      defaultValue="Aula"
+                      id="grouped-native-select"
+                      onChange={Handle_Role3}
+                    >
+                      <optgroup className="opt-group" label="1 - Introdução">
+                        <option value={0} hidden className="opt-item">
+                          Aula
+                        </option>
+                        <option value={1}>
+                          Como melhorar o seu Aprendizado?
+                        </option>
+                        <option value={2}>Revolução Digital</option>
+                        <option value={3}>O que é Home Office?</option>
+                        <option value={4}>Área de Atuação</option>
+                        <option value={5}>Vantagens do Home Office</option>
+                        <option value={6}>Boas Práticas Home Office</option>
+                      </optgroup>
+                    </Select>
+                  </FormControl>
+                </div>
+              </div>
+              <div className="col-2 col-xl-1">
+                <div className="but-plus mt-3" onClick={() => showLearning()}>
+                  <i className="fas fa-plus"></i>
                 </div>
               </div>
             </div>
           </div>
-          {drpdwn && (
-            <>
-              <div className="desktop">
-                <TransitionGroup component={null}>
-                  <CSSTransition classNames="dialog" timeout={300}>
-                    <div className="pd-50 drpdwn-content d-flex justify-content-between">
-                      <div className="text-content">
-                        <div className="title">MÓDULO 1 | AULA 1</div>
-                        <div className="main-content">
-                          Como melhorar o seu Aprendizado?
-                      </div>
-                      </div>
-                      <div className="select-section d-flex justify-content-between align-items-center">
-                        <div className="selection-content">
-                          <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                          <div className="mgt-10 position-relative ht-45 new_group_select">
-                            <FormControl
-                              variant="outlined"
-                              className={`${classes.formControl}`}
-                            >
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={role1}
-                                onChange={Handle_Role1}
-                                label="age"
-                              >
-                                <MenuItem value={10}>Acesso Livre</MenuItem>
-                                <MenuItem value={20}>Data programada</MenuItem>
-                                <MenuItem value={30}>Dias após compra</MenuItem>
-                                <MenuItem value={40}>Oculto</MenuItem>
-                                <MenuItem value={50}>Bloqueado</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </div>
-                        </div>
-                        <div className="delete_icon text-center">
-                          <i
-                            className="fas fa-trash icon-all"
-                            onClick={() => {
-                              setDrpDwn(!drpdwn);
-                            }}
-                          ></i>
-                        </div>
+          <TransitionGroup component={null}>
+            {drpdwn && (
+              <CSSTransition classNames="dialog" timeout={300}>
+                <div className="pd-50 drpdwn-content d-flex justify-content-between">
+                  <div className="text-content">
+                    <div className="title">MÓDULO 1 | AULA 1</div>
+                    <div className="main-content">
+                      Como melhorar o seu Aprendizado?
+                    </div>
+                  </div>
+                  <div className="select-section d-flex justify-content-between align-items-center">
+                    <div className="selection-content">
+                      <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl}`}
+                        >
+                          <Select
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            value={role1}
+                            onChange={Handle_Role1}
+                            label="age"
+                          >
+                            <MenuItem value={10}>Acesso Livre</MenuItem>
+                            <MenuItem value={20}>Data programada</MenuItem>
+                            <MenuItem value={30}>Dias após compra</MenuItem>
+                            <MenuItem value={40}>Oculto</MenuItem>
+                            <MenuItem value={50}>Bloqueado</MenuItem>
+                          </Select>
+                        </FormControl>
                       </div>
                     </div>
-                  </CSSTransition>
-                </TransitionGroup>
-              </div>
-              <div className="group-mobile">
-                <TransitionGroup component={null}>
-                  <CSSTransition classNames="dialog" timeout={300}>
-                    <div className="pd-30 drpdwn-content">
-                      <div className=" d-flex justify-content-between">
-                        <div className="text-content">
-                          <div className="title">MÓDULO 1 | AULA 1</div>
-                          <div className="main-content">O processo de vendas</div>
-                        </div>
-                        <div className="delete_icon text-center">
-                          <i
-                            className="fas fa-trash icon-all"
-                            onClick={() => {
-                              setDrpDwn(!drpdwn);
-                            }}
-                          ></i>
-                        </div>
-                      </div>
-                      <div className="select-section">
-                        <div className="selection-content">
-                          <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                          <div className="mgt-10 position-relative ht-45 new_group_select">
-                            <FormControl
-                              variant="outlined"
-                              className={`${classes.formControl}`}
-                            >
-                              <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                value={role1}
-                                onChange={Handle_Role1}
-                                label="age"
-                              >
-                                <MenuItem value={10}>Acesso Livre</MenuItem>
-                                <MenuItem value={20}>Data programada</MenuItem>
-                                <MenuItem value={30}>Dias após compra</MenuItem>
-                                <MenuItem value={40}>Oculto</MenuItem>
-                                <MenuItem value={50}>Bloqueado</MenuItem>
-                              </Select>
-                            </FormControl>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="delete_icon text-center">
+                      <i
+                        className="fas fa-trash icon-all"
+                        onClick={() => {
+                          setDrpDwn(!drpdwn);
+                        }}
+                      ></i>
                     </div>
-                  </CSSTransition>
-                </TransitionGroup>
-              </div>
-            </>
-          )}
-          <div className="align-items-center mgt-50 mgb-30 cancel_save_btngroup">
-            <div className="col-12 col-sm-6 text-center pl-1 pr-1">
-              <div className="but_save " onClick={Handle_Add}>
+                  </div>
+                </div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+          <div className="row mt-5">
+            <div className="col-lg-6 col-sm-12">
+              <button className="but_save w-100" onClick={Handle_Add}>
                 {drpdwn ? "Adicionar turma" : "Adicionar conteúdo"}
-              </div>
+              </button>
             </div>
-            <div className="col-12 col-sm-6 Edit-ft4 mgl-210">Cancelar</div>
+            <div className="col-lg-6 col-sm-12">
+              <button className="but_cancel w-100">Cancelar</button>
+            </div>
           </div>
         </div>
         <div className="col-xl-2"></div>

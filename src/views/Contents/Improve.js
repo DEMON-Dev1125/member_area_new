@@ -113,7 +113,9 @@ export default function NewContent() {
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 1 | 7:23</div>
-                  <div className="imp-ft2">Como melhorar o seu Aprendizado?</div>
+                  <div className="imp-ft2">
+                    Como melhorar o seu Aprendizado?
+                  </div>
                 </div>
               </div>
               <div className="test-content d-flex mgb-32">
@@ -212,11 +214,11 @@ export default function NewContent() {
             </div>
             <div className="mgt-30 con-ft3">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              tortor orci, fermentum sed lectus vitae, tristique hendrerit neque.
-              Integer vel tempor orci. Nunc finibus vehicula tellus sit amet
-              malesuada. Integer tempor at risus sed lacinia. In id libero lectus.
-              Aliquam erat volutpat. Mauris ante tortor, ultricies nec mauris in,
-              pharetra facilisis justo.
+              tortor orci, fermentum sed lectus vitae, tristique hendrerit
+              neque. Integer vel tempor orci. Nunc finibus vehicula tellus sit
+              amet malesuada. Integer tempor at risus sed lacinia. In id libero
+              lectus. Aliquam erat volutpat. Mauris ante tortor, ultricies nec
+              mauris in, pharetra facilisis justo.
             </div>
             <div className="mgt-50 Edit-ft1">ARQUIVOS COMPLEMENTARES</div>
             <div className="pdf">
@@ -248,7 +250,7 @@ export default function NewContent() {
                 }}
               >
                 Editar conteúdo
-            </div>
+              </div>
               <i className="fas fa-pen-alt"></i>
             </button>
           </div>
@@ -295,14 +297,17 @@ export default function NewContent() {
                   <div className="Edit-ft5">2 dias atrás</div>
                 </div>
                 <div className="mgb-20 con-ft8 mgr-94">
-                  Boa tarde, assisti a aula e curti muito o conteúdo apresentado,
-                  mas não encontrei o arquivo PDF que foi mostrado, se alguém
-                  puder me ajudar com isso eu agradeço muito.
+                  Boa tarde, assisti a aula e curti muito o conteúdo
+                  apresentado, mas não encontrei o arquivo PDF que foi mostrado,
+                  se alguém puder me ajudar com isso eu agradeço muito.
                 </div>
                 <div className="d-flex">
-                  <div className="but_respond mgr-10" onClick={Handle_Responder}>
+                  <div
+                    className="but_respond mgr-10"
+                    onClick={Handle_Responder}
+                  >
                     Responder
-                </div>
+                  </div>
                   <DeleteDialogIcon />
                 </div>
                 <TransitionGroup component={null}>

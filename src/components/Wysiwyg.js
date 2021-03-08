@@ -10,7 +10,6 @@ export default function WysiwygModule() {
       wrapperElement: "div",
 
       style: {
-        // border: '1px solid gray',
         borderRadius: 15,
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,

@@ -73,7 +73,7 @@ export default function EditContent() {
             <i className="fas fa-chevron-left img_back"></i>
           </button>
           <div className="Edit-ft1 mt-5">MÉTODO REMOTO 3.0</div>
-          <div className="Edit-ft2">Nova turma</div>
+          <div className="Edit-ft2">Editar turma</div>
           <div className="row mt-5">
             <div className="col-lg-8">
               <div className="Edit-ft3">Nome da turma</div>
@@ -99,84 +99,148 @@ export default function EditContent() {
               </div>
             </div>
           </div>
-          <div className="mt-5 d-flex">
+          <div className="d-flex mt-5">
             <ToogleButton />
-            <div className="ml-3">
+            <div className="ml-4">
               <div className="Edit-ft3">Turma padrão</div>
-              <div className="Edit-ft5">
+              <div className="Edit-ft5 mt-1">
                 Ingressar membros novos nesta turma.
               </div>
             </div>
           </div>
+          <div className="mt-5 pd-50 group-content">
+            <div className="container-fluid mb-5">
+              <div className="row">
+                <div className="col-sm-7">
+                  <div className="Edit-ft1">MÓDULO 1</div>
+                  <div className="mgt-5 con-ft5">Introdução</div>
+                </div>
+                <div className="col-sm-5">
+                  <div className="mb-5">
+                    <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                    <div className="mt-1 position-relative ht-45 new_group_select">
+                      <FormControl
+                        variant="outlined"
+                        className={`${classes.formControl}`}
+                      >
+                        <Select
+                          labelId="demo-simple-select-outlined-label"
+                          id="demo-simple-select-outlined"
+                          value={role1}
+                          onChange={Handle_Role1}
+                          label="age"
+                        >
+                          <MenuItem value={10}>Acesso Livre</MenuItem>
+                          <MenuItem value={20}>Data programada</MenuItem>
+                          <MenuItem value={30}>Dias após compra</MenuItem>
+                          <MenuItem value={40}>Oculto</MenuItem>
+                          <MenuItem value={50}>Bloqueado</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </div>
+                  <div className="mb-5">
+                    <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                    <div className="mt-1 position-relative ht-45 new_group_select">
+                      <FormControl
+                        variant="outlined"
+                        className={`${classes.formControl}`}
+                      >
+                        <Select
+                          labelId="demo-simple-select-outlined-label"
+                          id="demo-simple-select-outlined"
+                          value={role1}
+                          onChange={Handle_Role1}
+                          label="age"
+                        >
+                          <MenuItem value={10}>Acesso Livre</MenuItem>
+                          <MenuItem value={20}>Data programada</MenuItem>
+                          <MenuItem value={30}>Dias após compra</MenuItem>
+                          <MenuItem value={40}>Oculto</MenuItem>
+                          <MenuItem value={50}>Bloqueado</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </div>
+                  <div className="mb-5">
+                    <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                    <div className="mt-1 position-relative ht-45 new_group_select">
+                      <FormControl
+                        variant="outlined"
+                        className={`${classes.formControl}`}
+                      >
+                        <Select
+                          labelId="demo-simple-select-outlined-label"
+                          id="demo-simple-select-outlined"
+                          value={role1}
+                          onChange={Handle_Role1}
+                          label="age"
+                        >
+                          <MenuItem value={10}>Acesso Livre</MenuItem>
+                          <MenuItem value={20}>Data programada</MenuItem>
+                          <MenuItem value={30}>Dias após compra</MenuItem>
+                          <MenuItem value={40}>Oculto</MenuItem>
+                          <MenuItem value={50}>Bloqueado</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mb-5">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-sm-7">
+                    <div className="Edit-ft1">MÓDULO 2</div>
+                    <div className="mgt-5 con-ft5">Agora é pra Valer!</div>
+                  </div>
+                  <div className="col-sm-5">
+                    <div>
+                      <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl}`}
+                        >
+                          <Select
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            value={role2}
+                            onChange={Handle_Role2}
+                            label="age"
+                          >
+                            <MenuItem value={10}>Acesso Livre</MenuItem>
+                            <MenuItem value={20}>Data programada</MenuItem>
+                            <MenuItem value={30}>Dias após compra</MenuItem>
+                            <MenuItem value={40}>Oculto</MenuItem>
+                            <MenuItem value={50}>Bloqueado</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </div>
+
+                    <div className="mt-5">
+                      <div className="Edit-ft1">DIAS APÓS A COMPRA</div>
+                      <div className="position-relative">
+                        <input
+                          type="text"
+                          className="Edit-warp mt-3 Edit-ft4-1 w-100"
+                          placeholder="01"
+                          value={itemaccess}
+                          onChange={Handle_Itemaccess}
+                        />
+                        <div className="item-day-1 Edit-ft1">DIAS</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="mt-5">
-            <div className="Edit-ft3">Regras de Liberação de Módulos</div>
-            <div className="Edit-ft5 mt-1">
-              Ingressar membros novos nesta turma.
-            </div>
-          </div>
-          <div className="group-new4 group-content">
-            <div className="group-new41">
-              <div>
-                <div className="Edit-ft1">MÓDULO 1</div>
-                <div className="mt-1 con-ft5">Introdução</div>
-              </div>
-              <div className="topmargin">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative ht-45 new_group_select">
-                  <FormControl
-                    variant="outlined"
-                    className={`${classes.formControl}`}
-                  >
-                    <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      value={role1}
-                      onChange={Handle_Role1}
-                      label="age"
-                    >
-                      <MenuItem value={10}>Acesso Livre</MenuItem>
-                      <MenuItem value={20}>Data programada</MenuItem>
-                      <MenuItem value={30}>Dias após compra</MenuItem>
-                      <MenuItem value={40}>Oculto</MenuItem>
-                      <MenuItem value={50}>Bloqueado</MenuItem>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
-            <div className="group-new42">
-              <div>
-                <div className="Edit-ft1">MÓDULO 2</div>
-                <div className="mt-1 con-ft5">Agora é pra Valer!</div>
-              </div>
-              <div className="topmargin">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative new_group_select">
-                  <FormControl
-                    variant="outlined"
-                    className={`${classes.formControl}`}
-                  >
-                    <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      value={role2}
-                      onChange={Handle_Role2}
-                      label="age"
-                    >
-                      <MenuItem value={10}>Acesso Livre</MenuItem>
-                      <MenuItem value={20}>Data programada</MenuItem>
-                      <MenuItem value={30}>Dias após compra</MenuItem>
-                      <MenuItem value={40}>Oculto</MenuItem>
-                      <MenuItem value={50}>Bloqueado</MenuItem>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="group-new5">
             <div className="Edit-ft3">Regras de Liberação de Aulas</div>
-            <div className="Edit-ft5 mt-3">
+            <div className="Edit-ft5 mt-1">
               Programe aulas específicas quando as regras de módulos não forem
               aplicáveis.
             </div>
@@ -268,13 +332,24 @@ export default function EditContent() {
             )}
           </TransitionGroup>
           <div className="row mt-5">
-            <div className="col-lg-6 col-sm-12">
-              <button className="but_save w-100" onClick={Handle_Add}>
-                {drpdwn ? "Adicionar turma" : "Adicionar conteúdo"}
+            <div className="col-xl-6 col-12">
+              <button
+                type="button"
+                className="but_save w-100"
+                onClick={Handle_Add}
+              >
+                Salvar edição
               </button>
             </div>
-            <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100">Cancelar</button>
+            <div className="col-xl-3 col-6">
+              <button type="button" className="but_cancel w-100">
+                Cancelar
+              </button>
+            </div>
+            <div className="col-xl-3 col-6">
+              <button type="button" className="but_delete w-100">
+                Excluir turma
+              </button>
             </div>
           </div>
         </div>

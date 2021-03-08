@@ -83,7 +83,10 @@ export default function NewContent() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Link do vídeo</div>
-            <input className="input-ft1 mt-3 w-100" placeholder="Link do vídeo" />
+            <input
+              className="input-ft1 mt-3 w-100"
+              placeholder="Link do vídeo"
+            />
           </div>
           <div className="mt-5">
             <div className="Edit-ft3 mt-5">Arquivos</div>
@@ -100,10 +103,18 @@ export default function NewContent() {
           </div>
           <div className="row mt-5">
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_save w-100" onClick={Handle_Save}>Adicionar conteúdo</button>
+              <button
+                type="button"
+                className="but_save w-100"
+                onClick={Handle_Save}
+              >
+                Adicionar conteúdo
+              </button>
             </div>
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_cancel w-100">Cancelar</button>
+              <button type="button" className="but_cancel w-100">
+                Cancelar
+              </button>
             </div>
           </div>
         </div>

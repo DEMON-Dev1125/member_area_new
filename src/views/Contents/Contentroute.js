@@ -7,7 +7,7 @@ import EditContent from "./Editcontent";
 import NewContent from "./NewContent";
 import Improve from "./Improve";
 
-export default function CententRoute() {
+export default function Cententroute() {
   let history = useHistory();
   return (
     <Switch>
