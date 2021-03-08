@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
-import CloseIcon from "../../assets/img/ios-close.svg";
-import DeleteIcon from "../../assets/img/delete_icon.svg";
+const CloseIcon = "ios-close.svg";
+const DeleteIcon = "delete_icon.svg";
 
 export default function Deletedialog() {
   const history = useHistory();
@@ -35,10 +35,16 @@ export default function Deletedialog() {
                 history.push("/main/content/editor");
               }}
             >
-              <img className="add_icon" src={DeleteIcon}></img>
+              <img
+                className="add_icon"
+                src={require(`../../assets/svg/${DeleteIcon}`).default}
+              />
             </div>
             <div className="" onClick={handleClose}>
-              <img className="close_icon" src={CloseIcon} />
+              <img
+                className="close_icon"
+                src={require(`../../assets/svg/${CloseIcon}`).default}
+              />
             </div>
           </div>
           <div className="Edit-ft6 mgt-50">Deseja excluir esse conteúdo?</div>

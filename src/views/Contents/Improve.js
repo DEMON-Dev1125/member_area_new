@@ -7,16 +7,17 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-
 import DeleteDialogIcon from "./Deleteicon.js";
-import checkBule from "../../assets/img/check-bule.svg";
-import fileIcon from "../../assets/img/fileIcon.svg";
-import dotIcon from "../../assets/img/dotIcon.svg";
-import textIcon from "../../assets/img/textIcon.svg";
-import videoIcon from "../../assets/img/vídeoIcon.svg";
-import moveIcon from "../../assets/img/moveIcon.svg";
-import Memberimg from "../../assets/img/Avatar.png";
-import Memberimg4 from "../../assets/img/member4.png";
+
+const CheckBule = "check-bule.svg";
+const FileIcon = "fileIcon.svg";
+const DotIcon = "dotIcon.svg";
+const TextIcon = "textIcon.svg";
+const VideoIcon = "vídeoIcon.svg";
+const MoveIcon = "moveIcon.svg";
+const Avatar = "Avatar.png";
+const Member = "member4.png";
+
 import "assets/scss/entire.scss";
 import "../../assets/css/login.css";
 import { AutoComplete } from "antd";
@@ -107,9 +108,15 @@ export default function NewContent() {
             <div className="intro-list mgt-50">
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={checkBule} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${CheckBule}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 1 | 7:23</div>
@@ -120,9 +127,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={checkBule} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${CheckBule}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 2 | VÍDEO 12:54</div>
@@ -131,9 +144,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={dotIcon} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${DotIcon}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 3 | VÍDEO 15:54</div>
@@ -142,9 +161,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={videoIcon} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${VideoIcon}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 4 | VÍDEO 5:05</div>
@@ -153,9 +178,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={videoIcon} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${VideoIcon}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 5 | VÍDEO 12:39</div>
@@ -164,9 +195,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={fileIcon} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${FileIcon}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 6 | ARQUIVO</div>
@@ -175,9 +212,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={textIcon} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${TextIcon}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 7 | TEXTO</div>
@@ -186,9 +229,15 @@ export default function NewContent() {
               </div>
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
-                  <img src={fileIcon} className="mgr-25"></img>
+                  <img
+                    src={require(`../../assets/svg/${FileIcon}`).default}
+                    className="mgr-20"
+                  />
                 ) : (
-                  <img src={moveIcon} className="mgr-20"></img>
+                  <img
+                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    className="mgr-20"
+                  />
                 )}
                 <div className="">
                   <div className="Edit-ft1 mgb-5">AULA 8 | ARQUIVO</div>
@@ -314,7 +363,10 @@ export default function NewContent() {
                   {responder && (
                     <CSSTransition classNames="dialog" timeout={300}>
                       <div className="d-flex pdl-5 mgt-50">
-                        <img className="u-img1" src={Memberimg}></img>
+                        <img
+                          className="u-img1"
+                          src={require(`../../assets/img/${Avatar}`).default}
+                        />
                         <div className="pdl-20">
                           <textarea
                             className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
@@ -345,7 +397,10 @@ export default function NewContent() {
                   {publish1 && (
                     <CSSTransition classNames="dialog" timeout={300}>
                       <div className="d-flex pdl-5 mgt-50">
-                        <img className="u-img1" src={Memberimg}></img>
+                        <img
+                          className="u-img1"
+                          src={require(`../../assets/img/${Member}`).default}
+                        />
                         <div className="pdl-20">
                           <textarea
                             className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"

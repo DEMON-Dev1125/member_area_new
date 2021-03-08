@@ -5,16 +5,12 @@ import { useHistory, Switch, Route } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Checkbox from "@material-ui/core/Checkbox";
 import Fileupload from "../../components/Fileupload";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextWYSIWYG from "../../components/Wysiwyg";
 import StyledCheckbox from "../../components/Checkbox.js";
-// import sidebarImage1 from '../../assets/img/'
-import sidebarImage2 from "../../assets/img/Logo_white.svg";
-import sidebarImage3 from "../../assets/img/Avatar.png";
 import "../../assets/css/login.css";
 
 const useStyles = makeStyles((theme) => ({

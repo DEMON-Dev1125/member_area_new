@@ -6,13 +6,14 @@ import AddMoudle from "./Addmodule";
 import DeleteMoudle from "./Deletedialog";
 
 import { makeStyles } from "@material-ui/core/styles";
-import checkBule from "../../assets/img/check-bule.svg";
-import fileIcon from "../../assets/img/fileIcon.svg";
-import dotIcon from "../../assets/img/dotIcon.svg";
-import textIcon from "../../assets/img/textIcon.svg";
-import videoIcon from "../../assets/img/vídeoIcon.svg";
-import moveIcon from "../../assets/img/moveIcon.svg";
 import "assets/scss/entire.scss";
+
+const CheckBule = "check-bule.svg";
+const FileIcon = "fileIcon.svg";
+const DotIcon = "dotIcon.svg";
+const TextIcon = "textIcon.svg";
+const VideoIcon = "vídeoIcon.svg";
+const MoveIcon = "moveIcon.svg";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -138,8 +139,9 @@ export default function ContentIndex() {
           <div className="accordion">
             <div className="fold">
               <div
-                className={`d-flex justify-content-between align-items-center con-fold ${active1 ? "open-fold" : ""
-                  }`}
+                className={`d-flex justify-content-between align-items-center con-fold ${
+                  active1 ? "open-fold" : ""
+                }`}
               >
                 <button
                   className={`fold_trigger ${active1 ? "open" : ""}`}
@@ -148,8 +150,9 @@ export default function ContentIndex() {
                   <div className="Edit-ft1 mgl-40">MÓDULO 1</div>
                   <div className="d-flex align-items-center">
                     <i
-                      className={`fas fa-chevron-up mgr-20 down-up ${active1 ? "open1" : ""
-                        }`}
+                      className={`fas fa-chevron-up mgr-20 down-up ${
+                        active1 ? "open1" : ""
+                      }`}
                     ></i>
                     {edit ? (
                       <div className="con-ft1">Introdução</div>
@@ -182,7 +185,7 @@ export default function ContentIndex() {
 
                 {select1 && (
                   <div className="select-content con-ft2">
-                    <div className="select-item mgb-15"  onClick={Handle_Edit1}>
+                    <div className="select-item mgb-15" onClick={Handle_Edit1}>
                       Editar
                     </div>
                     <div className="select-item mgb-15">Mover cima</div>
@@ -204,9 +207,15 @@ export default function ContentIndex() {
                   <>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={checkBule} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${CheckBule}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="" onClick={() => goImprove()}>
                         <div className="Edit-ft1 mgb-5">AULA 1 | 7:23</div>
@@ -217,9 +226,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={checkBule} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${CheckBule}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
@@ -230,9 +245,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={dotIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${DotIcon}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
@@ -243,9 +264,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={videoIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${VideoIcon}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
@@ -256,9 +283,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={videoIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${VideoIcon}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
@@ -269,9 +302,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={fileIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${FileIcon}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 6 | ARQUIVO</div>
@@ -280,9 +319,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={textIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${TextIcon}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 7 | TEXTO</div>
@@ -291,9 +336,15 @@ export default function ContentIndex() {
                     </div>
                     <div className="test-content d-flex mgb-30">
                       {moveflag ? (
-                        <img src={fileIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${FileIcon}`).default}
+                          className="mgr-20"
+                        />
                       ) : (
-                        <img src={moveIcon} className="mgr-20"></img>
+                        <img
+                          src={require(`../../assets/svg/${MoveIcon}`).default}
+                          className="mgr-20"
+                        />
                       )}
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 8 | ARQUIVO</div>
@@ -310,8 +361,9 @@ export default function ContentIndex() {
           <div className="accordion">
             <div className="fold">
               <div
-                className={`d-flex justify-content-between align-items-center con-fold ${active2 ? "open-fold" : ""
-                  }`}
+                className={`d-flex justify-content-between align-items-center con-fold ${
+                  active2 ? "open-fold" : ""
+                }`}
               >
                 <button
                   className={`fold_trigger ${active2 ? "open" : ""}`}
@@ -320,8 +372,9 @@ export default function ContentIndex() {
                   <div className="Edit-ft1 mgl-40">MÓDULO 2</div>
                   <div className="d-flex align-items-center">
                     <i
-                      className={`fas fa-chevron-up mgr-20 down-up ${active2 ? "open1" : ""
-                        }`}
+                      className={`fas fa-chevron-up mgr-20 down-up ${
+                        active2 ? "open1" : ""
+                      }`}
                     ></i>
                     <div className="con-ft1">Agora é pra Valer!</div>
                   </div>

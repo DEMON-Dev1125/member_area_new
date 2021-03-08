@@ -4,7 +4,7 @@ import action from "../store/actions";
 import "../assets/css/login.css";
 import { useHistory } from "react-router-dom";
 
-import logo from "../assets/img/Logo-WL.svg";
+const LogoWL = "Logo-WL.svg";
 function Login() {
   let history = useHistory();
   const [email, setEmail] = useState("");
@@ -20,7 +20,10 @@ function Login() {
       <div className="inner">
         <form onSubmit={HandleSubmit}>
           <div className="d-flex justify-content-center mt-4 mb-5">
-            <img className="login-img1" src={logo}></img>
+            <img
+              className="login-img1"
+              src={require(`../assets/svg/${LogoWL}`)}
+            />
           </div>
           <div className="form-group">
             <label>E-mail</label>

@@ -1,12 +1,11 @@
-import React, { Componen, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
 import { Nav } from "react-bootstrap";
-import Avatarimg from "../../assets/img/Avatar.png";
-import Logoimg from "../../assets/img/Logo.svg";
+const AvatarImg = "Avatar.png";
+const LogoSvg = "Logo.svg";
 import $ from "jquery";
 
-import logo from "assets/img/reactlogo.png";
 // $(window).on("resize", function () {
 //   if (window.innerWidth > 760) {
 //     document.querySelector(".wrapper .mobile-sidebar ").style.transform =
@@ -26,6 +25,8 @@ function Sidebar(props) {
     }
   };
 
+  const NavTitle = () => {};
+
   return (
     <div
       className="sidebar mobile-sidebar "
@@ -36,16 +37,27 @@ function Sidebar(props) {
       <div className="sidebar-wrapper">
         <div className="sidebar-header">
           <div className="log-img1 group-mobile" onClick={Handle_NavHidden}>
-            <img className="" src={Logoimg} />
+            <img src={require(`../../assets/svg/${LogoSvg}`).default} />
           </div>
           <div className="log-img1 desktop">
-            <img className="" src={Logoimg} />
+            <img
+              className=""
+              src={require(`../../assets/svg/${LogoSvg}`).default}
+            />
           </div>
           <div className="log-img2">
-            <img className="" src={Avatarimg} />
+            <img
+              className=""
+              src={require(`../../assets/img/${AvatarImg}`).default}
+            />
           </div>
         </div>
-        <p className="nav-title">GERENCIAMENTO DE CONTEÚDO</p>
+
+        {NavTitle ? (
+          <p className="nav-title">GERENCIAMENTO DE CONTEÚDO</p>
+        ) : (
+          <p className="nav-title">CONFIGURAÇÕES AVANÇADAS</p>
+        )}
         <Nav>
           {routes.map((prop, key) => {
             if (!prop.redirect)

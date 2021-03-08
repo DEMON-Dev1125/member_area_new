@@ -1,6 +1,7 @@
 import react, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
-import { Tabs, Tab } from "@material-ui/core";
+// import styled from "styled-components";
+import { ButtonGroup, Tab } from "@material-ui/core";
 
 import "../../assets/css/login.css";
 
@@ -9,12 +10,6 @@ export default function Member() {
   const AddMember = () => {
     history.push("/main/member/addmember");
   };
-  const [value, setValue] = react.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  const Nomember = "";
 
   return (
     <div className="container-fluid mt-5">
@@ -38,35 +33,7 @@ export default function Member() {
             </div>
           </div>
           <hr />
-          {Nomember ? (
-            <div className="container">
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                variant="fullWidth"
-                indicatorColor="primary"
-                textColor="primary"
-                aria-label="icon tabs example"
-              >
-                <Tab label="Alunos" />
-                <Tab label="Alunos" />
-                <Tab label="Alunos" />
-              </Tabs>
-            </div>
-          ) : (
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              aria-label="icon tabs example"
-            >
-              <Tab label="Alunos" />
-              <Tab label="Alunos" />
-              <Tab label="Alunos" />
-            </Tabs>
-          )}
+          <div className="container"></div>
         </div>
         <div className="col-xl-2"></div>
       </div>

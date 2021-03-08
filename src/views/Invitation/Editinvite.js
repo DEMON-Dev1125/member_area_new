@@ -1,10 +1,6 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import Fileupload from "../../components/Fileupload";
-
-const MemberImg1 = "member1.png";
-const MemberImg2 = "member2.png";
-const MemberImg3 = "member3.png";
 
 import "../../assets/css/login.css";
 import "../../assets/css/invite.css";

@@ -1,15 +1,15 @@
 import React, { Component, useState } from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar.js";
-// import FixedPlugin from "../components/FixedPlugin/FixedPlugin";
 import $ from "jquery";
 import routes from "../routes.js";
-import sidebarImage from "assets/img/sidebar-3.jpg";
-import sidebarImage2 from "assets/img/Logo_white.svg";
-import sidebarImage3 from "assets/img/Avatar.png";
+
+const LogoWhite = "Logo_white.svg";
+const SidebarImg = "sidebar-3.jpg";
+const Avatar = "Avatar.png";
 
 function Main() {
-  const [image, setImage] = React.useState(sidebarImage);
+  const [image, setImage] = React.useState(SidebarImg);
   const [color, setColor] = React.useState("black");
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
@@ -71,8 +71,14 @@ function Main() {
                 <div className="bar2"></div>
                 <div className="bar3"></div>
               </div>
-              <img className="sidebar-img2" src={sidebarImage2} />
-              <img className="sidebar-img" src={sidebarImage3} />
+              <img
+                className="sidebar-img2"
+                src={require(`../assets/svg/${LogoWhite}`).default}
+              />
+              <img
+                className="sidebar-img"
+                src={require(`../assets/img/${Avatar}`).default}
+              />
             </div>
             <Switch>{getRoutes(routes)}</Switch>
           </div>

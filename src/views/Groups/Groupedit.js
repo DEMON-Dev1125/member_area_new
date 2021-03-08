@@ -1,18 +1,14 @@
 /**********************This is 15 page************ */
 import react, { useState, useEffect } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
-import ToogleButton from "../../components/Togglebutton.js";
-import Fileupload from "../../components/Fileupload";
-import StyledCheckbox from "../../components/Checkbox.js";
+import ToogleButton from "../../components/Togglebutton";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import { TransitionGroup, CSSTransition } from "react-transition-group"; // ES6
-import InputLabel from "@material-ui/core/InputLabel";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import "../../assets/css/login.css";
-import { SelectionState } from "draft-js";
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),

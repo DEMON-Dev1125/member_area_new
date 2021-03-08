@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
-import CloseIcon from "../../assets/img/ios-close.svg";
-import AddIcon from "../../assets/img/add_icon.svg";
+const AddIcon = "add_icon.svg";
+const CloseIcon = "ios-close.svg";
 
 export default function AddMoudle() {
   const history = useHistory();
@@ -39,10 +39,16 @@ export default function AddMoudle() {
                 history.push("/main/content/editor");
               }}
             >
-              <img className="add_icon" src={AddIcon}></img>
+              <img
+                className="add_icon"
+                src={require(`../../assets/svg/${AddIcon}`).default}
+              ></img>
             </div>
             <div className="mobile-position" onClick={handleClose}>
-              <img className="close_icon" src={CloseIcon} />
+              <img
+                className="close_icon"
+                src={require(`../../assets/svg/${CloseIcon}`).default}
+              />
             </div>
           </div>
           <div className="Edit-ft6 mt-5">Adicionar módulo</div>

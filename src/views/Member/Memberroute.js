@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import MemberIndex from "./Member.js";
 import NewMember from "./Newmember.js";
+import EditMember from "./Editmember.js";
 
 export default function Inviteroute() {
   let history = useHistory();
@@ -13,9 +14,12 @@ export default function Inviteroute() {
         component={(props) => <MemberIndex {...props} />}
       />
       <Route
-        exact
         path="/main/member/addmember"
         component={(props) => <NewMember {...props} />}
+      />
+      <Route
+        path="/main/member/editmember"
+        component={(props) => <EditMember {...props} />}
       />
     </Switch>
   );

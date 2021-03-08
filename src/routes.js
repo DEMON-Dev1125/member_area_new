@@ -1,10 +1,9 @@
-/*************This is main route define part***************** */
 import Content from "./views/Contents/Contentroute.js";
 import Group from "./views/Groups/Grouproute.js";
 import Certificate from "./views/Certificate/Certificateroute.js";
 import Invitation from "./views/Invitation/Inviteroute.js";
 import Member from "./views/Member/Memberroute.js";
-// import Comunity from "./views/Comunity/comunity-route.js";
+import Community from "./views/Community/Communityroute.js";
 
 var routes = [
   {
@@ -42,13 +41,13 @@ var routes = [
     component: Member,
     layout: "/main",
   },
-  // {
-  //   path: "/comunity",
-  //   name: "Comunidade",
-  //   icon: "fa fa-users",
-  //   component: Comunity,
-  //   layout: "/main",
-  // },
+  {
+    path: "/community",
+    name: "Comunidade",
+    icon: "fa fa-comments",
+    component: Community,
+    layout: "/main",
+  },
 ];
 
 export default routes;
