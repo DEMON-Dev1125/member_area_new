@@ -23,9 +23,9 @@ export default function MyDropzone() {
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <div className="upload_before d-flex flex-column align-items-center mgt-15">
+      <div className="upload_before d-flex flex-column align-items-center">
         <img
-          className="filter-green mgb-15"
+          className="filter-green mb-2"
           src={require(`../assets/svg/${FileIcon}`).default}
         ></img>
         <div className="Edit-ft5 wd-258 ht-45 text-center">

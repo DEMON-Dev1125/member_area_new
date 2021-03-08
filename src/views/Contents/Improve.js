@@ -20,7 +20,6 @@ const Member = "member4.png";
 
 import "assets/scss/entire.scss";
 import "../../assets/css/login.css";
-import { AutoComplete } from "antd";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
@@ -327,7 +326,10 @@ export default function NewContent() {
               </div>
             </div>
             <div className="d-flex pdl-5">
-              <img className="u-img1" src={Memberimg}></img>
+              <img
+                className="u-img1"
+                src={require(`../../assets/img/${Avatar}`).default}
+              />
               <div className="pdl-20">
                 <textarea
                   className="Edit-warp1 ht-200  Edit-ft4 wd-722 mgl-20"
@@ -339,7 +341,10 @@ export default function NewContent() {
               </div>
             </div>
             <div className="second-m">
-              <img className="u-img1" src={Memberimg4}></img>
+              <img
+                className="u-img1"
+                src={require(`../../assets/img/${Member}`).default}
+              />
               <div className="pdl-20">
                 <div className="d-flex justify-content-between mgb-20">
                   <div className="Edit-ft3">João Lima</div>

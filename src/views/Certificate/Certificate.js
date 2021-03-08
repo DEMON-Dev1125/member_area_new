@@ -39,7 +39,7 @@ export default function Certificate() {
                   width="100%"
                 />
               </div>
-              <div className="col-lg-6 col-sm-12 mt-5 pd-50 ">
+              <div className="col-lg-6 col-sm-12 mt-5 p-5">
                 <div>
                   <div className="Edit-ft1">MÉTODO REMOTO 3.0</div>
                   <div className="mt-1 con-ft5">
@@ -47,7 +47,7 @@ export default function Certificate() {
                   </div>
                 </div>
                 <div className="row mt-4">
-                  <div className="col-sm-6">
+                  <div className="col-sm-6 col-6">
                     <div className="Edit-ft1">GRADUADOS</div>
                     <div
                       className="mt-1 position-relative show_member"
@@ -68,7 +68,7 @@ export default function Certificate() {
                       <div className="member4">+15</div>
                     </div>
                   </div>
-                  <div className="col-sm-6 pt-3">
+                  <div className="col-sm-6 col-6 pt-3">
                     <button type="button" className="btn btn-primary">
                       Exportar lista
                     </button>

@@ -1,12 +1,12 @@
 * {
   box-sizing: border-box;
+  font-family: "Roboto" !important;
 }
 
 body {
   min-height: 100vh;
   display: flex;
   font-weight: 400;
-  font-family: "Roboto" !important;
 }
 
 body,
@@ -52,10 +52,9 @@ html,
 .sidebar-header {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
   align-items: center;
   padding: 0 30px;
-  margin-bottom: 100px;
+  margin: 40px 0 70px 0;
 }
 .login-img1 {
   width: 80px;
@@ -2837,10 +2836,9 @@ html,
   .sidebar-header {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
     align-items: center;
     padding: 0 30px;
-    margin-bottom: 50px;
+    margin: 40px 0 70px 0;
   }
   .sidebar-header .log-img2 {
     display: none;
@@ -3030,4 +3028,18 @@ html,
   font-size: 16px !important;
   line-height: 18px !important;
   border-radius: 10px !important;
+}
+.btn_select {
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 18px;
+  color: #88929e;
+  padding: 13px 15px;
+  background-color: rgba(136, 146, 158, 0.2);
+  outline-style: none;
+  border: none;
+}
+.btn_select:focus {
+  outline-style: none;
+  border: none;
 }

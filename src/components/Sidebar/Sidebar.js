@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
-
 import { Nav } from "react-bootstrap";
+
 const AvatarImg = "Avatar.png";
 const LogoSvg = "Logo.svg";
 import $ from "jquery";
@@ -24,8 +24,6 @@ function Sidebar(props) {
         "translate3d(-343px, 0, 0)";
     }
   };
-
-  const NavTitle = () => {};
 
   return (
     <div
@@ -53,14 +51,39 @@ function Sidebar(props) {
           </div>
         </div>
 
-        {NavTitle ? (
-          <p className="nav-title">GERENCIAMENTO DE CONTEÚDO</p>
-        ) : (
-          <p className="nav-title">CONFIGURAÇÕES AVANÇADAS</p>
-        )}
+        <p className="nav-title">GERENCIAMENTO DE CONTEÚDO</p>
         <Nav>
           {routes.map((prop, key) => {
-            if (!prop.redirect)
+            if (prop.permission === "public")
+              return (
+                <li
+                  onClick={Handle_NavHidden}
+                  className={
+                    prop.upgrade
+                      ? "active active-pro"
+                      : activeRoute(prop.layout + prop.path)
+                  }
+                  key={key}
+                >
+                  <NavLink
+                    to={prop.layout + prop.path}
+                    className="nav-link"
+                    activeClassName="active"
+                  >
+                    <i className={prop.icon} />
+                    {/* <FontAwesomeIcon icon={prop.icon} /> */}
+                    <p>{prop.name}</p>
+                  </NavLink>
+                </li>
+              );
+            return null;
+          })}
+        </Nav>
+
+        <p className="nav-title">CONFIGURAÇÕES AVANÇADAS</p>
+        <Nav>
+          {routes.map((prop, key) => {
+            if (prop.permission === "private")
               return (
                 <li
                   onClick={Handle_NavHidden}

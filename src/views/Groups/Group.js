@@ -45,11 +45,11 @@ export default function Group() {
             onClick={EditClass}
           >
             <div className="row">
-              <div className="col-8 col-md-4">
+              <div className="col-6 col-md-4">
                 <div className="Edit-ft1">TURMA (PADRÃO)</div>
                 <div className="mt-1 con-ft5">Turma A</div>
               </div>
-              <div className="col-8 col-md-8">
+              <div className="col-6 col-md-8">
                 <div className="Edit-ft1">MEMBROS</div>
                 <div className="mt-1 position-relative">
                   <img

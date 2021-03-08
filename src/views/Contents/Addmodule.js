@@ -28,7 +28,7 @@ export default function AddMoudle() {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        maxWidth="false"
+        maxWidth="md"
         PaperProps={{ style: { borderRadius: 20 } }}
       >
         <div className="dialog_container">
@@ -42,7 +42,7 @@ export default function AddMoudle() {
               <img
                 className="add_icon"
                 src={require(`../../assets/svg/${AddIcon}`).default}
-              ></img>
+              />
             </div>
             <div className="mobile-position" onClick={handleClose}>
               <img

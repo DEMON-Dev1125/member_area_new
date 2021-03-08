@@ -98,7 +98,7 @@ export default function Invite() {
               </div>
 
               <div className="row mt-3">
-                <div className="col-sm-3 col-6">
+                <div className="col-sm-3">
                   <div className="Edit-ft1">INSCRITOS</div>
                   <div
                     className="mt-2 position-relative show_memeber"
@@ -119,8 +119,7 @@ export default function Invite() {
                     <div className="member4">+609</div>
                   </div>
                 </div>
-                <div className="col-sm-6"></div>
-                <div className="col-sm-3 col-6 text-right">
+                <div className="col-sm-9 text-right">
                   <div className="Edit-ft1">DATA CRIAÇÃO</div>
                   <div className="con-ft5 mt-2">06/01/2021</div>
                 </div>

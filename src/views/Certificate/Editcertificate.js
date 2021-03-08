@@ -36,7 +36,7 @@ export default function Certificate() {
           <div className="Edit-ft2">Editar certificado</div>
           <div className="Edit-ft3 mt-5">Texto do certificado</div>
           <div className="mt-3">
-            <div className="Edit-ft4 text-dark p-0">Tags disponíveis</div>
+            <div className="Edit-ft3">Tags disponíveis</div>
             <div className="Edit-ft5 mt-1">
               Use as tags abaixo para compor o seu texto no final do
               certificado.
