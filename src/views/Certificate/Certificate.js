@@ -51,6 +51,7 @@ export default function Certificate() {
                     <div className="Edit-ft1">GRADUADOS</div>
                     <div
                       className="mt-1 position-relative show_member"
+                      style={{ cursor: "pointer" }}
                       onClick={showMember}
                     >
                       <img

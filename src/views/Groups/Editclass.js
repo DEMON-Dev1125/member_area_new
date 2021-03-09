@@ -8,6 +8,7 @@ import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import { TransitionGroup, CSSTransition } from "react-transition-group"; // ES6
 import "../../assets/css/login.css";
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
+
 export default function EditContent() {
   const history = useHistory();
   const classes = useStyles();
@@ -135,50 +137,18 @@ export default function EditContent() {
                     </div>
                   </div>
                   <div className="mb-5">
-                    <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                    <div className="mt-1 position-relative ht-45 new_group_select">
-                      <FormControl
-                        variant="outlined"
-                        className={`${classes.formControl}`}
-                      >
-                        <Select
-                          labelId="demo-simple-select-outlined-label"
-                          id="demo-simple-select-outlined"
-                          value={role1}
-                          onChange={Handle_Role1}
-                          label="age"
-                        >
-                          <MenuItem value={10}>Acesso Livre</MenuItem>
-                          <MenuItem value={20}>Data programada</MenuItem>
-                          <MenuItem value={30}>Dias após compra</MenuItem>
-                          <MenuItem value={40}>Oculto</MenuItem>
-                          <MenuItem value={50}>Bloqueado</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </div>
+                    <div className="Edit-ft1">DATA LIBERAÇÃO</div>
+                    <input
+                      className="input-ft1 mt-2 w-100"
+                      placeholder="05/01/2021 12:00"
+                    />
                   </div>
                   <div className="mb-5">
-                    <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                    <div className="mt-1 position-relative ht-45 new_group_select">
-                      <FormControl
-                        variant="outlined"
-                        className={`${classes.formControl}`}
-                      >
-                        <Select
-                          labelId="demo-simple-select-outlined-label"
-                          id="demo-simple-select-outlined"
-                          value={role1}
-                          onChange={Handle_Role1}
-                          label="age"
-                        >
-                          <MenuItem value={10}>Acesso Livre</MenuItem>
-                          <MenuItem value={20}>Data programada</MenuItem>
-                          <MenuItem value={30}>Dias após compra</MenuItem>
-                          <MenuItem value={40}>Oculto</MenuItem>
-                          <MenuItem value={50}>Bloqueado</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </div>
+                    <div className="Edit-ft1">DATA FECHAMENTO</div>
+                    <input
+                      className="input-ft1 mt-2 w-100"
+                      placeholder="14/01/2021 12:00"
+                    />
                   </div>
                 </div>
               </div>

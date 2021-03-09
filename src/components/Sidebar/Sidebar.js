@@ -24,6 +24,7 @@ function Sidebar(props) {
         "translate3d(-343px, 0, 0)";
     }
   };
+  const Handleprofile = "";
 
   return (
     <div
@@ -38,14 +39,11 @@ function Sidebar(props) {
             <img src={require(`../../assets/svg/${LogoSvg}`).default} />
           </div>
           <div className="log-img1 desktop">
-            <img
-              className=""
-              src={require(`../../assets/svg/${LogoSvg}`).default}
-            />
+            <img src={require(`../../assets/svg/${LogoSvg}`).default} />
           </div>
           <div className="log-img2">
             <img
-              className=""
+              // onClick={HandleProfile}
               src={require(`../../assets/img/${AvatarImg}`).default}
             />
           </div>
@@ -71,15 +69,14 @@ function Sidebar(props) {
                     activeClassName="active"
                   >
                     <i className={prop.icon} />
-                    {/* <FontAwesomeIcon icon={prop.icon} /> */}
                     <p>{prop.name}</p>
+                    <span className="badge float-right">{prop.badge}</span>
                   </NavLink>
                 </li>
               );
             return null;
           })}
         </Nav>
-
         <p className="nav-title">CONFIGURAÇÕES AVANÇADAS</p>
         <Nav>
           {routes.map((prop, key) => {

@@ -102,6 +102,7 @@ export default function Invite() {
                   <div className="Edit-ft1">INSCRITOS</div>
                   <div
                     className="mt-2 position-relative show_memeber"
+                    style={{ cursor: "pointer" }}
                     onClick={ShowMember}
                   >
                     <img

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
+import { MenuItem, FormControl, Select } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 import "../assets/css/login.css";
 import "../assets/css/certificate.css";
@@ -7,8 +9,21 @@ import "../assets/css/certificate.css";
 import TextWYSIWYG from "../components/Wysiwyg";
 import Timezone from "../components/Timezone";
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(0),
+    width: "100%",
+  },
+}));
+
 export default function Setting() {
   const history = useHistory();
+  const classes = useStyles();
+
+  const [lang, setLanguage] = useState(2);
+  const HandleLang = (e) => {
+    setLanguage(e.target.value);
+  };
 
   return (
     <div className="container-fluid mt-5">
@@ -47,10 +62,24 @@ export default function Setting() {
             <div className="mt-5 con-ft1">Internacionalização</div>
             <div className="mt-5">
               <div className="Edit-ft3">Idioma</div>
-              <input
-                className="input-ft1 mt-1 w-100"
-                placeholder="select language"
-              />
+              <div className="mt-1 position-relative new_group_select">
+                <FormControl
+                  variant="outlined"
+                  className={`${classes.formControl}`}
+                >
+                  <Select
+                  className="input-ft1"
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={lang}
+                    onChange={HandleLang}
+                  >
+                    <MenuItem value={1}>English (United States)</MenuItem>
+                    <MenuItem value={2}>Português (Brasil)</MenuItem>
+                    <MenuItem value={3}>Español</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
             </div>
             <div className="mt-5">
               <div className="Edit-ft3">Fuso horário padrão</div>

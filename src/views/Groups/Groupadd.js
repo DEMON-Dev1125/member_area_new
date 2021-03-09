@@ -51,7 +51,10 @@ export default function Group() {
               </div>
               <div className="col-8 col-md-8">
                 <div className="Edit-ft1">MEMBROS</div>
-                <div className="mt-1 position-relative">
+                <div
+                  className="mt-1 position-relative"
+                  style={{ cursor: "pointer" }}
+                >
                   <img
                     className="position-absolute"
                     src={require(`../../assets/img/${MemberImg1}`).default}

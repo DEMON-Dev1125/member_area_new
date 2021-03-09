@@ -55,6 +55,7 @@ var routes = [
     component: Community,
     layout: "/main",
     permission: "public",
+    badge: "25"
   },
 
   {

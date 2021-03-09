@@ -2,6 +2,9 @@
   box-sizing: border-box;
   font-family: "Roboto" !important;
 }
+input:hover {
+  border: 1px solid #0779e4;
+}
 
 body {
   min-height: 100vh;
@@ -3042,4 +3045,12 @@ html,
 .btn_select:focus {
   outline-style: none;
   border: none;
+}
+.badge {
+  font-size: 16px !important;
+  text-align: right !important;
+  line-height: 19px  !important;
+  color: #ffffff;
+  background-color: #e43f5a  !important;
+  border-radius: 5px  !important;
 }

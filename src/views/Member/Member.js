@@ -1,14 +1,26 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
-// import styled from "styled-components";
-import { ButtonGroup, Tab } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Tab, Tabs, Badge } from "@material-ui/core";
 
 import "../../assets/css/login.css";
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+});
 
 export default function Member() {
   const history = useHistory();
   const AddMember = () => {
     history.push("/main/member/addmember");
+  };
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
@@ -33,7 +45,27 @@ export default function Member() {
             </div>
           </div>
           <hr />
-          <div className="container"></div>
+          <Paper className={classes.root}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              centered
+            >
+              <Tab label="Item One" />
+              <Tab label="Item Two" />
+              <Tab label="Item Three" />
+              <Tab
+                label={
+                  <Badge badgeContent='1' color="primary">
+                    Messages
+                  </Badge>
+                }
+                value="/messages"
+              />
+            </Tabs>
+          </Paper>
         </div>
         <div className="col-xl-2"></div>
       </div>

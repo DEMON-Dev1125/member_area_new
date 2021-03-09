@@ -14,6 +14,7 @@ function Main() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/main") {
@@ -21,7 +22,6 @@ function Main() {
           <Route
             path={prop.layout + prop.path}
             render={(props) => <prop.component {...props} />}
-            key={key}
           ></Route>
         );
       } else {
@@ -66,7 +66,7 @@ function Main() {
         <div className="main-panel" ref={mainPanel}>
           <div className="content">
             <div className="user_navbar">
-              <div className=" sidebar-img" onClick={Handle_Nav}>
+              <div className="sidebar-img" onClick={Handle_Nav}>
                 <div className="bar1"></div>
                 <div className="bar2"></div>
                 <div className="bar3"></div>
@@ -80,7 +80,13 @@ function Main() {
                 src={require(`../assets/img/${Avatar}`).default}
               />
             </div>
-            <Switch>{getRoutes(routes)}</Switch>
+            <Switch>
+              <Route
+                path={"/main/profile"}
+                // render={(props) => <Profile />}
+              ></Route>
+              {getRoutes(routes)}
+            </Switch>
           </div>
         </div>
       </div>

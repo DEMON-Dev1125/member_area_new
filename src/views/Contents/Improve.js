@@ -370,6 +370,7 @@ export default function NewContent() {
                       <div className="d-flex pdl-5 mgt-50">
                         <img
                           className="u-img1"
+                          style={{ cursor: "pointer" }}
                           src={require(`../../assets/img/${Avatar}`).default}
                         />
                         <div className="pdl-20">
@@ -404,6 +405,7 @@ export default function NewContent() {
                       <div className="d-flex pdl-5 mgt-50">
                         <img
                           className="u-img1"
+                          style={{ cursor: "pointer" }}
                           src={require(`../../assets/img/${Member}`).default}
                         />
                         <div className="pdl-20">

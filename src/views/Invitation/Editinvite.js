@@ -47,7 +47,9 @@ export default function Invite() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Imagem destaque</div>
-            <Fileupload />
+            <div className="mt-2">
+              <Fileupload />
+            </div>
           </div>
           <div className="row mt-5">
             <div className="col-xl-6 col-12">
