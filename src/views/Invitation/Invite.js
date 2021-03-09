@@ -1,14 +1,13 @@
 import react, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import "../../assets/css/login.css";
+import "../../assets/css/invite.css";
 
 const MemberImg1 = "member1.png";
 const MemberImg2 = "member2.png";
 const MemberImg3 = "member3.png";
 const InviteImg = "convite.png";
-
-import "../../assets/css/login.css";
-import "../../assets/css/invite.css";
 
 export default function Invite() {
   const [value, setValue] = useState("");

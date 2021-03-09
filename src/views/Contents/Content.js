@@ -7,6 +7,7 @@ import DeleteMoudle from "./Deletedialog";
 
 import { makeStyles } from "@material-ui/core/styles";
 import "assets/scss/entire.scss";
+import { Check } from "@material-ui/icons";
 
 const CheckBule = "check-bule.svg";
 const FileIcon = "fileIcon.svg";
@@ -401,7 +402,10 @@ export default function ContentIndex() {
                 {active2 && (
                   <>
                     <div className="test-content d-flex mgb-30">
-                      <img src={checkBule} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${CheckBule}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 1 | 7:23</div>
                         <div className="con-ft5">
@@ -410,7 +414,10 @@ export default function ContentIndex() {
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={checkBule} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${CheckBule}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
                           AULA 2 | VÍDEO 12:54
@@ -419,7 +426,10 @@ export default function ContentIndex() {
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={dotIcon} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${DotIcon}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
                           AULA 3 | VÍDEO 15:54
@@ -428,7 +438,10 @@ export default function ContentIndex() {
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={videoIcon} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${VideoIcon}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
                           AULA 4 | VÍDEO 5:05
@@ -437,7 +450,10 @@ export default function ContentIndex() {
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={videoIcon} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${VideoIcon}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">
                           AULA 5 | VÍDEO 12:39
@@ -446,21 +462,30 @@ export default function ContentIndex() {
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={fileIcon} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${FileIcon}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 6 | ARQUIVO</div>
                         <div className="con-ft5">Boas Práticas Home Office</div>
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={textIcon} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${TextIcon}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 7 | TEXTO</div>
                         <div className="con-ft5">Por que Home Office?</div>
                       </div>
                     </div>
                     <div className="test-content d-flex mgb-30">
-                      <img src={fileIcon} className="mgr-20"></img>
+                      <img
+                        src={require(`../../assets/svg/${FileIcon}`).default}
+                        className="mgr-20"
+                      />
                       <div className="">
                         <div className="Edit-ft1 mgb-5">AULA 8 | ARQUIVO</div>
                         <div className="con-ft5">

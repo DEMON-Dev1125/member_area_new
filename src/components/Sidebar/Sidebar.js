@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import $ from "jquery";
 
 const AvatarImg = "Avatar.png";
 const LogoSvg = "Logo.svg";
-import $ from "jquery";
 
 // $(window).on("resize", function () {
 //   if (window.innerWidth > 760) {

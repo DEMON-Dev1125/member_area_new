@@ -1,12 +1,12 @@
 /**********************This is 14 page************ */
 import react, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
+import "../../assets/css/login.css";
 
 const MemberImg1 = "member1.png";
 const MemberImg2 = "member2.png";
 const MemberImg3 = "member3.png";
 
-import "../../assets/css/login.css";
 
 export default function Group() {
   const history = useHistory();

@@ -8,6 +8,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import DeleteDialogIcon from "./Deleteicon.js";
+import "../../assets/scss/entire.scss";
+import "../../assets/css/login.css";
 
 const CheckBule = "check-bule.svg";
 const FileIcon = "fileIcon.svg";
@@ -18,8 +20,6 @@ const MoveIcon = "moveIcon.svg";
 const Avatar = "Avatar.png";
 const Member = "member4.png";
 
-import "assets/scss/entire.scss";
-import "../../assets/css/login.css";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
