@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Switch from '@material-ui/core/Switch'
+import Switch from "@material-ui/core/Switch";
 
 const SwitchComponent = withStyles((theme) => ({
   root: {
@@ -12,28 +12,28 @@ const SwitchComponent = withStyles((theme) => ({
   },
   switchBase: {
     padding: 1,
-    '&$checked': {
-      transform: 'translateX(200px)',
-      color: '#0779E4',
-      '& + $track': {
-        backgroundColor: '#12263F0D',
+    "&$checked": {
+      transform: "translateX(200px)",
+      color: "#0779E4",
+      "& + $track": {
+        backgroundColor: "#12263F0D",
         opacity: 1,
-        border: 'none',
+        border: "none",
       },
     },
-    '&$focusVisible $thumb': {
-      color: '#0779E4',
+    "&$focusVisible $thumb": {
+      color: "#0779E4",
     },
   },
   thumb: {
     width: 200,
     height: 60,
     borderRadius: "10px",
-    color: '#0779E4',
+    color: "#0779E4",
   },
   track: {
     borderRadius: 10,
-    backgroundColor: '#12263F0D',
+    backgroundColor: "#12263F0D",
     opacity: 1,
   },
   checked: {},
@@ -57,39 +57,39 @@ const SwitchComponent = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   root: {
-    position: 'relative',
-    fontSize: '24px',
-    color: '#88929E'
+    position: "relative",
+    fontSize: "24px",
+    color: "#88929E",
   },
   leftText: {
-    width: '200px',
-    height: '60px',
-    position: 'absolute',
-    left: '0px',
+    width: "200px",
+    height: "60px",
+    position: "absolute",
+    left: "0px",
     zIndex: 10,
-    textAlign: 'center',
-    cursor: 'pointer'
+    textAlign: "center",
+    cursor: "pointer",
   },
   leftTextLabel: {
-    marginTop: '10px',
-    cursor: 'pointer'
+    marginTop: "10px",
+    cursor: "pointer",
   },
   rightText: {
-    width: '200px',
-    height: '60px',
-    position: 'absolute',
-    left: '200px',
+    width: "200px",
+    height: "60px",
+    position: "absolute",
+    left: "200px",
     zIndex: 10,
-    textAlign: 'center',
-    cursor: 'pointer'
+    textAlign: "center",
+    cursor: "pointer",
   },
   rightTextLabel: {
-    marginTop: '10px',
-    cursor: 'pointer'
+    marginTop: "10px",
+    cursor: "pointer",
   },
   textWhite: {
-    color: 'white'
-  }
+    color: "white",
+  },
 });
 export default function CustomSwitch(props) {
   const classes = useStyles();
@@ -97,19 +97,33 @@ export default function CustomSwitch(props) {
   const onClickTrue = () => {
     setValue(true);
     props.onChange(true);
-  }
+  };
   const onClickFalse = () => {
     setValue(false);
     props.onChange(false);
-  }
+  };
 
   return (
     <div className={classes.root}>
       <div className={classes.leftText} onClick={onClickFalse}>
-        <label className={clsx(classes.leftTextLabel, value?"":classes.textWhite)}>Aluno</label>
+        <label
+          className={clsx(
+            classes.leftTextLabel,
+            value ? "" : classes.textWhite
+          )}
+        >
+          Aluno
+        </label>
       </div>
       <div className={classes.rightText} onClick={onClickTrue}>
-        <label className={clsx(classes.rightTextLabel, value?classes.textWhite:"")}>Colaborador</label>
+        <label
+          className={clsx(
+            classes.rightTextLabel,
+            value ? classes.textWhite : ""
+          )}
+        >
+          Colaborador
+        </label>
       </div>
       <SwitchComponent checked={value} name="cheched" />
     </div>

@@ -17,7 +17,7 @@ export default function Certificate() {
   };
   const showMember = () => {
     // setOpen(true);
-    alert("clicked");
+    // alert("clicked");
   };
 
   // const handleClose = () => {

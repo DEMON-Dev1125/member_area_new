@@ -224,6 +224,7 @@ export default function EditContent() {
                       defaultValue="Aula"
                       id="grouped-native-select"
                       onChange={Handle_Role3}
+                      label="rule"
                     >
                       <optgroup className="opt-group" label="1 - Introdução">
                         <option value={0} hidden className="opt-item">

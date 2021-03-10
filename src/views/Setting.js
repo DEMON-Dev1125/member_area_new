@@ -67,12 +67,7 @@ export default function Setting() {
                   variant="outlined"
                   className={`${classes.formControl} mt-3`}
                 >
-                  <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
-                    value={lang}
-                    onChange={HandleLang}
-                  >
+                  <Select value={lang} onChange={HandleLang} label="lang">
                     <MenuItem value={1}>English (United States)</MenuItem>
                     <MenuItem value={2}>Português (Brasil)</MenuItem>
                     <MenuItem value={3}>Español</MenuItem>

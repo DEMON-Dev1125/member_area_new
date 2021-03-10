@@ -72,7 +72,11 @@ export default function Newmember() {
               <div className="mt-1 position-relative ht-45 new_group_select">
                 <FormControl variant="outlined">
                   {" "}
-                  <Select value={dropType} onChange={HandleDropType}>
+                  <Select
+                    value={dropType}
+                    onChange={HandleDropType}
+                    label="class"
+                  >
                     <MenuItem value={10}>Administrador</MenuItem>
                     <MenuItem value={20}>Atendimento</MenuItem>
                     <MenuItem value={30}>Moderador</MenuItem>
@@ -82,7 +86,11 @@ export default function Newmember() {
             ) : (
               <div className="mt-1 position-relative ht-45 new_group_select">
                 <FormControl variant="outlined">
-                  <Select value={dropType} onChange={HandleDropType}>
+                  <Select
+                    value={dropType}
+                    onChange={HandleDropType}
+                    label="access"
+                  >
                     <MenuItem value={10}>Turma A (Padrão)</MenuItem>
                     <MenuItem value={20}>Turma B</MenuItem>
                   </Select>
