@@ -62,13 +62,12 @@ export default function Setting() {
             <div className="mt-5 con-ft1">Internacionalização</div>
             <div className="mt-5">
               <div className="Edit-ft3">Idioma</div>
-              <div className="mt-1 position-relative new_group_select">
+              <div className="new_content_select">
                 <FormControl
                   variant="outlined"
-                  className={`${classes.formControl}`}
+                  className={`${classes.formControl} mt-3`}
                 >
                   <Select
-                  className="input-ft1"
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
                     value={lang}

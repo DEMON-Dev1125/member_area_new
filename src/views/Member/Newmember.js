@@ -1,13 +1,21 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
+import { Select, FormControl, MenuItem } from "@material-ui/core";
 import SwitchDrop from "../../components/Switch";
 import "../../assets/css/login.css";
-
 const InfoIcon = "info-icon.svg";
 
-export default function EditContent() {
+export default function Newmember() {
+  const [memberType, setMemberType] = useState(false);
+  const [dropType, setDropType] = useState(10);
   const history = useHistory();
-
+  const onChangeSwitch = (type) => {
+    setMemberType(type);
+  };
+  const HandleDropType = (e) => {
+    console.log(e.target.value);
+    setDropType(e.target.value);
+  };
   const Back_fun = () => {
     history.goBack();
   };
@@ -17,7 +25,6 @@ export default function EditContent() {
   const NewMail = () => {
     alert("get new memeber mail");
   };
-
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -47,7 +54,7 @@ export default function EditContent() {
             />
           </div>
           <div className="mt-5">
-            <img src={require(`../../assets/svg/${InfoIcon}`).default} />
+            <img src={require(`../../assets/img/${InfoIcon}`).default} />
             <span className="ml-2">
               O e-mail e senha serão enviados para o e-mail do usuário após o
               cadastro.
@@ -55,7 +62,33 @@ export default function EditContent() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Tipo de membro</div>
-            <SwitchDrop />
+            <SwitchDrop onChange={onChangeSwitch} value={memberType} />
+          </div>
+          <div className="mt-5">
+            <div className="Edit-ft3">
+              {memberType ? "Perfil de acesso" : "Turma"}
+            </div>
+            {memberType ? (
+              <div className="mt-1 position-relative ht-45 new_group_select">
+                <FormControl variant="outlined">
+                  {" "}
+                  <Select value={dropType} onChange={HandleDropType}>
+                    <MenuItem value={10}>Administrador</MenuItem>
+                    <MenuItem value={20}>Atendimento</MenuItem>
+                    <MenuItem value={30}>Moderador</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            ) : (
+              <div className="mt-1 position-relative ht-45 new_group_select">
+                <FormControl variant="outlined">
+                  <Select value={dropType} onChange={HandleDropType}>
+                    <MenuItem value={10}>Turma A (Padrão)</MenuItem>
+                    <MenuItem value={20}>Turma B</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            )}
           </div>
           <div className="row mt-5">
             <div className="col-lg-6 col-sm-12">

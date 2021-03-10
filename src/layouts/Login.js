@@ -22,7 +22,7 @@ function Login() {
           <div className="d-flex justify-content-center mt-4 mb-5">
             <img
               className="login-img1"
-              src={require(`../assets/svg/${LogoWL}`).default}
+              src={require(`../assets/img/${LogoWL}`).default}
             />
           </div>
           <div className="form-group">

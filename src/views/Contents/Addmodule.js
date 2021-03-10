@@ -41,14 +41,14 @@ export default function AddMoudle() {
             >
               <img
                 className="add_icon"
-                src={require(`../../assets/svg/${AddIcon}`).default}
+                src={require(`../../assets/img/${AddIcon}`).default}
                 style={{ cursor: "pointer" }}
               />
             </div>
             <div className="mobile-position" onClick={handleClose}>
               <img
                 className="close_icon"
-                src={require(`../../assets/svg/${CloseIcon}`).default}
+                src={require(`../../assets/img/${CloseIcon}`).default}
                 style={{ cursor: "pointer" }}
               />
             </div>

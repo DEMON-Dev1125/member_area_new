@@ -77,18 +77,18 @@ export default function ContentIndex() {
     history.push("/main/content/improve");
   };
   return (
-    <div className="container-fluid">
+    <div className="container-fluid mt-5">
       <div className="row">
         <div className="col-12 col-sm-6 mgt-292">
-          <div className="mgl-43">
+          <div className="ml-4">
             <div className="Edit-ft1">REMOTE METHOD 3.0</div>
             <div className="Edit-ft2">Conteúdos</div>
-            <div className="con-ft3 mgt-30 mgr-174">
+            <div className="con-ft3 mt-3 mgr-174">
               Treinamento MR 3.0 foi criado para ajudar pessoas a conseguirem
               prestar serviço online.
             </div>
-            <div className=" mgt-50 d-flex">
-              <div className="d-flex align-items-center mgr-50">
+            <div className=" mt-5 d-flex">
+              <div className="d-flex align-items-center mr-5">
                 <i className="fas fa-clock con-colr"></i>
                 <div className="con-ft3">4h 4m</div>
               </div>
@@ -97,13 +97,13 @@ export default function ContentIndex() {
                 <div className="con-ft3">8 aulas</div>
               </div>
             </div>
-            <div className="number-progress mgt-30">
+            <div className="number-progress mt-3">
               <div className="con-ft3">25%</div>
               <div className="u-progress wd-400">
                 <div className="u-progress-bar w-25"></div>
               </div>
             </div>
-            <div className="d-flex mgt-30">
+            <div className="d-flex mt-3">
               <button
                 type="button"
                 id="firstButton"
@@ -151,7 +151,7 @@ export default function ContentIndex() {
                   <div className="Edit-ft1 mgl-40">MÓDULO 1</div>
                   <div className="d-flex align-items-center">
                     <i
-                      className={`fas fa-chevron-up mgr-20 down-up ${
+                      className={`fas fa-chevron-up mr-2 down-up ${
                         active1 ? "open1" : ""
                       }`}
                     ></i>
@@ -206,149 +206,147 @@ export default function ContentIndex() {
               <div className={`fold_content ${active1 ? "open" : ""}`}>
                 {active1 && (
                   <>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${CheckBule}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${CheckBule}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="" onClick={() => goImprove()}>
-                        <div className="Edit-ft1 mgb-5">AULA 1 | 7:23</div>
+                      <div onClick={() => goImprove()}>
+                        <div className="Edit-ft1 mb-1">AULA 1 | 7:23</div>
                         <div className="con-ft5">
                           Como melhorar o seu Aprendizado?
                         </div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${CheckBule}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${CheckBule}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
+                      <div>
+                        <div className="Edit-ft1 mb-1">
                           AULA 2 | VÍDEO 12:54
                         </div>
                         <div className="con-ft5">Revolução Digital</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${DotIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${DotIcon}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
+                      <div>
+                        <div className="Edit-ft1 mb-1">
                           AULA 3 | VÍDEO 15:54
                         </div>
                         <div className="con-ft5">O que é Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${VideoIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${VideoIcon}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
-                          AULA 4 | VÍDEO 5:05
-                        </div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 4 | VÍDEO 5:05</div>
                         <div className="con-ft5">Área de Atuação</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${VideoIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${VideoIcon}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
+                      <div>
+                        <div className="Edit-ft1 mb-1">
                           AULA 5 | VÍDEO 12:39
                         </div>
                         <div className="con-ft5">Vantagens do Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${FileIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${FileIcon}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 6 | ARQUIVO</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 6 | ARQUIVO</div>
                         <div className="con-ft5">Boas Práticas Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${TextIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${TextIcon}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 7 | TEXTO</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 7 | TEXTO</div>
                         <div className="con-ft5">Por que Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       {moveflag ? (
                         <img
-                          src={require(`../../assets/svg/${FileIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${FileIcon}`).default}
+                          className="mr-2"
                         />
                       ) : (
                         <img
-                          src={require(`../../assets/svg/${MoveIcon}`).default}
-                          className="mgr-20"
+                          src={require(`../../assets/img/${MoveIcon}`).default}
+                          className="mr-2"
                         />
                       )}
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 8 | ARQUIVO</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 8 | ARQUIVO</div>
                         <div className="con-ft5">
                           Relacionamento Interpessoal
                         </div>
@@ -373,7 +371,7 @@ export default function ContentIndex() {
                   <div className="Edit-ft1 mgl-40">MÓDULO 2</div>
                   <div className="d-flex align-items-center">
                     <i
-                      className={`fas fa-chevron-up mgr-20 down-up ${
+                      className={`fas fa-chevron-up mr-2 down-up ${
                         active2 ? "open1" : ""
                       }`}
                     ></i>
@@ -401,93 +399,91 @@ export default function ContentIndex() {
               <div className={`fold_content ${active2 ? "open" : ""}`}>
                 {active2 && (
                   <>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${CheckBule}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${CheckBule}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 1 | 7:23</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 1 | 7:23</div>
                         <div className="con-ft5">
                           Como melhorar o seu Aprendizado?
                         </div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${CheckBule}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${CheckBule}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
+                      <div>
+                        <div className="Edit-ft1 mb-1">
                           AULA 2 | VÍDEO 12:54
                         </div>
                         <div className="con-ft5">Revolução Digital</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${DotIcon}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${DotIcon}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
+                      <div>
+                        <div className="Edit-ft1 mb-1">
                           AULA 3 | VÍDEO 15:54
                         </div>
                         <div className="con-ft5">O que é Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${VideoIcon}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${VideoIcon}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
-                          AULA 4 | VÍDEO 5:05
-                        </div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 4 | VÍDEO 5:05</div>
                         <div className="con-ft5">Área de Atuação</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${VideoIcon}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${VideoIcon}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">
+                      <div>
+                        <div className="Edit-ft1 mb-1">
                           AULA 5 | VÍDEO 12:39
                         </div>
                         <div className="con-ft5">Vantagens do Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${FileIcon}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${FileIcon}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 6 | ARQUIVO</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 6 | ARQUIVO</div>
                         <div className="con-ft5">Boas Práticas Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${TextIcon}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${TextIcon}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 7 | TEXTO</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 7 | TEXTO</div>
                         <div className="con-ft5">Por que Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mgb-30">
+                    <div className="test-content d-flex mb-3">
                       <img
-                        src={require(`../../assets/svg/${FileIcon}`).default}
-                        className="mgr-20"
+                        src={require(`../../assets/img/${FileIcon}`).default}
+                        className="mr-2"
                       />
-                      <div className="">
-                        <div className="Edit-ft1 mgb-5">AULA 8 | ARQUIVO</div>
+                      <div>
+                        <div className="Edit-ft1 mb-1">AULA 8 | ARQUIVO</div>
                         <div className="con-ft5">
                           Relacionamento Interpessoal
                         </div>

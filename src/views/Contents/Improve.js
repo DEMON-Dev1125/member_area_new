@@ -108,12 +108,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${CheckBule}`).default}
+                    src={require(`../../assets/img/${CheckBule}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -127,12 +127,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${CheckBule}`).default}
+                    src={require(`../../assets/img/${CheckBule}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -144,12 +144,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${DotIcon}`).default}
+                    src={require(`../../assets/img/${DotIcon}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -161,12 +161,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${VideoIcon}`).default}
+                    src={require(`../../assets/img/${VideoIcon}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -178,12 +178,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${VideoIcon}`).default}
+                    src={require(`../../assets/img/${VideoIcon}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -195,12 +195,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${FileIcon}`).default}
+                    src={require(`../../assets/img/${FileIcon}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -212,12 +212,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${TextIcon}`).default}
+                    src={require(`../../assets/img/${TextIcon}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}
@@ -229,12 +229,12 @@ export default function NewContent() {
               <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
-                    src={require(`../../assets/svg/${FileIcon}`).default}
+                    src={require(`../../assets/img/${FileIcon}`).default}
                     className="mgr-20"
                   />
                 ) : (
                   <img
-                    src={require(`../../assets/svg/${MoveIcon}`).default}
+                    src={require(`../../assets/img/${MoveIcon}`).default}
                     className="mgr-20"
                   />
                 )}

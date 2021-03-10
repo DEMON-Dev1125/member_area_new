@@ -53,17 +53,18 @@ export default function Certificate() {
             </div>
             <div className="mt-5 img_style">
               <img
-                src={require(`./../../assets/img/${ImageName}`).default}
                 width="100%"
                 onClick={handleShowImage}
+                src={require(`./../../assets/img/${ImageName}`).default}
               />
               <Dialog
-                paperWidthMd
+                maxWidth="lg"
                 open={open}
                 onClose={handleClose}
                 style={{ borderRadius: 20 + "px" }}
               >
                 <img
+                  width="100%"
                   className="dialog_img"
                   src={require(`./../../assets/img/${ImageName}`).default}
                 />

@@ -38,25 +38,25 @@ export default function Deletedialog() {
               <img
                 className="add_icon"
                 style={{ cursor: "pointer" }}
-                src={require(`../../assets/svg/${DeleteIcon}`).default}
+                src={require(`../../assets/img/${DeleteIcon}`).default}
               />
             </div>
             <div className="" onClick={handleClose}>
               <img
                 className="close_icon"
                 style={{ cursor: "pointer" }}
-                src={require(`../../assets/svg/${CloseIcon}`).default}
+                src={require(`../../assets/img/${CloseIcon}`).default}
               />
             </div>
           </div>
-          <div className="Edit-ft6 mgt-50">Deseja excluir esse comentário?</div>
-          <div className="mgt-30 Edit-ft5">
+          <div className="Edit-ft6 mt-5">Deseja excluir esse comentário?</div>
+          <div className="mt-3 Edit-ft5">
             Você está prestes a excluir o seu próprio comentário!
           </div>
-          <div className="mgt-50">
-            <div className="but_delete delete_content_dialog">
+          <div className="mt-5">
+            <button className="but_delete delete_content_dialog">
               Excluir comentário
-            </div>
+            </button>
           </div>
         </div>
       </Dialog>

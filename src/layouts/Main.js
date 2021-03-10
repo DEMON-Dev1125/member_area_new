@@ -73,7 +73,7 @@ function Main() {
               </div>
               <img
                 className="sidebar-img2"
-                src={require(`../assets/svg/${LogoWhite}`).default}
+                src={require(`../assets/img/${LogoWhite}`).default}
               />
               <img
                 className="sidebar-img"

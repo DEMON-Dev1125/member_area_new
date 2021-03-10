@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import "../../assets/css/login.css";
@@ -12,6 +12,7 @@ const InviteImg = "convite.png";
 export default function Invite() {
   const [value, setValue] = useState("");
   const [copied, setStatus] = useState(false);
+  const [NoInvite, setInvite] = useState("");
 
   const history = useHistory();
   const AddInvite = () => {
@@ -23,8 +24,9 @@ export default function Invite() {
   const EditInvite = () => {
     history.push("/main/invite/editinvite");
   };
-
-  const NoInvite = "";
+  const OneInvite = () => {
+    setInvite((prevState) => !prevState);
+  };
 
   return (
     <div className="container-fluid mt-5">
@@ -34,7 +36,13 @@ export default function Invite() {
           <div className="row mb-5">
             <div className="col-lg-6 col-sm-12">
               <div className="Edit-ft1">MÉTODO REMOTO 3.0</div>
-              <div className="Edit-ft2 mt-1">Convites</div>
+              <div
+                className="Edit-ft2 mt-1"
+                style={{ cursor: "pointer" }}
+                onClick={OneInvite}
+              >
+                Convites
+              </div>
             </div>
             <div className="col-lg-6 col-sm-12">
               <button
@@ -48,7 +56,7 @@ export default function Invite() {
             </div>
           </div>
           <hr />
-          {NoInvite ? (
+          {!NoInvite ? (
             <div className="mt-5 text-center">
               <div className="none_image">
                 <img src={require(`../../assets/img/${InviteImg}`).default} />
@@ -59,11 +67,13 @@ export default function Invite() {
               </div>
             </div>
           ) : (
-            <div className="group-content p-5 mt-5" onClick={EditInvite}>
-              <div className="Edit-ft3">Convite Método Remoto</div>
-              <div className="Edit-ft1 mt-3">
-                Venha conhecer o curso que mudou a vida de mais de 15.000 alunos
-                por todo Brasil!
+            <div className="group-content p-5 mt-5">
+              <div style={{ cursor: "pointer" }} onClick={EditInvite}>
+                <div className="Edit-ft3">Convite Método Remoto</div>
+                <div className="Edit-ft1 mt-3">
+                  Venha conhecer o curso que mudou a vida de mais de 15.000
+                  alunos por todo Brasil!
+                </div>
               </div>
               <div className="row mt-4">
                 <div className="col-9 col-md-9">
@@ -71,7 +81,7 @@ export default function Invite() {
                   <input
                     type="text"
                     className="link_url mt-2 w-100"
-                    placeholder=" https://metodoremoto.abmexacademy.com/main/content/invite/friend/vladi"
+                    value=" https://metodoremoto.abmexacademy.com/main/content/invite/friend/vladi"
                   />
                 </div>
                 <div className="col-3 col-md-3 text-right">
@@ -81,7 +91,7 @@ export default function Invite() {
                     setStatus({ value, copied: false })
                   }
                 /> */}
-                  <CopyToClipboard
+                  {/* <CopyToClipboard
                     text={setValue}
                     onCopy={() => setStatus({ copied: true })}
                   >
@@ -92,7 +102,17 @@ export default function Invite() {
 
                   {copied ? (
                     <span style={{ color: "red" }}>Copied.</span>
-                  ) : null}
+                  ) : null} */}
+                  <button
+                    type="button"
+                    className="btn_copy mt-2"
+                    data-container="body"
+                    data-toggle="popover"
+                    data-placement="top"
+                    data-content="Copied!"
+                  >
+                    <i className="fa fa-copy"></i>
+                  </button>
                 </div>
               </div>
 
@@ -119,9 +139,9 @@ export default function Invite() {
                     <div className="member4">+609</div>
                   </div>
                 </div>
-                <div className="col-sm-9 text-right">
-                  <div className="Edit-ft1">DATA CRIAÇÃO</div>
-                  <div className="con-ft5 mt-2">06/01/2021</div>
+                <div className="col-sm-9">
+                  <div className="Edit-ft1 text-right">DATA CRIAÇÃO</div>
+                  <div className="con-ft5 mt-2 text-right">06/01/2021</div>
                 </div>
               </div>
             </div>

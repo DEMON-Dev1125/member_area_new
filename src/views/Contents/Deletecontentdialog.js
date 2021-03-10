@@ -38,14 +38,14 @@ export default function Deletedialog() {
               <img
                 className="add_icon"
                 style={{ cursor: "pointer" }}
-                src={require(`../../assets/svg/${DeleteIcon}`).default}
+                src={require(`../../assets/img/${DeleteIcon}`).default}
               />
             </div>
             <div className="" onClick={handleClose}>
               <img
                 className="close_icon"
                 style={{ cursor: "pointer" }}
-                src={require(`../../assets/svg/${CloseIcon}`).default}
+                src={require(`../../assets/img/${CloseIcon}`).default}
               />
             </div>
           </div>

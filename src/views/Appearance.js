@@ -3,6 +3,7 @@ import { useHistory, Switch, Route } from "react-router-dom";
 import Fileupload from "../components/Fileupload";
 
 import "../assets/css/login.css";
+import "../assets/css/appearance.css";
 
 export default function Appearance() {
   const history = useHistory();
@@ -26,8 +27,9 @@ export default function Appearance() {
               que contrastem. Escolha também uma imagem da sua logo que fique
               bem.
             </div>
-            <div className="mt-3">
-              asdf
+            <div className="mt-3 d-flex">
+              <button type="button" className="mr-2 btn_black"></button>
+              <button type="button" className="btn_white"></button>
             </div>
             <div className="col-sm-6 row mt-3">
               <Fileupload />

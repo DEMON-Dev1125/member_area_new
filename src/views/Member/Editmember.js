@@ -60,7 +60,7 @@ export default function EditContent() {
             />
           </div>
           <div className="mt-5">
-            <img src={require(`../../assets/svg/${InfoIcon}`).default} />
+            <img src={require(`../../assets/img/${InfoIcon}`).default} />
             <span className="ml-2">
               Caso preencha uma nova senha, ao salvar a edição será enviado um
               e-mail informando a nova senha para o membro.

@@ -30,7 +30,7 @@ export default function Fileupload() {
             />
             <img
               className="filter-green mb-2"
-              src={require(`../assets/svg/${FileIcon}`).default}
+              src={require(`../assets/img/${FileIcon}`).default}
             />
             <div className="Edit-ft5">
               Clique aqui e faça o upload ilimitado de arquivos complementares.

@@ -139,14 +139,14 @@ export default function EditContent() {
                   <div className="mb-5">
                     <div className="Edit-ft1">DATA LIBERAÇÃO</div>
                     <input
-                      className="input-ft1 mt-2 w-100"
+                      className="input-ft2 mt-2 w-100"
                       placeholder="05/01/2021 12:00"
                     />
                   </div>
                   <div className="mb-5">
                     <div className="Edit-ft1">DATA FECHAMENTO</div>
                     <input
-                      className="input-ft1 mt-2 w-100"
+                      className="input-ft2 mt-2 w-100"
                       placeholder="14/01/2021 12:00"
                     />
                   </div>

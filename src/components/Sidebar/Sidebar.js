@@ -6,12 +6,12 @@ import $ from "jquery";
 const AvatarImg = "Avatar.png";
 const LogoSvg = "Logo.svg";
 
-// $(window).on("resize", function () {
-//   if (window.innerWidth > 760) {
-//     document.querySelector(".wrapper .mobile-sidebar ").style.transform =
-//       "translate3d(0px, 0, 0)";
-//   } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
-// });
+$(window).on("resize", function () {
+  if (window.innerWidth > 770) {
+    document.querySelector(".wrapper .mobile-sidebar ").style.transform =
+      "translate3d(0px, 0, 0)";
+  } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
+});
 function Sidebar(props) {
   const { image, color, routes, Navbar_select } = props;
   const location = useLocation();
@@ -19,12 +19,14 @@ function Sidebar(props) {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   const Handle_NavHidden = () => {
-    if (window.innerWidth < 575) {
+    if (window.innerWidth < 769) {
       document.querySelector(".wrapper .mobile-sidebar ").style.transform =
         "translate3d(-343px, 0, 0)";
     }
   };
-  const Handleprofile = "";
+  const HandleProfile = () => {
+    console.log("clicked!!!");
+  };
 
   return (
     <div
@@ -36,16 +38,17 @@ function Sidebar(props) {
       <div className="sidebar-wrapper">
         <div className="sidebar-header">
           <div className="log-img1 group-mobile" onClick={Handle_NavHidden}>
-            <img src={require(`../../assets/svg/${LogoSvg}`).default} />
+            <img src={require(`../../assets/img/${LogoSvg}`).default} />
           </div>
           <div className="log-img1 desktop">
-            <img src={require(`../../assets/svg/${LogoSvg}`).default} />
+            <img src={require(`../../assets/img/${LogoSvg}`).default} />
           </div>
-          <div className="log-img2">
-            <img
-              // onClick={HandleProfile}
-              src={require(`../../assets/img/${AvatarImg}`).default}
-            />
+          <div
+            className="log-img2"
+            style={{ cursor: "pointer" }}
+            onClick={HandleProfile}
+          >
+            <img src={require(`../../assets/img/${AvatarImg}`).default} />
           </div>
         </div>
 
@@ -70,7 +73,7 @@ function Sidebar(props) {
                   >
                     <i className={prop.icon} />
                     <p>{prop.name}</p>
-                    <span className="badge float-right">{prop.badge}</span>
+                    <span className="badge float-right mt-1">{prop.badge}</span>
                   </NavLink>
                 </li>
               );
