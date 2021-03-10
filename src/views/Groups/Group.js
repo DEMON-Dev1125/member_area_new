@@ -7,7 +7,6 @@ const MemberImg1 = "member1.png";
 const MemberImg2 = "member2.png";
 const MemberImg3 = "member3.png";
 
-
 export default function Group() {
   const history = useHistory();
   const Handle_Newgroup = () => {
@@ -43,6 +42,7 @@ export default function Group() {
           <div
             className="group-content container-fluid p-5 mt-5"
             onClick={EditClass}
+            style={{ cursor: "pointer" }}
           >
             <div className="row">
               <div className="col-6 col-md-4">

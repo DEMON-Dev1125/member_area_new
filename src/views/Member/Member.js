@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  AppBar,
+  Checkbox,
   Tab,
   Select,
   FormControl,
@@ -161,7 +161,7 @@ export default function Member() {
                   <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
-                        <div className="col-12 col-md-4 mt-1">
+                        <div className="col-12 col-md-5 mt-1">
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
@@ -178,25 +178,37 @@ export default function Member() {
                             </Select>
                           </FormControl>
                         </div>
-                        <div className="col-12 col-md-4 mt-1 desktop_hidden">
+                        <div className="col-12 col-md-3 mt-1 desktop_hidden">
                           <div className="d-flex">
-                            <StyledCheckbox />
-                            <div className="con-ft3 pt-2">Ativado</div>
+                            <Checkbox
+                              defaultChecked
+                              color="primary"
+                              inputProps={{
+                                "aria-label": "secondary checkbox",
+                              }}
+                            />
+                            <div className="con-ft6 pt-2">Ativado</div>
                           </div>
                           <div className="d-flex">
-                            <StyledCheckbox />
-                            <div className="con-ft3 pt-2">Pendente</div>
+                            <Checkbox
+                              defaultChecked
+                              color="primary"
+                              inputProps={{
+                                "aria-label": "secondary checkbox",
+                              }}
+                            />
+                            <div className="con-ft6 pt-2">Pendente</div>
                           </div>
                         </div>
-                        <div className="col-12 col-md-4 mt-1 mobile_hidden">
+                        <div className="col-12 col-md-3 mt-1 mobile_hidden">
                           <div className="row">
                             <div className="d-flex col-6">
                               <StyledCheckbox />
-                              <div className="con-ft3 pt-2">Ativado</div>
+                              <div className="con-ft6 pt-2">Ativado</div>
                             </div>
                             <div className="d-flex col-6">
                               <StyledCheckbox />
-                              <div className="con-ft3 pt-2">Pendente</div>
+                              <div className="con-ft6 pt-2">Pendente</div>
                             </div>
                           </div>
                         </div>
@@ -465,7 +477,7 @@ export default function Member() {
                   <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
-                        <div className="col-12 col-md-4 mt-1">
+                        <div className="col-12 col-md-5 mt-1">
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
@@ -484,25 +496,37 @@ export default function Member() {
                             </Select>
                           </FormControl>
                         </div>
-                        <div className="col-12 col-md-4 mt-1 desktop_hidden">
+                        <div className="col-12 col-md-3 mt-1 desktop_hidden">
                           <div className="d-flex">
-                            <StyledCheckbox />
-                            <div className="con-ft3 pt-2">Ativado</div>
+                            <Checkbox
+                              defaultChecked
+                              color="primary"
+                              inputProps={{
+                                "aria-label": "secondary checkbox",
+                              }}
+                            />
+                            <div className="con-ft6 pt-2">Ativado</div>
                           </div>
                           <div className="d-flex">
-                            <StyledCheckbox />
-                            <div className="con-ft3 pt-2">Pendente</div>
+                            <Checkbox
+                              defaultChecked
+                              color="primary"
+                              inputProps={{
+                                "aria-label": "secondary checkbox",
+                              }}
+                            />
+                            <div className="con-ft6 pt-2">Pendente</div>
                           </div>
                         </div>
                         <div className="col-12 col-md-4 mt-1 mobile_hidden">
                           <div className="row">
                             <div className="d-flex col-6">
                               <StyledCheckbox />
-                              <div className="con-ft3 pt-2">Ativado</div>
+                              <div className="con-ft6 pt-2">Ativado</div>
                             </div>
                             <div className="d-flex col-6">
                               <StyledCheckbox />
-                              <div className="con-ft3 pt-2">Pendente</div>
+                              <div className="con-ft6 pt-2">Pendente</div>
                             </div>
                           </div>
                         </div>

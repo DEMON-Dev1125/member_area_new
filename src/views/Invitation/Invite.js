@@ -67,8 +67,12 @@ export default function Invite() {
               </div>
             </div>
           ) : (
-            <div className="group-content p-5 mt-5">
-              <div style={{ cursor: "pointer" }} onClick={EditInvite}>
+            <div
+              className="group-content p-5 mt-5"
+              style={{ cursor: "pointer" }}
+              onClick={EditInvite}
+            >
+              <div>
                 <div className="Edit-ft3">Convite Método Remoto</div>
                 <div className="Edit-ft1 mt-3">
                   Venha conhecer o curso que mudou a vida de mais de 15.000
