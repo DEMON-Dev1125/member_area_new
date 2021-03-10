@@ -79,7 +79,8 @@ export default function ContentIndex() {
   return (
     <div className="container-fluid mt-5">
       <div className="row">
-        <div className="col-12 col-sm-6 mgt-292">
+        <div className="col-sm-1"></div>
+        <div className="col-12 col-sm-5 mgt-292">
           <div className="ml-4">
             <div className="Edit-ft1">REMOTE METHOD 3.0</div>
             <div className="Edit-ft2">Conteúdos</div>
@@ -136,11 +137,11 @@ export default function ContentIndex() {
             </div>
           </div>
         </div>
-        <div className="col-12 col-sm-6 mgt-70 d-flex justify-content-center flex-column">
-          <div className="accordion">
+        <div className="col-12 col-sm-5 mgt-70 d-flex justify-content-center flex-column">
+          <div className="accordion mt-3">
             <div className="fold">
               <div
-                className={`d-flex justify-content-between align-items-center con-fold ${
+                className={`d-flex justify-content-between align-items-center  ${
                   active1 ? "open-fold" : ""
                 }`}
               >
@@ -360,7 +361,7 @@ export default function ContentIndex() {
           <div className="accordion">
             <div className="fold">
               <div
-                className={`d-flex justify-content-between align-items-center con-fold ${
+                className={`d-flex justify-content-between align-items-center  ${
                   active2 ? "open-fold" : ""
                 }`}
               >
@@ -380,7 +381,7 @@ export default function ContentIndex() {
                 </button>
                 <button
                   className="dropbut text-center"
-                  onClick={Handle_Select2}
+                  // onClick={Handle_Select2}
                 >
                   <i className="fas fa-ellipsis-v"></i>
                 </button>
@@ -495,6 +496,7 @@ export default function ContentIndex() {
             </div>
           </div>
         </div>
+        <div className="col-sm-1"></div>
       </div>
     </div>
   );

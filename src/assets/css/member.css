@@ -92,3 +92,29 @@
   background-color: #0779e4;
   color: #ffffff;
 }
+.desktop_hidden {
+  display: block;
+}
+.mobile_hidden {
+  display: none;
+}
+.content_style {
+  padding: 3rem;
+}
+@media only screen and (max-width: 488px) {
+  .mobile_hidden {
+    display: block;
+  }
+  .desktop_hidden {
+    display: none;
+  }
+  .member_name {
+    font-size: 20px;
+  }
+  .member_mail {
+    font-size: 12px;
+  }
+  .content_style {
+    padding: 1rem;
+  }
+}

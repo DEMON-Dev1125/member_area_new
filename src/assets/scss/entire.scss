@@ -1,20 +1,17 @@
 $line-color: rgba(34, 36, 38, 0.35);
 
 .accordion {
-  width: 640px;
   padding: 2rem 2rem;
   display: flex;
   flex-direction: column;
   border-radius: 10%;
   overflow-y: auto;
   background: white;
-    border-radius: 20px;
-    margin-bottom:50px;
+  border-radius: 20px;
+  margin-bottom: 50px;
 }
 .fold {
-
   .fold_trigger {
-
     text-align: start;
     width: 100%;
     padding: 1rem;
@@ -23,7 +20,6 @@ $line-color: rgba(34, 36, 38, 0.35);
     background: none;
     cursor: pointer;
     // border-bottom: 1px solid $line-color;
-    
   }
 
   .fold_content {
@@ -33,84 +29,78 @@ $line-color: rgba(34, 36, 38, 0.35);
     transition: max-height 400ms linear;
 
     &.open {
-        padding: 50px 18px 34px;
+      padding: 50px 18px 34px;
+      display: block;
+      max-height: fit-content;
+      opacity: 1;
+    }
+  }
+  //   border-bottom: 1px solid $line-color;
+}
+.open1 {
+  transform: rotateZ(-180deg);
+}
+.con-fold {
+  // width: 640px;
+  margin-left: -32px;
+  padding: 0px 32px;
+  &.open-fold {
+    border-bottom: 2px solid rgb(136, 146, 158);
+    border-color: rgba(136, 146, 158, 0.25);
+  }
+}
+@media only screen and (max-width: 575px) {
+  $line-color: rgba(34, 36, 38, 0.35);
+
+  .accordion {
+    width: auto;
+    padding: 0rem 0rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10%;
+    overflow-y: auto;
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 30px;
+  }
+
+  .fold {
+    .fold_trigger {
+      text-align: start;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      outline: none;
+      background: none;
+      cursor: pointer;
+      // border-bottom: 1px solid $line-color;
+    }
+
+    .fold_content {
+      display: none;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 400ms linear;
+
+      &.open {
+        padding: 30px 30px 0px;
         display: block;
         max-height: fit-content;
         opacity: 1;
+      }
     }
+    //   border-bottom: 1px solid $line-color;
   }
-//   border-bottom: 1px solid $line-color;
-}
-.open1 {
+  .open1 {
     transform: rotateZ(-180deg);
-}
-.con-fold {
-    width: 640px;
-    margin-left: -32px;
+  }
+  .con-fold {
+    width: auto;
+    margin-left: 0px;
     padding: 0px 32px;
     &.open-fold {
-        border-bottom: 2px solid rgb(136, 146, 158);
-        border-color: rgba(136, 146, 158, 0.25);
+      border-bottom: 2px solid rgb(15, 44, 80);
+      border-color: rgba(136, 146, 158, 0.25);
     }
-
   }
-  @media only screen and (max-width: 575px) {
-    $line-color: rgba(34, 36, 38, 0.35);
-
-    .accordion {
-      width: auto;
-      padding: 0rem 0rem;
-      display: flex;
-      flex-direction: column;
-      border-radius: 10%;
-      overflow-y: auto;
-      background: white;
-        border-radius: 20px;
-        margin-bottom:30px;
-    }
-
-    .fold {
-
-      .fold_trigger {
-
-        text-align: start;
-        width: 100%;
-        padding: 1rem;
-        border: none;
-        outline: none;
-        background: none;
-        cursor: pointer;
-        // border-bottom: 1px solid $line-color;
-        
-      }
-
-      .fold_content {
-        display: none;
-        max-height: 0;
-        opacity: 0;
-        transition: max-height 400ms linear;
-
-        &.open {
-            padding: 30px 30px 0px;
-            display: block;
-            max-height: fit-content;
-            opacity: 1;
-        }
-      }
-    //   border-bottom: 1px solid $line-color;
-    }
-    .open1 {
-        transform: rotateZ(-180deg);
-    }
-    .con-fold {
-        width: auto;
-        margin-left: 0px;
-        padding: 0px 32px;
-        &.open-fold {
-            border-bottom: 2px solid rgb(15, 44, 80);
-            border-color: rgba(136, 146, 158, 0.25);
-        }
-
-      }
-
-  }
+}

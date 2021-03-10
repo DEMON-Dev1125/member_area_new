@@ -232,7 +232,7 @@ export default function Community() {
                             <button type="button" className="btn_thumbs ml-2">
                               <i className="fa fa-thumbs-down"></i>
                             </button>
-                            <div className="float-right">
+                            <div className="ml-5">
                               <DeleteDialogIcon />
                             </div>
                           </div>
@@ -315,7 +315,7 @@ export default function Community() {
                                       >
                                         <i className="fa fa-thumbs-down"></i>
                                       </button>
-                                      <div className="float-right">
+                                      <div className="ml-5">
                                         <DeleteDialogIcon />
                                       </div>
                                     </div>
@@ -331,384 +331,531 @@ export default function Community() {
                   </div>
                 </TabPanel>
                 <TabPanel value="2">
-                  <div className="second-m">
-                    <img
-                      className="u-img1"
-                      src={require(`../../assets/img/${Member}`).default}
-                    />
-                    <div className="pdl-20">
-                      <div className="d-flex justify-content-between mgb-20">
-                        <div className="Edit-ft3">João Lima</div>
-                        <div className="Edit-ft5">2 dias atrás</div>
-                      </div>
-                      <div className="mgb-20 con-ft8 mgr-94">
-                        Boa tarde, assisti a aula e curti muito o conteúdo
-                        apresentado, mas não encontrei o arquivo PDF que foi
-                        mostrado, se alguém puder me ajudar com isso eu agradeço
-                        muito.
-                      </div>
-                      <div className="d-flex">
-                        <div
-                          className="but_respond mgr-10"
-                          onClick={Handle_Responder}
+                  <div className="container content_style p-5">
+                    <div className="content_header">
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl}`}
+                          width="100%"
                         >
-                          Responder
-                        </div>
-                        <button type="button" className="btn_eye ml-2">
-                          <i className="fa fa-eye"></i>
-                        </button>
-                        <button type="button" className="btn_thumbs ml-2">
-                          <i className="fa fa-thumbs-up"></i>
-                        </button>
-                        <button type="button" className="btn_thumbs ml-2">
-                          <i className="fa fa-thumbs-down"></i>
-                        </button>
-                        <div className="float-right">
-                          <DeleteDialogIcon />
+                          <Select
+                            native
+                            defaultValue="Aula"
+                            id="grouped-native-select"
+                            onChange={Handle_Role3}
+                          >
+                            <optgroup
+                              className="opt-group"
+                              label="1 - Introdução"
+                            >
+                              <option value={0} className="opt-item">
+                                Como melhorar o seu Aprendizado?
+                              </option>
+                              <option value={1}>Revolução Digital</option>
+                              <option value={2}>O que é Home Office?</option>
+                              <option value={3}>Área de Atuação</option>
+                              <option value={4}>
+                                Vantagens do Home Office
+                              </option>
+                              <option value={5}>
+                                Boas Práticas Home Office
+                              </option>
+                              <option value={6}>Por que Home Office?</option>
+                            </optgroup>
+                            <optgroup
+                              className="opt-group"
+                              label="2 - Agora é pra Valer!"
+                            >
+                              <option value={0} className="opt-item">
+                                O que você quer seguir?
+                              </option>
+                            </optgroup>
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </div>
+                    <div className="content_body mt-5">
+                      <div className="second-m">
+                        <img
+                          className="u-img1"
+                          src={require(`../../assets/img/${Member}`).default}
+                        />
+                        <div className="pdl-20">
+                          <div className="d-flex justify-content-between mgb-20">
+                            <div className="Edit-ft3">João Lima</div>
+                            <div className="Edit-ft5">2 dias atrás</div>
+                          </div>
+                          <div className="mgb-20 con-ft8 mgr-94">
+                            Boa tarde, assisti a aula e curti muito o conteúdo
+                            apresentado, mas não encontrei o arquivo PDF que foi
+                            mostrado, se alguém puder me ajudar com isso eu
+                            agradeço muito.
+                          </div>
+                          <div className="d-flex">
+                            <div
+                              className="but_respond mgr-10"
+                              onClick={Handle_Responder}
+                            >
+                              Responder
+                            </div>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                            <button type="button" className="btn_thumbs ml-2">
+                              <i className="fa fa-thumbs-up"></i>
+                            </button>
+                            <button type="button" className="btn_thumbs ml-2">
+                              <i className="fa fa-thumbs-down"></i>
+                            </button>
+                            <div className="ml-5">
+                              <DeleteDialogIcon />
+                            </div>
+                          </div>
+                          <TransitionGroup component={null}>
+                            {responder && (
+                              <CSSTransition classNames="dialog" timeout={300}>
+                                <div className="d-flex pdl-5 mgt-50">
+                                  <img
+                                    className="u-img1"
+                                    style={{ cursor: "pointer" }}
+                                    src={
+                                      require(`../../assets/img/faces/${Avatar}`)
+                                        .default
+                                    }
+                                  />
+                                  <div className="pdl-20">
+                                    <textarea
+                                      className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
+                                      placeholder="Escreva sua pergunta ou comentário aqui..."
+                                      value={comment1}
+                                      onChange={Handle_Comment1}
+                                    />
+                                    <div className="d-flex mobile-publish">
+                                      <div
+                                        className="but-publish mgr-30"
+                                        onClick={Handle_Publish}
+                                      >
+                                        Publicar
+                                      </div>
+                                      <div
+                                        className="Edit-ft5 py-13"
+                                        onClick={Handle_Responder}
+                                      >
+                                        Cancelar
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </TransitionGroup>
+                          <TransitionGroup component={null}>
+                            {publish1 && (
+                              <CSSTransition classNames="dialog" timeout={300}>
+                                <div className="d-flex pdl-5 mgt-50">
+                                  <img
+                                    className="u-img1"
+                                    style={{ cursor: "pointer" }}
+                                    src={
+                                      require(`../../assets/img/${Member}`)
+                                        .default
+                                    }
+                                  />
+                                  <div className="pdl-20">
+                                    <textarea
+                                      className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
+                                      placeholder={comment1}
+                                      value={comment1}
+                                      onChange={Handle_Comment1}
+                                    />
+                                    <div className="d-flex">
+                                      <div className="but_respond mgr-10">
+                                        Responder
+                                      </div>
+                                      <button
+                                        type="button"
+                                        className="btn_eye ml-2"
+                                      >
+                                        <i className="fa fa-eye"></i>
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn_thumbs ml-2"
+                                      >
+                                        <i className="fa fa-thumbs-up"></i>
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn_thumbs ml-2"
+                                      >
+                                        <i className="fa fa-thumbs-down"></i>
+                                      </button>
+                                      <div className="ml-5">
+                                        <DeleteDialogIcon />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </TransitionGroup>
                         </div>
                       </div>
-                      <TransitionGroup component={null}>
-                        {responder && (
-                          <CSSTransition classNames="dialog" timeout={300}>
-                            <div className="d-flex pdl-5 mgt-50">
-                              <img
-                                className="u-img1"
-                                style={{ cursor: "pointer" }}
-                                src={
-                                  require(`../../assets/img/faces/${Avatar}`)
-                                    .default
-                                }
-                              />
-                              <div className="pdl-20">
-                                <textarea
-                                  className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
-                                  placeholder="Escreva sua pergunta ou comentário aqui..."
-                                  value={comment1}
-                                  onChange={Handle_Comment1}
-                                />
-                                <div className="d-flex mobile-publish">
-                                  <div
-                                    className="but-publish mgr-30"
-                                    onClick={Handle_Publish}
-                                  >
-                                    Publicar
-                                  </div>
-                                  <div
-                                    className="Edit-ft5 py-13"
-                                    onClick={Handle_Responder}
-                                  >
-                                    Cancelar
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      </TransitionGroup>
-                      <TransitionGroup component={null}>
-                        {publish1 && (
-                          <CSSTransition classNames="dialog" timeout={300}>
-                            <div className="d-flex pdl-5 mgt-50">
-                              <img
-                                className="u-img1"
-                                style={{ cursor: "pointer" }}
-                                src={
-                                  require(`../../assets/img/${Member}`).default
-                                }
-                              />
-                              <div className="pdl-20">
-                                <textarea
-                                  className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
-                                  placeholder={comment1}
-                                  value={comment1}
-                                  onChange={Handle_Comment1}
-                                />
-                                <div className="d-flex">
-                                  <div className="but_respond mgr-10">
-                                    Responder
-                                  </div>
-                                  <button
-                                    type="button"
-                                    className="btn_eye ml-2"
-                                  >
-                                    <i className="fa fa-eye"></i>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn_thumbs ml-2"
-                                  >
-                                    <i className="fa fa-thumbs-up"></i>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn_thumbs ml-2"
-                                  >
-                                    <i className="fa fa-thumbs-down"></i>
-                                  </button>
-                                  <div className="float-right">
-                                    <DeleteDialogIcon />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      </TransitionGroup>
                     </div>
+                    <div></div>
                   </div>
                 </TabPanel>
                 <TabPanel value="3">
-                  <div className="second-m">
-                    <img
-                      className="u-img1"
-                      src={require(`../../assets/img/${Member}`).default}
-                    />
-                    <div className="pdl-20">
-                      <div className="d-flex justify-content-between mgb-20">
-                        <div className="Edit-ft3">João Lima</div>
-                        <div className="Edit-ft5">2 dias atrás</div>
-                      </div>
-                      <div className="mgb-20 con-ft8 mgr-94">
-                        Boa tarde, assisti a aula e curti muito o conteúdo
-                        apresentado, mas não encontrei o arquivo PDF que foi
-                        mostrado, se alguém puder me ajudar com isso eu agradeço
-                        muito.
-                      </div>
-                      <div className="d-flex">
-                        <div
-                          className="but_respond mgr-10"
-                          onClick={Handle_Responder}
+                  <div className="container content_style p-5">
+                    <div className="content_header">
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl}`}
+                          width="100%"
                         >
-                          Responder
-                        </div>
-                        <button type="button" className="btn_eye ml-2">
-                          <i className="fa fa-eye"></i>
-                        </button>
-                        <button type="button" className="btn_thumbs ml-2">
-                          <i className="fa fa-thumbs-up"></i>
-                        </button>
-                        <button type="button" className="btn_thumbs ml-2">
-                          <i className="fa fa-thumbs-down"></i>
-                        </button>
-                        <div className="float-right">
-                          <DeleteDialogIcon />
+                          <Select
+                            native
+                            defaultValue="Aula"
+                            id="grouped-native-select"
+                            onChange={Handle_Role3}
+                          >
+                            <optgroup
+                              className="opt-group"
+                              label="1 - Introdução"
+                            >
+                              <option value={0} className="opt-item">
+                                Como melhorar o seu Aprendizado?
+                              </option>
+                              <option value={1}>Revolução Digital</option>
+                              <option value={2}>O que é Home Office?</option>
+                              <option value={3}>Área de Atuação</option>
+                              <option value={4}>
+                                Vantagens do Home Office
+                              </option>
+                              <option value={5}>
+                                Boas Práticas Home Office
+                              </option>
+                              <option value={6}>Por que Home Office?</option>
+                            </optgroup>
+                            <optgroup
+                              className="opt-group"
+                              label="2 - Agora é pra Valer!"
+                            >
+                              <option value={0} className="opt-item">
+                                O que você quer seguir?
+                              </option>
+                            </optgroup>
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </div>
+                    <div className="content_body mt-5">
+                      <div className="second-m">
+                        <img
+                          className="u-img1"
+                          src={require(`../../assets/img/${Member}`).default}
+                        />
+                        <div className="pdl-20">
+                          <div className="d-flex justify-content-between mgb-20">
+                            <div className="Edit-ft3">João Lima</div>
+                            <div className="Edit-ft5">2 dias atrás</div>
+                          </div>
+                          <div className="mgb-20 con-ft8 mgr-94">
+                            Boa tarde, assisti a aula e curti muito o conteúdo
+                            apresentado, mas não encontrei o arquivo PDF que foi
+                            mostrado, se alguém puder me ajudar com isso eu
+                            agradeço muito.
+                          </div>
+                          <div className="d-flex">
+                            <div
+                              className="but_respond mgr-10"
+                              onClick={Handle_Responder}
+                            >
+                              Responder
+                            </div>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                            <button type="button" className="btn_thumbs ml-2">
+                              <i className="fa fa-thumbs-up"></i>
+                            </button>
+                            <button type="button" className="btn_thumbs ml-2">
+                              <i className="fa fa-thumbs-down"></i>
+                            </button>
+                            <div className="ml-5">
+                              <DeleteDialogIcon />
+                            </div>
+                          </div>
+                          <TransitionGroup component={null}>
+                            {responder && (
+                              <CSSTransition classNames="dialog" timeout={300}>
+                                <div className="d-flex pdl-5 mgt-50">
+                                  <img
+                                    className="u-img1"
+                                    style={{ cursor: "pointer" }}
+                                    src={
+                                      require(`../../assets/img/faces/${Avatar}`)
+                                        .default
+                                    }
+                                  />
+                                  <div className="pdl-20">
+                                    <textarea
+                                      className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
+                                      placeholder="Escreva sua pergunta ou comentário aqui..."
+                                      value={comment1}
+                                      onChange={Handle_Comment1}
+                                    />
+                                    <div className="d-flex mobile-publish">
+                                      <div
+                                        className="but-publish mgr-30"
+                                        onClick={Handle_Publish}
+                                      >
+                                        Publicar
+                                      </div>
+                                      <div
+                                        className="Edit-ft5 py-13"
+                                        onClick={Handle_Responder}
+                                      >
+                                        Cancelar
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </TransitionGroup>
+                          <TransitionGroup component={null}>
+                            {publish1 && (
+                              <CSSTransition classNames="dialog" timeout={300}>
+                                <div className="d-flex pdl-5 mgt-50">
+                                  <img
+                                    className="u-img1"
+                                    style={{ cursor: "pointer" }}
+                                    src={
+                                      require(`../../assets/img/${Member}`)
+                                        .default
+                                    }
+                                  />
+                                  <div className="pdl-20">
+                                    <textarea
+                                      className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
+                                      placeholder={comment1}
+                                      value={comment1}
+                                      onChange={Handle_Comment1}
+                                    />
+                                    <div className="d-flex">
+                                      <div className="but_respond mgr-10">
+                                        Responder
+                                      </div>
+                                      <button
+                                        type="button"
+                                        className="btn_eye ml-2"
+                                      >
+                                        <i className="fa fa-eye"></i>
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn_thumbs ml-2"
+                                      >
+                                        <i className="fa fa-thumbs-up"></i>
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn_thumbs ml-2"
+                                      >
+                                        <i className="fa fa-thumbs-down"></i>
+                                      </button>
+                                      <div className="ml-5">
+                                        <DeleteDialogIcon />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </TransitionGroup>
                         </div>
                       </div>
-                      <TransitionGroup component={null}>
-                        {responder && (
-                          <CSSTransition classNames="dialog" timeout={300}>
-                            <div className="d-flex pdl-5 mgt-50">
-                              <img
-                                className="u-img1"
-                                style={{ cursor: "pointer" }}
-                                src={
-                                  require(`../../assets/img/faces/${Avatar}`)
-                                    .default
-                                }
-                              />
-                              <div className="pdl-20">
-                                <textarea
-                                  className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
-                                  placeholder="Escreva sua pergunta ou comentário aqui..."
-                                  value={comment1}
-                                  onChange={Handle_Comment1}
-                                />
-                                <div className="d-flex mobile-publish">
-                                  <div
-                                    className="but-publish mgr-30"
-                                    onClick={Handle_Publish}
-                                  >
-                                    Publicar
-                                  </div>
-                                  <div
-                                    className="Edit-ft5 py-13"
-                                    onClick={Handle_Responder}
-                                  >
-                                    Cancelar
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      </TransitionGroup>
-                      <TransitionGroup component={null}>
-                        {publish1 && (
-                          <CSSTransition classNames="dialog" timeout={300}>
-                            <div className="d-flex pdl-5 mgt-50">
-                              <img
-                                className="u-img1"
-                                style={{ cursor: "pointer" }}
-                                src={
-                                  require(`../../assets/img/${Member}`).default
-                                }
-                              />
-                              <div className="pdl-20">
-                                <textarea
-                                  className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
-                                  placeholder={comment1}
-                                  value={comment1}
-                                  onChange={Handle_Comment1}
-                                />
-                                <div className="d-flex">
-                                  <div className="but_respond mgr-10">
-                                    Responder
-                                  </div>
-                                  <button
-                                    type="button"
-                                    className="btn_eye ml-2"
-                                  >
-                                    <i className="fa fa-eye"></i>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn_thumbs ml-2"
-                                  >
-                                    <i className="fa fa-thumbs-up"></i>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn_thumbs ml-2"
-                                  >
-                                    <i className="fa fa-thumbs-down"></i>
-                                  </button>
-                                  <div className="float-right">
-                                    <DeleteDialogIcon />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      </TransitionGroup>
                     </div>
+                    <div></div>
                   </div>
                 </TabPanel>
                 <TabPanel value="4">
-                  <div className="second-m">
-                    <img
-                      className="u-img1"
-                      src={require(`../../assets/img/${Member}`).default}
-                    />
-                    <div className="pdl-20">
-                      <div className="d-flex justify-content-between mgb-20">
-                        <div className="Edit-ft3">João Lima</div>
-                        <div className="Edit-ft5">2 dias atrás</div>
-                      </div>
-                      <div className="mgb-20 con-ft8 mgr-94">
-                        Boa tarde, assisti a aula e curti muito o conteúdo
-                        apresentado, mas não encontrei o arquivo PDF que foi
-                        mostrado, se alguém puder me ajudar com isso eu agradeço
-                        muito.
-                      </div>
-                      <div className="d-flex">
-                        <div
-                          className="but_respond mgr-10"
-                          onClick={Handle_Responder}
+                  <div className="container content_style p-5">
+                    <div className="content_header">
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl}`}
+                          width="100%"
                         >
-                          Responder
-                        </div>
-                        <button type="button" className="btn_eye ml-2">
-                          <i className="fa fa-eye"></i>
-                        </button>
-                        <button type="button" className="btn_thumbs ml-2">
-                          <i className="fa fa-thumbs-up"></i>
-                        </button>
-                        <button type="button" className="btn_thumbs ml-2">
-                          <i className="fa fa-thumbs-down"></i>
-                        </button>
-                        <div className="float-right">
-                          <DeleteDialogIcon />
+                          <Select
+                            native
+                            defaultValue="Aula"
+                            id="grouped-native-select"
+                            onChange={Handle_Role3}
+                          >
+                            <optgroup
+                              className="opt-group"
+                              label="1 - Introdução"
+                            >
+                              <option value={0} className="opt-item">
+                                Como melhorar o seu Aprendizado?
+                              </option>
+                              <option value={1}>Revolução Digital</option>
+                              <option value={2}>O que é Home Office?</option>
+                              <option value={3}>Área de Atuação</option>
+                              <option value={4}>
+                                Vantagens do Home Office
+                              </option>
+                              <option value={5}>
+                                Boas Práticas Home Office
+                              </option>
+                              <option value={6}>Por que Home Office?</option>
+                            </optgroup>
+                            <optgroup
+                              className="opt-group"
+                              label="2 - Agora é pra Valer!"
+                            >
+                              <option value={0} className="opt-item">
+                                O que você quer seguir?
+                              </option>
+                            </optgroup>
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </div>
+                    <div className="content_body mt-5">
+                      <div className="second-m">
+                        <img
+                          className="u-img1"
+                          src={require(`../../assets/img/${Member}`).default}
+                        />
+                        <div className="pdl-20">
+                          <div className="d-flex justify-content-between mgb-20">
+                            <div className="Edit-ft3">João Lima</div>
+                            <div className="Edit-ft5">2 dias atrás</div>
+                          </div>
+                          <div className="mgb-20 con-ft8 mgr-94">
+                            Boa tarde, assisti a aula e curti muito o conteúdo
+                            apresentado, mas não encontrei o arquivo PDF que foi
+                            mostrado, se alguém puder me ajudar com isso eu
+                            agradeço muito.
+                          </div>
+                          <div className="d-flex">
+                            <div
+                              className="but_respond mgr-10"
+                              onClick={Handle_Responder}
+                            >
+                              Responder
+                            </div>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                            <button type="button" className="btn_thumbs ml-2">
+                              <i className="fa fa-thumbs-up"></i>
+                            </button>
+                            <button type="button" className="btn_thumbs ml-2">
+                              <i className="fa fa-thumbs-down"></i>
+                            </button>
+                            <div className="ml-5">
+                              <DeleteDialogIcon />
+                            </div>
+                          </div>
+                          <TransitionGroup component={null}>
+                            {responder && (
+                              <CSSTransition classNames="dialog" timeout={300}>
+                                <div className="d-flex pdl-5 mgt-50">
+                                  <img
+                                    className="u-img1"
+                                    style={{ cursor: "pointer" }}
+                                    src={
+                                      require(`../../assets/img/faces/${Avatar}`)
+                                        .default
+                                    }
+                                  />
+                                  <div className="pdl-20">
+                                    <textarea
+                                      className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
+                                      placeholder="Escreva sua pergunta ou comentário aqui..."
+                                      value={comment1}
+                                      onChange={Handle_Comment1}
+                                    />
+                                    <div className="d-flex mobile-publish">
+                                      <div
+                                        className="but-publish mgr-30"
+                                        onClick={Handle_Publish}
+                                      >
+                                        Publicar
+                                      </div>
+                                      <div
+                                        className="Edit-ft5 py-13"
+                                        onClick={Handle_Responder}
+                                      >
+                                        Cancelar
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </TransitionGroup>
+                          <TransitionGroup component={null}>
+                            {publish1 && (
+                              <CSSTransition classNames="dialog" timeout={300}>
+                                <div className="d-flex pdl-5 mgt-50">
+                                  <img
+                                    className="u-img1"
+                                    style={{ cursor: "pointer" }}
+                                    src={
+                                      require(`../../assets/img/${Member}`)
+                                        .default
+                                    }
+                                  />
+                                  <div className="pdl-20">
+                                    <textarea
+                                      className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
+                                      placeholder={comment1}
+                                      value={comment1}
+                                      onChange={Handle_Comment1}
+                                    />
+                                    <div className="d-flex">
+                                      <div className="but_respond mgr-10">
+                                        Responder
+                                      </div>
+                                      <button
+                                        type="button"
+                                        className="btn_eye ml-2"
+                                      >
+                                        <i className="fa fa-eye"></i>
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn_thumbs ml-2"
+                                      >
+                                        <i className="fa fa-thumbs-up"></i>
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn_thumbs ml-2"
+                                      >
+                                        <i className="fa fa-thumbs-down"></i>
+                                      </button>
+                                      <div className="ml-5">
+                                        <DeleteDialogIcon />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CSSTransition>
+                            )}
+                          </TransitionGroup>
                         </div>
                       </div>
-                      <TransitionGroup component={null}>
-                        {responder && (
-                          <CSSTransition classNames="dialog" timeout={300}>
-                            <div className="d-flex pdl-5 mgt-50">
-                              <img
-                                className="u-img1"
-                                style={{ cursor: "pointer" }}
-                                src={
-                                  require(`../../assets/img/faces/${Avatar}`)
-                                    .default
-                                }
-                              />
-                              <div className="pdl-20">
-                                <textarea
-                                  className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
-                                  placeholder="Escreva sua pergunta ou comentário aqui..."
-                                  value={comment1}
-                                  onChange={Handle_Comment1}
-                                />
-                                <div className="d-flex mobile-publish">
-                                  <div
-                                    className="but-publish mgr-30"
-                                    onClick={Handle_Publish}
-                                  >
-                                    Publicar
-                                  </div>
-                                  <div
-                                    className="Edit-ft5 py-13"
-                                    onClick={Handle_Responder}
-                                  >
-                                    Cancelar
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      </TransitionGroup>
-                      <TransitionGroup component={null}>
-                        {publish1 && (
-                          <CSSTransition classNames="dialog" timeout={300}>
-                            <div className="d-flex pdl-5 mgt-50">
-                              <img
-                                className="u-img1"
-                                style={{ cursor: "pointer" }}
-                                src={
-                                  require(`../../assets/img/${Member}`).default
-                                }
-                              />
-                              <div className="pdl-20">
-                                <textarea
-                                  className="Edit-warp1 ht-200  Edit-ft4 wd-632 mgl-20"
-                                  placeholder={comment1}
-                                  value={comment1}
-                                  onChange={Handle_Comment1}
-                                />
-                                <div className="d-flex">
-                                  <div className="but_respond mgr-10">
-                                    Responder
-                                  </div>
-                                  <button
-                                    type="button"
-                                    className="btn_eye ml-2"
-                                  >
-                                    <i className="fa fa-eye"></i>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn_thumbs ml-2"
-                                  >
-                                    <i className="fa fa-thumbs-up"></i>
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn_thumbs ml-2"
-                                  >
-                                    <i className="fa fa-thumbs-down"></i>
-                                  </button>
-                                  <div className="float-right">
-                                    <DeleteDialogIcon />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      </TransitionGroup>
                     </div>
+                    <div></div>
                   </div>
                 </TabPanel>
               </TabContext>

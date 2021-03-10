@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Tab } from "@material-ui/core";
+import {
+  AppBar,
+  Tab,
+  Select,
+  FormControl,
+  MenuItem,
+  IconButton,
+  Menu,
+} from "@material-ui/core";
 import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 import "../../assets/css/login.css";
 import "../../assets/css/member.css";
 import StyledCheckbox from "components/Checkbox";
@@ -13,10 +23,22 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
+  formcontrol: {
+    width: "100%",
+  },
 });
 
+const options = ["Editar", "Ver perfil"];
+
+const ITEM_HEIGHT = 48;
+
 export default function Member() {
+  const [dropType, setDropType] = useState(10);
   const history = useHistory();
+  const HandleDropType = (e) => {
+    console.log(e.target.value);
+    setDropType(e.target.value);
+  };
   const AddMember = () => {
     history.push("/main/member/addmember");
   };
@@ -33,6 +55,17 @@ export default function Member() {
   const [NoMember, setMember] = useState("");
   const OneMember = () => {
     setMember((prevState) => !prevState);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -125,22 +158,27 @@ export default function Member() {
                   </TabList>
                 </div>
                 <TabPanel value="1">
-                  <div className="container content_style p-5">
+                  <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
-                        <div className="col-12 col-md-5 mt-1">
+                        <div className="col-12 col-md-4 mt-1">
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
                           />
                         </div>
-                        <div className="col-12 col-md-5 mt-1">
-                          <input
-                            className="input-ft2 w-100"
-                            placeholder="Busque por nome"
-                          />
+                        <div className="col-12 col-md-4 mt-1 position-relative new_group_select">
+                          <FormControl
+                            variant="outlined"
+                            className={classes.formcontrol}
+                          >
+                            <Select value={dropType} onChange={HandleDropType}>
+                              <MenuItem value={10}>Turma A (Padrão)</MenuItem>
+                              <MenuItem value={20}>Turma B</MenuItem>
+                            </Select>
+                          </FormControl>
                         </div>
-                        <div className="col-12 col-md-2 mt-1">
+                        <div className="col-12 col-md-4 mt-1 desktop_hidden">
                           <div className="d-flex">
                             <StyledCheckbox />
                             <div className="con-ft3 pt-2">Ativado</div>
@@ -150,11 +188,23 @@ export default function Member() {
                             <div className="con-ft3 pt-2">Pendente</div>
                           </div>
                         </div>
+                        <div className="col-12 col-md-4 mt-1 mobile_hidden">
+                          <div className="row">
+                            <div className="d-flex col-6">
+                              <StyledCheckbox />
+                              <div className="con-ft3 pt-2">Ativado</div>
+                            </div>
+                            <div className="d-flex col-6">
+                              <StyledCheckbox />
+                              <div className="con-ft3 pt-2">Pendente</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="content_body mt-5">
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-online">
                             <img
                               alt="..."
@@ -172,22 +222,53 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button
-                            type="button"
-                            className="btn_edit"
-                            onClick={handleEdit}
-                          >
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                       <hr />
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-away">
                             <img
                               alt="..."
@@ -205,18 +286,53 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                       <hr />
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-away">
                             <img
                               alt="..."
@@ -234,18 +350,53 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                       <hr />
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-away">
                             <img
                               alt="..."
@@ -263,35 +414,77 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </TabPanel>
                 <TabPanel value="2">
-                  <div className="container content_style p-5">
+                  <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
-                        <div className="col-12 col-md-5 mt-1">
+                        <div className="col-12 col-md-4 mt-1">
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
                           />
                         </div>
-                        <div className="col-12 col-md-5 mt-1">
-                          <input
-                            className="input-ft2 w-100"
-                            placeholder="Busque por nome"
-                          />
+                        <div className="col-12 col-md-4 mt-1 position-relative new_group_select">
+                          <FormControl
+                            variant="outlined"
+                            className={classes.formcontrol}
+                          >
+                            {" "}
+                            <Select value={dropType} onChange={HandleDropType}>
+                              <MenuItem value={10}>Administrador</MenuItem>
+                              <MenuItem value={20}>Atendimento</MenuItem>
+                              <MenuItem value={30}>Moderador</MenuItem>
+                            </Select>
+                          </FormControl>
                         </div>
-                        <div className="col-12 col-md-2 mt-1">
+                        <div className="col-12 col-md-4 mt-1 desktop_hidden">
                           <div className="d-flex">
                             <StyledCheckbox />
                             <div className="con-ft3 pt-2">Ativado</div>
@@ -301,11 +494,23 @@ export default function Member() {
                             <div className="con-ft3 pt-2">Pendente</div>
                           </div>
                         </div>
+                        <div className="col-12 col-md-4 mt-1 mobile_hidden">
+                          <div className="row">
+                            <div className="d-flex col-6">
+                              <StyledCheckbox />
+                              <div className="con-ft3 pt-2">Ativado</div>
+                            </div>
+                            <div className="d-flex col-6">
+                              <StyledCheckbox />
+                              <div className="con-ft3 pt-2">Pendente</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="content_body mt-5">
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-online">
                             <img
                               alt="..."
@@ -323,18 +528,53 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                       <hr />
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-away">
                             <img
                               alt="..."
@@ -352,20 +592,55 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </TabPanel>
                 <TabPanel value="3">
-                  <div className="container content_style p-5">
+                  <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
                         <div className="col-12 col-md-5 mt-1">
@@ -378,7 +653,7 @@ export default function Member() {
                     </div>
                     <div className="content_body mt-5">
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-block">
                             <img
                               alt="..."
@@ -396,18 +671,53 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                       <hr />
                       <div className="row">
-                        <div className="col-sm-10 d-flex">
+                        <div className="col-sm-9 col-9 d-flex">
                           <div className="member_avatar avatar avatar-block">
                             <img
                               alt="..."
@@ -425,13 +735,48 @@ export default function Member() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2">
-                          <button type="button" className="btn_edit">
-                            <i className="fa fa-pen-alt"></i>
-                          </button>
-                          <button type="button" className="btn_eye ml-2">
-                            <i className="fa fa-eye"></i>
-                          </button>
+                        <div className="col-sm-3 col-3 mt-1">
+                          <div className="desktop_hidden">
+                            <button type="button" className="btn_edit">
+                              <i className="fa fa-pen-alt"></i>
+                            </button>
+                            <button type="button" className="btn_eye ml-2">
+                              <i className="fa fa-eye"></i>
+                            </button>
+                          </div>
+                          <div className="mobile_hidden">
+                            <IconButton
+                              aria-label="more"
+                              aria-controls="long-menu"
+                              aria-haspopup="true"
+                              onClick={handleClick}
+                            >
+                              <MoreVertIcon />
+                            </IconButton>
+                            <Menu
+                              id="long-menu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={handleClose}
+                              PaperProps={{
+                                style: {
+                                  maxHeight: ITEM_HEIGHT * 4.5,
+                                  width: "20ch",
+                                },
+                              }}
+                            >
+                              {options.map((option) => (
+                                <MenuItem
+                                  key={option}
+                                  selected={option === "Pyxis"}
+                                  onClick={handleClose}
+                                >
+                                  {option}
+                                </MenuItem>
+                              ))}
+                            </Menu>
+                          </div>
                         </div>
                       </div>
                     </div>
