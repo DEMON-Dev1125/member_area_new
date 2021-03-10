@@ -1,5 +1,6 @@
 import react, { useState, useEffect } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
+import { Select, FormControl, MenuItem } from "@material-ui/core";
 import SwitchDrop from "../../components/Switch";
 import Togglebutton from "../../components/Togglebutton";
 import "../../assets/css/login.css";
@@ -8,9 +9,18 @@ const InfoIcon = "info-icon.svg";
 
 export default function EditContent() {
   const history = useHistory();
+  const [memberType, setMemberType] = useState(false);
+  const [dropType, setDropType] = useState(10);
 
   const Back_fun = () => {
     history.goBack();
+  };
+  const onChangeSwitch = (type) => {
+    setMemberType(type);
+  };
+  const HandleDropType = (e) => {
+    console.log(e.target.value);
+    setDropType(e.target.value);
   };
 
   return (
@@ -68,7 +78,41 @@ export default function EditContent() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Tipo de membro</div>
-            <SwitchDrop />
+            <SwitchDrop onChange={onChangeSwitch} value={memberType} />
+          </div>
+          <div className="mt-5">
+            <div className="Edit-ft3">
+              {memberType ? "Perfil de acesso" : "Turma"}
+            </div>
+            {memberType ? (
+              <div className="mt-1 position-relative ht-45 new_group_select">
+                <FormControl variant="outlined">
+                  {" "}
+                  <Select
+                    value={dropType}
+                    onChange={HandleDropType}
+                    label="class"
+                  >
+                    <MenuItem value={10}>Administrador</MenuItem>
+                    <MenuItem value={20}>Atendimento</MenuItem>
+                    <MenuItem value={30}>Moderador</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            ) : (
+              <div className="mt-1 position-relative ht-45 new_group_select">
+                <FormControl variant="outlined">
+                  <Select
+                    value={dropType}
+                    onChange={HandleDropType}
+                    label="access"
+                  >
+                    <MenuItem value={10}>Turma A (Padrão)</MenuItem>
+                    <MenuItem value={20}>Turma B</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            )}
           </div>
           <div className="mt-5 d-flex">
             <Togglebutton />

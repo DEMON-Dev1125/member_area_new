@@ -269,15 +269,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -333,15 +326,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -397,15 +383,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -461,15 +440,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -591,15 +563,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -655,15 +620,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -734,15 +692,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>
@@ -798,15 +749,8 @@ export default function Member() {
                                 },
                               }}
                             >
-                              {options.map((option) => (
-                                <MenuItem
-                                  key={option}
-                                  selected={option === "Pyxis"}
-                                  onClick={handleClose}
-                                >
-                                  {option}
-                                </MenuItem>
-                              ))}
+                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                              <MenuItem onClick={handleClose}>view</MenuItem>
                             </Menu>
                           </div>
                         </div>

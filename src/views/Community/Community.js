@@ -5,12 +5,12 @@ import { AppBar, Tab, MenuItem, FormControl, Select } from "@material-ui/core";
 import { TabContext, TabList, TabPanel } from "@material-ui/lab";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import DeleteDialogIcon from "../Contents/Deleteicon.js";
-const Avatar = "face-5.jpg";
-const Member = "member4.png";
-const CommunityBack = "community.png";
-
 import "../../assets/css/login.css";
 import "../../assets/css/member.css";
+
+const Member = "member4.png";
+const CommunityBack = "community.png";
+const Avatar = "face-4.jpg";
 
 const useStyles = makeStyles({
   root: {
