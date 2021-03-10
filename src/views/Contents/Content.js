@@ -79,8 +79,8 @@ export default function ContentIndex() {
   return (
     <div className="container-fluid mt-5">
       <div className="row">
-        <div className="col-sm-1"></div>
-        <div className="col-12 col-sm-5 mgt-292">
+        <div className="col-xl-1"></div>
+        <div className="col-12 col-lg-12 col-xl-5 content_height">
           <div className="ml-4">
             <div className="Edit-ft1">REMOTE METHOD 3.0</div>
             <div className="Edit-ft2">Conteúdos</div>
@@ -137,7 +137,7 @@ export default function ContentIndex() {
             </div>
           </div>
         </div>
-        <div className="col-12 col-sm-5 mgt-70 d-flex justify-content-center flex-column">
+        <div className="col-12 col-lg-12 col-xl-5 mgt-70 d-flex justify-content-center flex-column">
           <div className="accordion mt-3">
             <div className="fold">
               <div
@@ -496,7 +496,7 @@ export default function ContentIndex() {
             </div>
           </div>
         </div>
-        <div className="col-sm-1"></div>
+        <div className="col-xl-1"></div>
       </div>
     </div>
   );
