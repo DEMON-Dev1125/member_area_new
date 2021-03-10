@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Setting() {
+export default function Profile() {
   const history = useHistory();
   const classes = useStyles();
 

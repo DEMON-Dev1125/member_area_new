@@ -3,6 +3,7 @@ import { useLocation, Route, Switch } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import $ from "jquery";
 import routes from "../routes.js";
+import Profile from './../views/Profile'
 
 const LogoWhite = "Logo_white.svg";
 const SidebarImg = "sidebar-3.jpg";
@@ -83,7 +84,7 @@ function Main() {
             <Switch>
               <Route
                 path={"/main/profile"}
-                // render={(props) => <Profile />}
+                component={Profile}
               ></Route>
               {getRoutes(routes)}
             </Switch>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import $ from "jquery";
 
 const AvatarImg = "Avatar.png";
@@ -13,6 +14,7 @@ $(window).on("resize", function () {
   } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
 });
 function Sidebar(props) {
+  let history = useHistory();
   const { image, color, routes, Navbar_select } = props;
   const location = useLocation();
   const activeRoute = (routeName) => {
@@ -25,7 +27,7 @@ function Sidebar(props) {
     }
   };
   const HandleProfile = () => {
-    console.log("clicked!!!");
+    history.push("/main/profile");
   };
 
   return (
