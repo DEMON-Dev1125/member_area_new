@@ -121,20 +121,21 @@ export default function EditContent() {
                 <div className="mt-1 position-relative ht-45 new_group_select">
                   <FormControl
                     variant="outlined"
-                    className={`${classes.formControl}`}
+                    className={`${classes.formControl} mt-3`}
+                    width="100%"
                   >
                     <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      value={role1}
+                      native
+                      defaultValue="Aula"
+                      id="grouped-native-select"
                       onChange={Handle_Role1}
-                      label="age"
+                      label="lang"
                     >
-                      <MenuItem value={10}>Acesso Livre</MenuItem>
-                      <MenuItem value={20}>Data programada</MenuItem>
-                      <MenuItem value={30}>Dias após compra</MenuItem>
-                      <MenuItem value={40}>Oculto</MenuItem>
-                      <MenuItem value={50}>Bloqueado</MenuItem>
+                      <option value={10}>Acesso Livre</option>
+                      <option value={20}>Data programada</option>
+                      <option value={30}>Dias após compra</option>
+                      <option value={40}>Oculto</option>
+                      <option value={50}>Bloqueado</option>
                     </Select>
                   </FormControl>
                 </div>
@@ -150,20 +151,21 @@ export default function EditContent() {
                 <div className="mt-1 position-relative new_group_select">
                   <FormControl
                     variant="outlined"
-                    className={`${classes.formControl}`}
+                    className={`${classes.formControl} mt-3`}
+                    width="100%"
                   >
                     <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
-                      value={role2}
+                      native
+                      defaultValue="Aula"
+                      id="grouped-native-select"
                       onChange={Handle_Role2}
-                      label="age"
+                      label="lang"
                     >
-                      <MenuItem value={10}>Acesso Livre</MenuItem>
-                      <MenuItem value={20}>Data programada</MenuItem>
-                      <MenuItem value={30}>Dias após compra</MenuItem>
-                      <MenuItem value={40}>Oculto</MenuItem>
-                      <MenuItem value={50}>Bloqueado</MenuItem>
+                      <option value={10}>Acesso Livre</option>
+                      <option value={20}>Data programada</option>
+                      <option value={30}>Dias após compra</option>
+                      <option value={40}>Oculto</option>
+                      <option value={50}>Bloqueado</option>
                     </Select>
                   </FormControl>
                 </div>

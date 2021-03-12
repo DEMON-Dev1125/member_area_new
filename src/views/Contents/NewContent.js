@@ -32,7 +32,7 @@ export default function NewContent() {
   const Handle_Save = () => {
     history.push("/");
   };
-  const [age, setAge] = react.useState(10);
+  const [age, setAge] = react.useState(1);
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -58,18 +58,21 @@ export default function NewContent() {
           <div className="new_content_select">
             <FormControl
               variant="outlined"
-              className={`${classes.formControl} mt-3 w-50`}
+              className={`${classes.formControl} mt-3`}
+              width="50%"
             >
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={age}
+                native
+                defaultValue="Aula"
+                id="grouped-native-select"
                 onChange={handleChange}
-                label="age"
+                label="lang"
               >
-                <MenuItem value={10}>Módulo</MenuItem>
-                <MenuItem value={20}>1 - Introdução</MenuItem>
-                <MenuItem value={30}>2 - Agora é pra Valer!</MenuItem>
+                <option value={1} className="opt-item">
+                  Módulo
+                </option>
+                <option value={2}>1 - Introdução</option>
+                <option value={3}>2 - Agora é pra Valer!</option>
               </Select>
             </FormControl>
           </div>
@@ -97,7 +100,7 @@ export default function NewContent() {
               </div>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5  mb-5">
             <div className="col-xl-6 col-12">
               <button
                 type="button"

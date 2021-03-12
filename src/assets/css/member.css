@@ -1,4 +1,8 @@
-.PrivateTabIndicator-colorSecondary-4 {
+.PrivateTabIndicator-colorSecondary-5,
+.PrivateTabIndicator-colorSecondary-7,
+.PrivateTabIndicator-colorSecondary-47,
+.PrivateTabIndicator-colorSecondary-52,
+.PrivateTabIndicator-colorSecondary-144 {
   background-color: #0779e4 !important;
 }
 .MuiTab-root {
@@ -6,6 +10,7 @@
   font-size: 24px !important;
   line-height: 2 !important;
   color: #12263f !important;
+  width: 200px;
 }
 .PrivateSwitchBase-root-11 {
   padding: 3px !important;
@@ -119,5 +124,9 @@
   }
   .content_style {
     padding: 1rem;
+  }
+  .show_member img {
+    width: 30px;
+    height: 30px;
   }
 }

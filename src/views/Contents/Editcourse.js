@@ -88,7 +88,7 @@ export default function Editor() {
               </div>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">
               <button
                 type="button"

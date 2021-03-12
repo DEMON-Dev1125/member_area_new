@@ -71,7 +71,7 @@ export default function Certificate() {
               </Dialog>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5 mb-5">
             <div className="col-lg-6 col-sm-12">
               <button className="but_save w-100">Salvar edição</button>
             </div>

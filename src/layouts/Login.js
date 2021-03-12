@@ -19,7 +19,7 @@ function Login() {
     <div className="outer">
       <div className="inner">
         <form onSubmit={HandleSubmit}>
-          <div className="d-flex justify-content-center mt-4 mb-5">
+          <div className="d-flex justify-content-center mt-3 mb-5">
             <img
               className="login-img1"
               src={require(`../assets/img/${LogoWL}`).default}
@@ -46,7 +46,7 @@ function Login() {
           <p className="forgot-password text-left">
             <a href="#">Esqueceu sua senha?</a>
           </p>
-          <button type="submit" className="btn btn-dark btn-lg btn-block">
+          <button type="submit" className="btn btn-lg btn-block">
             Sign in
           </button>
         </form>

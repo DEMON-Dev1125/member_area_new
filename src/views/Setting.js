@@ -24,6 +24,10 @@ export default function Setting() {
   const HandleLang = (e) => {
     setLanguage(e.target.value);
   };
+  const [role3, setRole3] = useState(10);
+  const Handle_Role3 = (e) => {
+    setRole3(e.target.value);
+  };
 
   return (
     <div className="container-fluid mt-5">
@@ -66,11 +70,20 @@ export default function Setting() {
                 <FormControl
                   variant="outlined"
                   className={`${classes.formControl} mt-3`}
+                  width="100%"
                 >
-                  <Select value={lang} onChange={HandleLang} label="lang">
-                    <MenuItem value={1}>English (United States)</MenuItem>
-                    <MenuItem value={2}>Português (Brasil)</MenuItem>
-                    <MenuItem value={3}>Español</MenuItem>
+                  <Select
+                    native
+                    defaultValue="Aula"
+                    id="grouped-native-select"
+                    onChange={Handle_Role3}
+                    label="lang"
+                  >
+                    <option value={1} className="opt-item">
+                      English (United States)
+                    </option>
+                    <option value={2}>Português (Brasil)</option>
+                    <option value={3}>Español</option>
                   </Select>
                 </FormControl>
               </div>
@@ -111,7 +124,7 @@ export default function Setting() {
               <TextWYSIWYG />
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5  mb-5">
             <div className="col-lg-6 col-sm-12">
               <button className="but_save w-100">Salvar edição</button>
             </div>

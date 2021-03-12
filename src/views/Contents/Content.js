@@ -91,11 +91,11 @@ export default function ContentIndex() {
             <div className=" mt-5 d-flex">
               <div className="d-flex align-items-center mr-5">
                 <i className="fas fa-clock con-colr"></i>
-                <div className="con-ft3">4h 4m</div>
+                <div className="con-ft3 ml-2">4h 4m</div>
               </div>
               <div className="d-flex align-items-center">
                 <i className="fas fa-play-circle con-color"></i>
-                <div className="con-ft3">8 aulas</div>
+                <div className="con-ft3 ml-2">8 aulas</div>
               </div>
             </div>
             <div className="number-progress mt-3">
@@ -108,20 +108,19 @@ export default function ContentIndex() {
               <button
                 type="button"
                 id="firstButton"
-                className="u-btn u-btn-outline btn-ft1 mgr-30 d-flex align-items-center justify-content-center"
+                className="u-btn u-btn-outline btn-ft1 mr-5 d-flex align-items-center justify-content-center"
+                onClick={Handle_Edit_Course}
               >
-                <div className="mgr-15" onClick={Handle_Edit_Course}>
-                  Editar curso
-                </div>
+                <div className="mr-2">Editar curso</div>
                 <i className="fas fa-pen-alt"></i>
               </button>
 
               <div className="dropdown">
                 <button
                   type="button"
-                  className="u-btn u-btn-color btn-ft1 d-flex align-items-center justify-content-center dropbtn"
+                  className="u-btn u-btn-outline btn-ft1 d-flex align-items-center justify-content-center dropbtn"
                 >
-                  <div className="mgr-15">Adicionar</div>
+                  <div className="mr-2">Adicionar</div>
                   <i className="fas fa-plus"></i>
                 </button>
                 <div className="dropdown-content">
@@ -204,10 +203,12 @@ export default function ContentIndex() {
                 )}
               </div>
 
+              {active1 && <hr className="line" />}
+
               <div className={`fold_content ${active1 ? "open" : ""}`}>
                 {active1 && (
                   <>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${CheckBule}`).default}
@@ -220,13 +221,13 @@ export default function ContentIndex() {
                         />
                       )}
                       <div onClick={() => goImprove()}>
-                        <div className="Edit-ft1 mb-1">AULA 1 | 7:23</div>
+                        <div className="Edit-ft1 mb-2">AULA 1 | 7:23</div>
                         <div className="con-ft5">
                           Como melhorar o seu Aprendizado?
                         </div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${CheckBule}`).default}
@@ -239,13 +240,13 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">
+                        <div className="Edit-ft1 mb-2">
                           AULA 2 | VÍDEO 12:54
                         </div>
                         <div className="con-ft5">Revolução Digital</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${DotIcon}`).default}
@@ -258,13 +259,13 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">
+                        <div className="Edit-ft1 mb-2">
                           AULA 3 | VÍDEO 15:54
                         </div>
                         <div className="con-ft5">O que é Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${VideoIcon}`).default}
@@ -277,11 +278,11 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 4 | VÍDEO 5:05</div>
+                        <div className="Edit-ft1 mb-2">AULA 4 | VÍDEO 5:05</div>
                         <div className="con-ft5">Área de Atuação</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${VideoIcon}`).default}
@@ -294,13 +295,13 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">
+                        <div className="Edit-ft1 mb-2">
                           AULA 5 | VÍDEO 12:39
                         </div>
                         <div className="con-ft5">Vantagens do Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${FileIcon}`).default}
@@ -313,11 +314,11 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 6 | ARQUIVO</div>
+                        <div className="Edit-ft1 mb-2">AULA 6 | ARQUIVO</div>
                         <div className="con-ft5">Boas Práticas Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${TextIcon}`).default}
@@ -330,11 +331,11 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 7 | TEXTO</div>
+                        <div className="Edit-ft1 mb-2">AULA 7 | TEXTO</div>
                         <div className="con-ft5">Por que Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       {moveflag ? (
                         <img
                           src={require(`../../assets/img/${FileIcon}`).default}
@@ -347,7 +348,7 @@ export default function ContentIndex() {
                         />
                       )}
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 8 | ARQUIVO</div>
+                        <div className="Edit-ft1 mb-2">AULA 8 | ARQUIVO</div>
                         <div className="con-ft5">
                           Relacionamento Interpessoal
                         </div>
@@ -397,94 +398,96 @@ export default function ContentIndex() {
                 )}
               </div>
 
+              {active2 && <hr className="line" />}
+
               <div className={`fold_content ${active2 ? "open" : ""}`}>
                 {active2 && (
                   <>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${CheckBule}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 1 | 7:23</div>
+                        <div className="Edit-ft1 mb-2">AULA 1 | 7:23</div>
                         <div className="con-ft5">
                           Como melhorar o seu Aprendizado?
                         </div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${CheckBule}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">
+                        <div className="Edit-ft1 mb-2">
                           AULA 2 | VÍDEO 12:54
                         </div>
                         <div className="con-ft5">Revolução Digital</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${DotIcon}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">
+                        <div className="Edit-ft1 mb-2">
                           AULA 3 | VÍDEO 15:54
                         </div>
                         <div className="con-ft5">O que é Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${VideoIcon}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 4 | VÍDEO 5:05</div>
+                        <div className="Edit-ft1 mb-2">AULA 4 | VÍDEO 5:05</div>
                         <div className="con-ft5">Área de Atuação</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${VideoIcon}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">
+                        <div className="Edit-ft1 mb-2">
                           AULA 5 | VÍDEO 12:39
                         </div>
                         <div className="con-ft5">Vantagens do Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${FileIcon}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 6 | ARQUIVO</div>
+                        <div className="Edit-ft1 mb-2">AULA 6 | ARQUIVO</div>
                         <div className="con-ft5">Boas Práticas Home Office</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${TextIcon}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 7 | TEXTO</div>
+                        <div className="Edit-ft1 mb-2">AULA 7 | TEXTO</div>
                         <div className="con-ft5">Por que Home Office?</div>
                       </div>
                     </div>
-                    <div className="test-content d-flex mb-3">
+                    <div className="test-content d-flex mb-4">
                       <img
                         src={require(`../../assets/img/${FileIcon}`).default}
                         className="mr-2"
                       />
                       <div>
-                        <div className="Edit-ft1 mb-1">AULA 8 | ARQUIVO</div>
+                        <div className="Edit-ft1 mb-2">AULA 8 | ARQUIVO</div>
                         <div className="con-ft5">
                           Relacionamento Interpessoal
                         </div>

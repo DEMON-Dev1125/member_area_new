@@ -86,29 +86,32 @@ export default function EditContent() {
             </div>
             {memberType ? (
               <div className="mt-1 position-relative ht-45 new_group_select">
-                <FormControl variant="outlined">
-                  {" "}
+                <FormControl variant="outlined" width="100%">
                   <Select
-                    value={dropType}
+                    native
+                    defaultValue="Aula"
+                    id="grouped-native-select"
                     onChange={HandleDropType}
                     label="class"
                   >
-                    <MenuItem value={10}>Administrador</MenuItem>
-                    <MenuItem value={20}>Atendimento</MenuItem>
-                    <MenuItem value={30}>Moderador</MenuItem>
+                    <option value={10}>Administrador</option>
+                    <option value={20}>Atendimento</option>
+                    <option value={30}>Moderador</option>
                   </Select>
                 </FormControl>
               </div>
             ) : (
               <div className="mt-1 position-relative ht-45 new_group_select">
-                <FormControl variant="outlined">
+                <FormControl variant="outlined" width="100%">
                   <Select
+                    native
                     value={dropType}
+                    id="grouped-native-select"
                     onChange={HandleDropType}
-                    label="access"
+                    label="class"
                   >
-                    <MenuItem value={10}>Turma A (Padrão)</MenuItem>
-                    <MenuItem value={20}>Turma B</MenuItem>
+                    <option value={10}>Turma A (Padrão)</option>
+                    <option value={20}>Turma B</option>
                   </Select>
                 </FormControl>
               </div>
@@ -123,7 +126,7 @@ export default function EditContent() {
               </div>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">
               <button type="button" className="but_save w-100">
                 Salvar edição

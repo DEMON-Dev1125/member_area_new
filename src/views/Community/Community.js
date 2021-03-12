@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useHistory, Switch, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Tab, MenuItem, FormControl, Select } from "@material-ui/core";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import {
+  Box,
+  Tab,
+  Tabs,
+  Select,
+  Typography,
+  FormControl,
+} from "@material-ui/core";
+import { TabContext } from "@material-ui/lab";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import DeleteDialogIcon from "../Contents/Deleteicon.js";
 import "../../assets/css/login.css";
@@ -21,21 +29,50 @@ const useStyles = makeStyles({
   },
 });
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-force-tabpanel-${index}`}
+      aria-labelledby={`scrollable-force-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    "aria-controls": `scrollable-auto-tabpanel-${index}`,
+  };
+}
+
 export default function Community() {
   const classes = useStyles();
   const history = useHistory();
-  const [value, setValue] = React.useState("1");
   const [publish1, setPublish1] = useState(false);
-
-  const handleEdit = () => {
-    history.push("/main/member/editmember");
-  };
 
   const [NoCommunity, setCommunity] = useState("");
   const OneCommunity = () => {
     setCommunity((prevState) => !prevState);
   };
 
+  const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -44,6 +81,7 @@ export default function Community() {
   const Handle_Responder = () => {
     setResponder(!responder);
   };
+
   const [comment1, setComment1] = useState("");
   const Handle_Comment1 = (e) => {
     setComment1(e.target.value);
@@ -52,6 +90,7 @@ export default function Community() {
     setResponder(false);
     setPublish1(true);
   };
+
   const [role3, setRole3] = useState(10);
   const Handle_Role3 = (e) => {
     setRole3(e.target.value);
@@ -79,14 +118,19 @@ export default function Community() {
             <div className={classes.root}>
               <TabContext value={value}>
                 <div className="d-flex justify-content-center">
-                  <TabList onChange={handleChange}>
-                    <Tab label="Não lidos" value="1" />
-                    <Tab label="Lidos" value="2" />
-                    <Tab label="Aprovados" value="3" />
-                    <Tab label="Reprovados" value="4" />
-                  </TabList>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons="on"
+                  >
+                    <Tab label="Não lidos" {...a11yProps(0)} />
+                    <Tab label="Lidos" {...a11yProps(1)} />
+                    <Tab label="Aprovados" {...a11yProps(2)} />
+                    <Tab label="Reprovados" {...a11yProps(3)} />
+                  </Tabs>
                 </div>
-                <TabPanel value="1">
+                <TabPanel value={value} index={0}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${CommunityBack}`).default}
@@ -99,7 +143,7 @@ export default function Community() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value={value} index={1}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${CommunityBack}`).default}
@@ -113,7 +157,7 @@ export default function Community() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value={value} index={2}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${CommunityBack}`).default}
@@ -127,7 +171,7 @@ export default function Community() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="4">
+                <TabPanel value={value} index={3}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${CommunityBack}`).default}
@@ -147,14 +191,19 @@ export default function Community() {
             <div className={classes.root}>
               <TabContext value={value}>
                 <div className="d-flex justify-content-center">
-                  <TabList onChange={handleChange}>
-                    <Tab label="Não lidos" value="1" />
-                    <Tab label="Lidos" value="2" />
-                    <Tab label="Aprovados" value="3" />
-                    <Tab label="Reprovados" value="4" />
-                  </TabList>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons="on"
+                  >
+                    <Tab label="Não lidos" {...a11yProps(0)} />
+                    <Tab label="Lidos" {...a11yProps(1)} />
+                    <Tab label="Aprovados" {...a11yProps(2)} />
+                    <Tab label="Reprovados" {...a11yProps(3)} />
+                  </Tabs>
                 </div>
-                <TabPanel value="1">
+                <TabPanel value={value} index={0}>
                   <div className="container content_style p-5">
                     <div className="content_header">
                       <div className="mt-1 position-relative ht-45 new_group_select">
@@ -331,7 +380,7 @@ export default function Community() {
                     <div></div>
                   </div>
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value={value} index={1}>
                   <div className="container content_style p-5">
                     <div className="content_header">
                       <div className="mt-1 position-relative ht-45 new_group_select">
@@ -508,7 +557,7 @@ export default function Community() {
                     <div></div>
                   </div>
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value={value} index={2}>
                   <div className="container content_style p-5">
                     <div className="content_header">
                       <div className="mt-1 position-relative ht-45 new_group_select">
@@ -685,7 +734,7 @@ export default function Community() {
                     <div></div>
                   </div>
                 </TabPanel>
-                <TabPanel value="4">
+                <TabPanel value={value} index={3}>
                   <div className="container content_style p-5">
                     <div className="content_header">
                       <div className="mt-1 position-relative ht-45 new_group_select">

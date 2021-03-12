@@ -1,15 +1,16 @@
 import React, { Component, useState } from "react";
-import { useLocation, Route, Switch } from "react-router-dom";
+import { useLocation, Route, Switch, useHistory } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import $ from "jquery";
 import routes from "../routes.js";
-import Profile from './../views/Profile'
+import Profile from "./../views/Profile";
 
 const LogoWhite = "Logo_white.svg";
 const SidebarImg = "sidebar-3.jpg";
 const Avatar = "Avatar.png";
 
 function Main() {
+  const history = useHistory();
   const [image, setImage] = React.useState(SidebarImg);
   const [color, setColor] = React.useState("black");
   const [hasImage, setHasImage] = React.useState(true);
@@ -55,6 +56,10 @@ function Main() {
           "translate3d(-343px, 0, 0)";
       });
   };
+
+  const HandleProfile = () => {
+    history.push("/main/profile");
+  };
   return (
     <>
       <div className="wrapper">
@@ -79,13 +84,11 @@ function Main() {
               <img
                 className="sidebar-img"
                 src={require(`../assets/img/${Avatar}`).default}
+                onClick={HandleProfile}
               />
             </div>
             <Switch>
-              <Route
-                path={"/main/profile"}
-                component={Profile}
-              ></Route>
+              <Route path={"/main/profile"} component={Profile}></Route>
               {getRoutes(routes)}
             </Switch>
           </div>

@@ -7,14 +7,9 @@ import $ from "jquery";
 const AvatarImg = "Avatar.png";
 const LogoSvg = "Logo.svg";
 
-$(window).on("resize", function () {
-  if (window.innerWidth > 770) {
-    document.querySelector(".wrapper .mobile-sidebar ").style.transform =
-      "translate3d(0px, 0, 0)";
-  } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
-});
+
 function Sidebar(props) {
-  let history = useHistory();
+  const history = useHistory();
   const { image, color, routes, Navbar_select } = props;
   const location = useLocation();
   const activeRoute = (routeName) => {
@@ -29,6 +24,13 @@ function Sidebar(props) {
   const HandleProfile = () => {
     history.push("/main/profile");
   };
+
+  $(window).on("resize", function () {
+    if (window.innerWidth > 770) {
+      document.querySelector(".wrapper .mobile-sidebar ").style.transform =
+        "translate3d(0px, 0, 0)";
+    } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
+  });
 
   return (
     <div
@@ -82,7 +84,7 @@ function Sidebar(props) {
             return null;
           })}
         </Nav>
-        <p className="nav-title">CONFIGURAÇÕES AVANÇADAS</p>
+        <p className="nav-title mt-5">CONFIGURAÇÕES AVANÇADAS</p>
         <Nav>
           {routes.map((prop, key) => {
             if (prop.permission === "private")

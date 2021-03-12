@@ -46,8 +46,11 @@ html,
   border-radius: 15px;
   padding: 15px 30px;
   font-weight: 400;
-  background: #066bc9;
+  background-color: #066bc9;
   color: white;
+}
+.outer .inner form .btn-lg:hover {
+  background-color: #7b9cbb;
 }
 .sidebar-header {
   display: flex;
@@ -67,8 +70,8 @@ html,
   line-height: 34px;
 }
 .inner {
-  width: 398px;
-  height: 596px;
+  width: 375px;
+  height: 560px;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 25px;
@@ -120,8 +123,7 @@ html,
   padding: 0px;
   width: 60px;
   height: 60px;
-  background: #88929e;
-  opacity: 0.2;
+  background-color: rgba(136, 146, 158, 0.2);
 }
 .but_color:hover {
   background-color: #adb6be;
@@ -135,6 +137,10 @@ html,
   padding: 0px;
 }
 .img_back {
+  color: rgba(136, 146, 158, 1);
+  font-size: 24px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
   position: relative;
 }
 .Edit-ft1 {
@@ -345,9 +351,6 @@ html,
 .dropdown:hover .dropdown-content {
   display: block;
 }
-.dropdown:hover .dropbtn {
-  background-color: #066bc9;
-}
 .con-ft4 {
   font-size: 24px;
 
@@ -388,9 +391,10 @@ html,
 .dropbut {
   width: 45px;
   height: 45px;
-  background: #88929e 0% 0% no-repeat padding-box;
   border-radius: 10px;
-  opacity: 0.2;
+  color: rgba(136, 146, 158, 1);
+  background-color: rgba(136, 146, 158, 0.2);
+  border: none;
 }
 .select-content {
   position: absolute;
@@ -515,9 +519,9 @@ html,
   line-height: 19px;
 }
 .but_save {
-  font-size: 18px;
+  font-size: 24px;
   font-style: normal;
-  line-height: 22px;
+  line-height: 29px;
   letter-spacing: 0px;
   color: #ffffff;
   background: #0779e4 0% 0% no-repeat padding-box;
@@ -531,15 +535,16 @@ html,
   background-color: #066bc9;
 }
 .but_cancel {
-  font-size: 18px;
+  font-size: 24px;
   font-style: normal;
-
-  line-height: 22px;
+  line-height: 29px;
   letter-spacing: 0px;
   padding: 21px;
   cursor: pointer;
   border: none;
   outline-style: none;
+  color: rgba(136, 146, 158, 1);
+  background-color: rgb(247 247 248);
 }
 .but_cancel:focus {
   border: none;
@@ -683,9 +688,9 @@ html,
 .but_delete {
   border: none;
   padding: 21px;
-  font-size: 18px;
+  font-size: 24px;
   color: #ffffff;
-  line-height: 22px;
+  line-height: 29px;
   font-style: normal;
   outline-style: none;
   letter-spacing: 0px;
@@ -1417,6 +1422,9 @@ html,
     background-color: white;
     margin-top: 7px;
   }
+  .sidebar-header .log-img2 {
+    display: none;
+  }
 }
 @media only screen and (max-width: 488px) {
   * {
@@ -1506,15 +1514,6 @@ html,
     border-width: 0px;
     line-height: 34px;
   }
-  .inner {
-    width: 368px;
-    height: 587px;
-    background: #ffffff;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-    padding: 30px;
-    border-radius: 15px;
-    transition: all 0.3s;
-  }
   .outer .inner .form-group input {
     background-color: #ffffff;
     border: 1px solid #e3e3e3;
@@ -1522,7 +1521,7 @@ html,
     background: #12263f0d;
     color: #88929e;
     padding: 15px;
-    height: 62px;
+    /* height: 62px; */
     font-size: 18px;
     box-shadow: none;
   }
@@ -1535,7 +1534,7 @@ html,
     text-align: center;
     margin: 0;
     line-height: 1;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
   }
 
   .custom-control-label {
@@ -1560,8 +1559,7 @@ html,
     padding: 0px;
     width: 50px;
     height: 50px;
-    background: #88929e;
-    opacity: 0.2;
+    background-color: rgba(136, 146, 158, 0.2);
   }
   .but_color:hover {
     background-color: #adb6be;
@@ -1573,9 +1571,6 @@ html,
     height: 60px;
     border-radius: 15px;
     padding: 0px;
-  }
-  .img_back {
-    position: relative;
   }
   .Edit-ft1 {
     font-size: 12px;
@@ -1669,16 +1664,6 @@ html,
   .new_content_select .MuiOutlinedInput-notchedOutline {
     border: none;
   }
-  .new_content_select .MuiSelect-outlined.MuiSelect-outlined {
-    padding: 20px;
-    text-align: left;
-    font: normal normal normal 18px/22px Roboto;
-    letter-spacing: 0px;
-    color: #88929e;
-    opacity: 1;
-    background: #12263f0d 0% 0% no-repeat padding-box;
-    border-radius: 15px;
-  }
   .new_content_select .MuiFormControl-root label {
     top: 5px;
     left: 16px;
@@ -1745,11 +1730,6 @@ html,
     width: 176px;
     height: 62px;
     border-radius: 15px;
-  }
-  .u-btn-outline {
-    border: 2px solid #0779e4;
-    background: white;
-    color: #0779e4;
   }
   .u-btn-color {
     background: #0779e4;
@@ -1831,13 +1811,6 @@ html,
     color: #ffffff;
     opacity: 1;
   }
-  .dropbut {
-    width: 35px;
-    height: 35px;
-    background: #88929e 0% 0% no-repeat padding-box;
-    border-radius: 10px;
-    opacity: 0.2;
-  }
   .select-content {
     position: absolute;
     right: 15px;
@@ -1905,14 +1878,6 @@ html,
     animation-name: mui-auto-fill-cancel;
     animation-duration: 10ms;
     -webkit-tap-highlight-color: transparent;
-  }
-  .dropbut1 {
-    width: 45px;
-    height: 45px;
-    background: #0779e4 0% 0% no-repeat padding-box;
-    border-radius: 10px;
-    color: #fff;
-    opacity: 1;
   }
   .pdl-76 {
     padding-left: 76px !important;
@@ -1983,21 +1948,6 @@ html,
   }
   .but_save:focus {
     background-color: #066bc9;
-  }
-  .but_cancel {
-    font-size: 18px;
-    font-style: normal;
-
-    line-height: 22px;
-    letter-spacing: 0px;
-    padding: 21px;
-    cursor: pointer;
-    border: none;
-    outline-style: none;
-  }
-  .but_cancel:focus {
-    border: none;
-    outline-style: none;
   }
   .main-container {
     width: auto;
@@ -2191,16 +2141,6 @@ html,
   }
   .u-btn-improve:hover {
     background-color: #066bc9;
-    color: white;
-  }
-  .u-btn-outline1 {
-    border: 2px solid #16c79a;
-    background: white;
-    color: #16c79a;
-  }
-  .u-btn-outline1:hover {
-    border: 2px solid #16c79a;
-    background: #16c79a;
     color: white;
   }
   .group-content1 {

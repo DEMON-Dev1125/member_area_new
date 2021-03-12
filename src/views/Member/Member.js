@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useHistory, Switch, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Checkbox,
+  Box,
   Tab,
+  Tabs,
+  Menu,
   Select,
-  FormControl,
+  Checkbox,
   MenuItem,
   IconButton,
-  Menu,
+  Typography,
+  FormControl,
 } from "@material-ui/core";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import { TabContext } from "@material-ui/lab";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import "../../assets/css/login.css";
@@ -22,19 +26,52 @@ const MemberBack = "membro.png";
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
+    width: "100%",
   },
   formcontrol: {
     width: "100%",
   },
 });
 
-const options = ["Editar", "Ver perfil"];
-
 const ITEM_HEIGHT = 48;
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-force-tabpanel-${index}`}
+      aria-labelledby={`scrollable-force-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    "aria-controls": `scrollable-auto-tabpanel-${index}`,
+  };
+}
+
 export default function Member() {
-  const [dropType, setDropType] = useState(10);
+  const classes = useStyles();
   const history = useHistory();
+  const [dropType, setDropType] = useState(10);
   const HandleDropType = (e) => {
     console.log(e.target.value);
     setDropType(e.target.value);
@@ -45,9 +82,8 @@ export default function Member() {
   const handleEdit = () => {
     history.push("/main/member/editmember");
   };
-  const classes = useStyles();
-  const [value, setValue] = React.useState("1");
 
+  const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -100,13 +136,18 @@ export default function Member() {
             <div className={classes.root}>
               <TabContext value={value}>
                 <div className="d-flex justify-content-center">
-                  <TabList onChange={handleChange}>
-                    <Tab label="Alunos" value="1" />
-                    <Tab label="Colaboradores" value="2" />
-                    <Tab label="Bloqueados" value="3" />
-                  </TabList>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons="on"
+                  >
+                    <Tab label="Alunos" {...a11yProps(0)} />
+                    <Tab label="Colaboradores" {...a11yProps(1)} />
+                    <Tab label="Bloqueados" {...a11yProps(2)} />
+                  </Tabs>
                 </div>
-                <TabPanel value="1">
+                <TabPanel value={value} index={0}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${MemberBack}`).default}
@@ -119,7 +160,7 @@ export default function Member() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value={value} index={1}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${MemberBack}`).default}
@@ -132,7 +173,7 @@ export default function Member() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value={value} index={2}>
                   <div className="text-center">
                     <img
                       src={require(`../../assets/img/${MemberBack}`).default}
@@ -151,13 +192,18 @@ export default function Member() {
             <div className={classes.root}>
               <TabContext value={value}>
                 <div className="d-flex justify-content-center">
-                  <TabList onChange={handleChange}>
-                    <Tab label="Alunos" value="1" />
-                    <Tab label="Colaboradores" value="2" />
-                    <Tab label="Bloqueados" value="3" />
-                  </TabList>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons="on"
+                  >
+                    <Tab label="Alunos" {...a11yProps(0)} />
+                    <Tab label="Colaboradores" {...a11yProps(1)} />
+                    <Tab label="Bloqueados" {...a11yProps(2)} />
+                  </Tabs>
                 </div>
-                <TabPanel value="1">
+                <TabPanel value={value} index={0}>
                   <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
@@ -170,15 +216,16 @@ export default function Member() {
                         <div className="col-12 col-md-4 mt-1 position-relative new_group_select">
                           <FormControl
                             variant="outlined"
-                            className={classes.formcontrol}
+                            className={classes.root}
                           >
                             <Select
+                              native
                               value={dropType}
                               onChange={HandleDropType}
                               label="class"
                             >
-                              <MenuItem value={10}>Turma A (Padrão)</MenuItem>
-                              <MenuItem value={20}>Turma B</MenuItem>
+                              <option value={10}>Turma A (Padrão)</option>
+                              <option value={20}>Turma B</option>
                             </Select>
                           </FormControl>
                         </div>
@@ -240,7 +287,11 @@ export default function Member() {
                         </div>
                         <div className="col-sm-3 col-3 mt-1">
                           <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
+                            <button
+                              type="button"
+                              className="btn_edit"
+                              onClick={handleEdit}
+                            >
                               <i className="fa fa-pen-alt"></i>
                             </button>
                             <button type="button" className="btn_eye ml-2">
@@ -449,7 +500,7 @@ export default function Member() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="2">
+                <TabPanel value={value} index={1}>
                   <div className="container content_style">
                     <div className="content_header">
                       <div className="row">
@@ -462,17 +513,17 @@ export default function Member() {
                         <div className="col-12 col-md-4 mt-1 position-relative new_group_select">
                           <FormControl
                             variant="outlined"
-                            className={classes.formcontrol}
+                            className={classes.root}
                           >
-                            {" "}
                             <Select
+                              native
                               value={dropType}
                               onChange={HandleDropType}
                               label="class"
                             >
-                              <MenuItem value={10}>Administrador</MenuItem>
-                              <MenuItem value={20}>Atendimento</MenuItem>
-                              <MenuItem value={30}>Moderador</MenuItem>
+                              <option value={10}>Administrador</option>
+                              <option value={20}>Atendimento</option>
+                              <option value={30}>Moderador</option>
                             </Select>
                           </FormControl>
                         </div>
@@ -629,7 +680,7 @@ export default function Member() {
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="3">
+                <TabPanel value={value} index={2}>
                   <div className="container content_style">
                     <div className="content_header">
                       <div className="row">

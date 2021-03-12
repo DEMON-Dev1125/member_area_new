@@ -14,6 +14,7 @@ const SwitchComponent = withStyles((theme) => ({
     padding: 1,
     "&$checked": {
       transform: "translateX(200px)",
+      transition: "1.2s",
       color: "#0779E4",
       "& + $track": {
         backgroundColor: "#12263F0D",
