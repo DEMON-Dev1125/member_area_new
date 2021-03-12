@@ -86,7 +86,7 @@ export default function EditContent() {
               <div className="Edit-ft3">Prazo de acesso</div>
               <div className="position-relative">
                 <input
-                  type="text"
+                  type="number"
                   className="Edit-warp mt-3 Edit-ft4 w-100"
                   placeholder="01"
                   value={itemaccess}

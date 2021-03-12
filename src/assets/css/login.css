@@ -924,8 +924,7 @@ html,
 .conf-section .conference {
   width: 963px;
   height: 540px;
-  background: var(--unnamed-color-12263f) 0% 0% no-repeat padding-box;
-  background: #12263f 0% 0% no-repeat padding-box;
+  background-color: #12263f;
   opacity: 0.7;
   position: relative;
 }
@@ -939,15 +938,17 @@ html,
   -webkit-transform: translate(-50%, -50%);
 }
 .conf-section .conference .step-buttons .play-box {
-  width: 125px;
-  height: 126px;
+  width: 100px;
+  height: 100px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 31px;
   padding-right: 15px;
+  text-align: center;
+  vertical-align: middle;
 }
 .conf-section .conference .step-buttons .step-icon {
   color: white;
-  font-size: 52px;
+  font-size: 40px;
 }
 .conf-section .introduction {
   width: 614px;
@@ -2335,8 +2336,7 @@ html,
   .conf-section .conference {
     width: 100%;
     height: 214px;
-    background: var(--unnamed-color-12263f) 0% 0% no-repeat padding-box;
-    background: #12263f 0% 0% no-repeat padding-box;
+    background-color: #12263f;
     background-image: url("../img/Video.png");
     opacity: 0.7;
     position: relative;
@@ -2351,15 +2351,13 @@ html,
     -webkit-transform: translate(-50%, -50%);
   }
   .conf-section .conference .step-buttons .play-box {
-    width: 125px;
-    height: 126px;
+    width: 100px;
+    height: 100px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 31px;
     padding-right: 15px;
-  }
-  .conf-section .conference .step-buttons .step-icon {
-    color: white;
-    font-size: 52px;
+    text-align: center;
+    vertical-align: middle;
   }
   .conf-section .introduction {
     width: 614px;
