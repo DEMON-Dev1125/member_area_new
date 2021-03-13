@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import GroupIndex from "./Group.js";
 import NewGroup from "./Newgroup.js";
 import GroupAdd from "./Groupadd.js";
@@ -7,7 +7,6 @@ import GroupEdit from "./Groupedit.js";
 import EditClass from "./Editclass.js";
 
 export default function Grouproute() {
-  let history = useHistory();
   return (
     <Switch>
       <Route

@@ -1,30 +1,9 @@
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
-import { MenuItem, FormControl, Select } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
+import React from "react";
+import Timezone from "../components/Timezone";
 import "../assets/css/login.css";
 import "../assets/css/certificate.css";
 
-import TextWYSIWYG from "../components/Wysiwyg";
-import Timezone from "../components/Timezone";
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(0),
-    width: "100%",
-  },
-}));
-
 export default function Profile() {
-  const history = useHistory();
-  const classes = useStyles();
-
-  const [lang, setLanguage] = useState(2);
-  const HandleLang = (e) => {
-    setLanguage(e.target.value);
-  };
-
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -81,7 +60,7 @@ export default function Profile() {
               placeholder="Confirme nova senha"
             />
           </div>
-          <div className="row mt-5 mb-5" >
+          <div className="row mt-5 mb-5">
             <div className="col-lg-6 col-sm-12">
               <button className="but_save w-100">Salvar edição</button>
             </div>

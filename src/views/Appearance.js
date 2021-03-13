@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
 import Fileupload from "../components/Fileupload";
 
 import "../assets/css/login.css";
 import "../assets/css/appearance.css";
 
 export default function Appearance() {
-  const history = useHistory();
-
   return (
     <div className="container-fluid mt-5">
       <div className="row">

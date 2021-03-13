@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import clsx from "clsx";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 const SwitchComponent = withStyles((theme) => ({
   root: {
@@ -12,9 +12,11 @@ const SwitchComponent = withStyles((theme) => ({
   },
   switchBase: {
     padding: 1,
+    transform: "translateX(0px)",
+    transition: "0.8s",
     "&$checked": {
       transform: "translateX(200px)",
-      transition: "1.2s",
+      transition: "0.8s",
       color: "#0779E4",
       "& + $track": {
         backgroundColor: "#12263F0D",

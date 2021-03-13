@@ -19,29 +19,25 @@ $line-color: rgba(34, 36, 38, 0.35);
     outline: none;
     background: none;
     cursor: pointer;
-    // border-bottom: 1px solid $line-color;
   }
 
   .fold_content {
-    display: none;
     max-height: 0;
-    opacity: 0;
-    transition: max-height 400ms linear;
+    padding: 0 24px;
+    transition: max-height 0.8s ease-in-out;
+    overflow: hidden;
 
     &.open {
-      padding: 50px 18px 34px;
-      display: block;
-      max-height: fit-content;
-      opacity: 1;
+      padding: 0 24px 34px;
+      max-height: 790px;
+      transition: max-height 0.8s ease-out;
     }
-  }
-  //   border-bottom: 1px solid $line-color;
+  };
 }
 .open1 {
   transform: rotateZ(-180deg);
 }
 .con-fold {
-  // width: 640px;
   margin-left: -32px;
   padding: 0px 32px;
   &.open-fold {
@@ -73,7 +69,6 @@ $line-color: rgba(34, 36, 38, 0.35);
       outline: none;
       background: none;
       cursor: pointer;
-      // border-bottom: 1px solid $line-color;
     }
 
     .fold_content {
@@ -89,7 +84,6 @@ $line-color: rgba(34, 36, 38, 0.35);
         opacity: 1;
       }
     }
-    //   border-bottom: 1px solid $line-color;
   }
   .open1 {
     transform: rotateZ(-180deg);

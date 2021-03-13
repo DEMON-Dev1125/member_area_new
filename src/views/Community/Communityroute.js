@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import CommunityIndex from "./Community.js";
 
 export default function Communityroute() {
-  let history = useHistory();
   return (
     <Switch>
       <Route

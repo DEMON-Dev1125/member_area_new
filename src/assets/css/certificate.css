@@ -24,7 +24,7 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 488px) {
+@media screen and (max-width: 488px) {
   .show_member img {
     width: 30px;
     height: 30px;

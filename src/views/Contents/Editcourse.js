@@ -1,9 +1,7 @@
-/********************This is 5 page***************************** */
-import react, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import StyledCheckbox from "../../components/Checkbox.js";
 import "../../assets/css/login.css";
-import { Divider } from "@material-ui/core";
 
 export default function Editor() {
   const history = useHistory();

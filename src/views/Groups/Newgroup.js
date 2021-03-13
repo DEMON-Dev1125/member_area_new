@@ -1,14 +1,9 @@
-/**********************This is 15 page************ */
-import react, { useState, useEffect } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ToogleButton from "../../components/Togglebutton.js";
-import Fileupload from "../../components/Fileupload";
-import StyledCheckbox from "../../components/Checkbox.js";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { TransitionGroup, CSSTransition } from "react-transition-group"; // ES6
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "../../assets/css/login.css";
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -161,6 +156,7 @@ export default function EditContent() {
                       id="grouped-native-select"
                       onChange={Handle_Role2}
                       label="lang"
+                      value={role2}
                     >
                       <option value={10}>Acesso Livre</option>
                       <option value={20}>Data programada</option>
@@ -194,7 +190,8 @@ export default function EditContent() {
                       defaultValue="Aula"
                       id="grouped-native-select"
                       onChange={Handle_Role3}
-                      label="rule"
+                      label="role"
+                      value={role3}
                     >
                       <optgroup className="opt-group" label="1 - Introdução">
                         <option value={0} hidden className="opt-item">

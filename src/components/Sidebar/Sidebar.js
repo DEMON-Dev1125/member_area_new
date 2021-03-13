@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -7,10 +7,9 @@ import $ from "jquery";
 const AvatarImg = "Avatar.png";
 const LogoSvg = "Logo.svg";
 
-
 function Sidebar(props) {
   const history = useHistory();
-  const { image, color, routes, Navbar_select } = props;
+  const { image, color, routes } = props;
   const location = useLocation();
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";

@@ -1,12 +1,7 @@
-/**********************This is 8 page*********************** */
-import react, { component } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
-
-import clsx from "clsx";
+import react from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Fileupload from "../../components/Fileupload";
-import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextWYSIWYG from "../../components/Wysiwyg";
@@ -88,7 +83,7 @@ export default function NewContent() {
             />
           </div>
           <div className="mt-5">
-            <div className="Edit-ft3 mt-5">Arquivos</div>
+            <div className="Edit-ft3 mb-3">Arquivos</div>
             <Fileupload />
           </div>
           <div className="mt-5 d-flex">

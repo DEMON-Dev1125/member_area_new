@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Dialog from "@material-ui/core/Dialog";
-import { useHistory, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import TextWYSIWYG from "../../components/Wysiwyg";
 
 import "../../assets/css/login.css";

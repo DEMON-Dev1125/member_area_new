@@ -1,4 +1,3 @@
-/***************This is 6 page******************** */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";

@@ -1,6 +1,5 @@
-/**************************This is content route define part***************** */
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import ContentIndex from "./Content";
 import Editor from "./Editcourse";
 import EditContent from "./Editcontent";
@@ -8,7 +7,6 @@ import NewContent from "./NewContent";
 import Improve from "./Improve";
 
 export default function Cententroute() {
-  let history = useHistory();
   return (
     <Switch>
       <Route

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Fileupload from "../../components/Fileupload";
 
 import "../../assets/css/login.css";

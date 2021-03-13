@@ -1,12 +1,9 @@
-/**********************This is 15 page************ */
-import react, { useState, useEffect } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ToogleButton from "../../components/Togglebutton";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { TransitionGroup, CSSTransition } from "react-transition-group"; // ES6
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "../../assets/css/login.css";
 
 const useStyles = makeStyles((theme) => ({

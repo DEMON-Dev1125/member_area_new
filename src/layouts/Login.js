@@ -1,8 +1,8 @@
-import React, { Component, useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import React, { useState } from "react";
 import action from "../store/actions";
-import "../assets/css/login.css";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import "../assets/css/login.css";
 
 const LogoWL = "Logo-WL.svg";
 function Login() {
@@ -11,8 +11,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const HandleSubmit = async (e) => {
     e.preventDefault();
-
-    // props.userLogin();
     history.push("/main/content");
   };
   return (

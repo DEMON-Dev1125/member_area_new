@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../../assets/css/login.css";
 import "../../assets/css/certificate.css";
 
@@ -17,12 +17,7 @@ export default function Certificate() {
   };
   const showMember = () => {
     // setOpen(true);
-    // alert("clicked");
   };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
   return (
     <div className="container-fluid mt-5">
       <div className="row">

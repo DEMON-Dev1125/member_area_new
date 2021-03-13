@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import MemberIndex from "./Member.js";
 import NewMember from "./Newmember.js";
 import EditMember from "./Editmember.js";
 
 export default function Inviteroute() {
-  let history = useHistory();
   return (
     <Switch>
       <Route

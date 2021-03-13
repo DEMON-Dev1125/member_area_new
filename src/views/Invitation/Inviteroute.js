@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import InviteIndex from "./Invite.js";
 import Addinvite from "./Addinvite.js";
 import Editinvite from "./Editinvite.js";
 
 export default function Inviteroute() {
-  let history = useHistory();
   return (
     <Switch>
       <Route

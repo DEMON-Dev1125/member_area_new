@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
-import { MenuItem, FormControl, Select } from "@material-ui/core";
+import { FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import "../assets/css/login.css";
-import "../assets/css/certificate.css";
-
 import TextWYSIWYG from "../components/Wysiwyg";
 import Timezone from "../components/Timezone";
+import "../assets/css/login.css";
+import "../assets/css/certificate.css";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -17,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Setting() {
-  const history = useHistory();
   const classes = useStyles();
 
   const [lang, setLanguage] = useState(20);
@@ -69,16 +65,18 @@ export default function Setting() {
                   width="100%"
                 >
                   <Select
-                    Native
+                    native
+                    defaultValue="Aula"
                     id="grouped-native-select"
                     onChange={HandleLang}
                     label="lang"
+                    value={lang}
                   >
-                    <MenuItem value={10} className="opt-item">
+                    <option value={10} className="opt-item">
                       English (United States)
-                    </MenuItem>
-                    <MenuItem value={20}>Português (Brasil)</MenuItem>
-                    <MenuItem value={30}>Español</MenuItem>
+                    </option>
+                    <option value={20}>Português (Brasil)</option>
+                    <option value={30}>Español</option>
                   </Select>
                 </FormControl>
               </div>

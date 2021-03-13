@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import { useLocation, Route, Switch, useHistory } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import $ from "jquery";
@@ -63,12 +63,7 @@ function Main() {
   return (
     <>
       <div className="wrapper">
-        <Sidebar
-          className="" /*Navbar_select={nav_selected}*/
-          color={color}
-          image={hasImage ? image : ""}
-          routes={routes}
-        />
+        <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
         <div className="main-panel" ref={mainPanel}>
           <div className="content">
             <div className="user_navbar">

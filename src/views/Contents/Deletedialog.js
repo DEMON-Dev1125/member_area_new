@@ -1,5 +1,4 @@
-/********************This is 7page************************** */
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 const CloseIcon = "ios-close.svg";

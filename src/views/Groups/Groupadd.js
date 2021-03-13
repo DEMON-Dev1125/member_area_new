@@ -1,6 +1,5 @@
-/**********************This is 17 page************ */
-import react, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import "../../assets/css/login.css";
 
 const MemberImg1 = "member1.png";
@@ -11,7 +10,6 @@ export default function Groupadd() {
   const history = useHistory();
   const Handle_Newgroup = () => {
     history.push("/main/group/newgroup");
-    // history.push('/main/content/newcontent');
   };
   const Handle_GoGroupEdit = () => {
     history.push("/main/group/groupedit");

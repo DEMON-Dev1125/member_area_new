@@ -1,6 +1,6 @@
-import react, { useState, useEffect } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
-import { Select, FormControl, MenuItem } from "@material-ui/core";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Select, FormControl } from "@material-ui/core";
 import SwitchDrop from "../../components/Switch";
 import Togglebutton from "../../components/Togglebutton";
 import "../../assets/css/login.css";
@@ -39,7 +39,6 @@ export default function EditContent() {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="Editar membro"
-              //   onChange={NewMember}
             />
           </div>
           <div className="mt-5">
@@ -48,7 +47,6 @@ export default function EditContent() {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="joaolimaduarte6@gmail.com"
-              //   onChange={NewMail}
             />
           </div>
           <div className="mt-5">
@@ -57,7 +55,6 @@ export default function EditContent() {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="Nova senha"
-              //   onChange={NewMail}
             />
           </div>
           <div className="mt-5">
@@ -66,7 +63,6 @@ export default function EditContent() {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="Confirme nova senha"
-              //   onChange={NewMail}
             />
           </div>
           <div className="mt-5">
@@ -77,7 +73,7 @@ export default function EditContent() {
             </span>
           </div>
           <div className="mt-5">
-            <div className="Edit-ft3">Tipo de membro</div>
+            <div className="Edit-ft3 mb-3">Tipo de membro</div>
             <SwitchDrop onChange={onChangeSwitch} value={memberType} />
           </div>
           <div className="mt-5">

@@ -61,7 +61,7 @@ export default function Newmember() {
             </span>
           </div>
           <div className="mt-5">
-            <div className="Edit-ft3">Tipo de membro</div>
+            <div className="Edit-ft3 mb-3">Tipo de membro</div>
             <SwitchDrop onChange={onChangeSwitch} value={memberType} />
           </div>
           <div className="mt-5">

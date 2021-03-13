@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Fileupload from "../../components/Fileupload";
 
 import "../../assets/css/login.css";
@@ -46,10 +46,8 @@ export default function Invite() {
             </div>
           </div>
           <div className="mt-5">
-            <div className="Edit-ft3">Imagem destaque</div>
-            <div className="mt-2">
-              <Fileupload />
-            </div>
+            <div className="Edit-ft3 mb-3">Imagem destaque</div>
+            <Fileupload />
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">

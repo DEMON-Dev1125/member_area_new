@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import "../../assets/css/login.css";
 import "../../assets/css/invite.css";
