@@ -20,13 +20,9 @@ export default function Setting() {
   const history = useHistory();
   const classes = useStyles();
 
-  const [lang, setLanguage] = useState(2);
+  const [lang, setLanguage] = useState(20);
   const HandleLang = (e) => {
     setLanguage(e.target.value);
-  };
-  const [role3, setRole3] = useState(10);
-  const Handle_Role3 = (e) => {
-    setRole3(e.target.value);
   };
 
   return (
@@ -73,17 +69,16 @@ export default function Setting() {
                   width="100%"
                 >
                   <Select
-                    native
-                    defaultValue="Aula"
+                    Native
                     id="grouped-native-select"
-                    onChange={Handle_Role3}
+                    onChange={HandleLang}
                     label="lang"
                   >
-                    <option value={1} className="opt-item">
+                    <MenuItem value={10} className="opt-item">
                       English (United States)
-                    </option>
-                    <option value={2}>Português (Brasil)</option>
-                    <option value={3}>Español</option>
+                    </MenuItem>
+                    <MenuItem value={20}>Português (Brasil)</MenuItem>
+                    <MenuItem value={30}>Español</MenuItem>
                   </Select>
                 </FormControl>
               </div>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useHistory, Switch, Route } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Box,
   Tab,
   Tabs,
+  Badge,
   Select,
   Typography,
   FormControl,
@@ -27,7 +28,26 @@ const useStyles = makeStyles({
   formControl: {
     width: "100%",
   },
+  active: {
+    "& span": {
+      color: "rgba(7, 121, 228, 1)",
+      backgroundColor: "rgba(7, 121, 228, 0.1)",
+    },
+  },
 });
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    top: "25px",
+    right: "-25px",
+    padding: "3px",
+    fontSize: "16px",
+    lineHeight: "19px",
+    borderRadius: "5px",
+    color: "rgba(136, 146, 158, 1)",
+    backgroundColor: "rgba(136, 146, 158, 0.1)",
+  },
+}))(Badge);
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -123,11 +143,60 @@ export default function Community() {
                     onChange={handleChange}
                     variant="scrollable"
                     scrollButtons="on"
+                    indicatorColor="primary"
                   >
-                    <Tab label="Não lidos" {...a11yProps(0)} />
-                    <Tab label="Lidos" {...a11yProps(1)} />
-                    <Tab label="Aprovados" {...a11yProps(2)} />
-                    <Tab label="Reprovados" {...a11yProps(3)} />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 0 ? classes.active : ""}
+                        >
+                          Não lidos
+                        </StyledBadge>
+                      }
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 1 ? classes.active : ""}
+                        >
+                          Lidos
+                        </StyledBadge>
+                      }
+                      {...a11yProps(1)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 2 ? classes.active : ""}
+                        >
+                          Aprovados
+                        </StyledBadge>
+                      }
+                      {...a11yProps(2)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 3 ? classes.active : ""}
+                        >
+                          Reprovados
+                        </StyledBadge>
+                      }
+                      {...a11yProps(3)}
+                    />
                   </Tabs>
                 </div>
                 <TabPanel value={value} index={0}>
@@ -196,11 +265,60 @@ export default function Community() {
                     onChange={handleChange}
                     variant="scrollable"
                     scrollButtons="on"
+                    indicatorColor="primary"
                   >
-                    <Tab label="Não lidos" {...a11yProps(0)} />
-                    <Tab label="Lidos" {...a11yProps(1)} />
-                    <Tab label="Aprovados" {...a11yProps(2)} />
-                    <Tab label="Reprovados" {...a11yProps(3)} />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={1}
+                          className={value == 0 ? classes.active : ""}
+                        >
+                          Não lidos
+                        </StyledBadge>
+                      }
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 1 ? classes.active : ""}
+                        >
+                          Lidos
+                        </StyledBadge>
+                      }
+                      {...a11yProps(1)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 2 ? classes.active : ""}
+                        >
+                          Aprovados
+                        </StyledBadge>
+                      }
+                      {...a11yProps(2)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 3 ? classes.active : ""}
+                        >
+                          Reprovados
+                        </StyledBadge>
+                      }
+                      {...a11yProps(3)}
+                    />
                   </Tabs>
                 </div>
                 <TabPanel value={value} index={0}>

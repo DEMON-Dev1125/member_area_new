@@ -33,7 +33,7 @@ const defaultProps = {
   absolute: true,
   defaultValue: "",
   initialValue: "",
-  placeholder: "GMT",
+  placeholder: "Please select timezone...",
   onBlur: () => {},
   onChange: () => {},
   onFocus: () => {},

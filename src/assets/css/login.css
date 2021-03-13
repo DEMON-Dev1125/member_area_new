@@ -1732,11 +1732,6 @@ html,
     height: 62px;
     border-radius: 15px;
   }
-  .u-btn-color {
-    background: #0779e4;
-    color: white;
-    border-width: 0px;
-  }
   .btn-ft1 {
     font-size: 18px;
     line-height: 22px;
@@ -1781,10 +1776,6 @@ html,
     letter-spacing: 0px;
     line-height: 29px;
     color: #12263f;
-  }
-  #firstButton:active {
-    background: #0779e4;
-    color: white;
   }
   .con-ft1 {
     font-size: 27px;

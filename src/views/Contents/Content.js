@@ -118,7 +118,7 @@ export default function ContentIndex() {
               <div className="dropdown">
                 <button
                   type="button"
-                  className="u-btn u-btn-outline btn-ft1 d-flex align-items-center justify-content-center dropbtn"
+                  className="u-btn u-btn-color btn-ft1 d-flex align-items-center justify-content-center dropbtn"
                 >
                   <div className="mr-2">Adicionar</div>
                   <i className="fas fa-plus"></i>

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useHistory, Switch, Route } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Box,
   Tab,
   Tabs,
   Menu,
+  Badge,
   Select,
   Checkbox,
   MenuItem,
@@ -31,7 +32,33 @@ const useStyles = makeStyles({
   formcontrol: {
     width: "100%",
   },
+  active: {
+    "& span": {
+      color: "rgba(7, 121, 228, 1)",
+      backgroundColor: "rgba(7, 121, 228, 0.1)",
+    },
+  },
+  redactive: {
+    "& span": {
+      color: "rgba(228, 63, 90, 1)",
+      backgroundColor: "rgba(228, 63, 90, 0.1)",
+    },
+  },
+  disable: {},
 });
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    top: "25px",
+    right: "-25px",
+    padding: "3px",
+    fontSize: "16px",
+    lineHeight: "19px",
+    borderRadius: "5px",
+    color: "rgba(136, 146, 158, 1)",
+    backgroundColor: "rgba(136, 146, 158, 0.1)",
+  },
+}))(Badge);
 
 const ITEM_HEIGHT = 48;
 
@@ -141,10 +168,47 @@ export default function Member() {
                     onChange={handleChange}
                     variant="scrollable"
                     scrollButtons="on"
+                    indicatorColor="primary"
                   >
-                    <Tab label="Alunos" {...a11yProps(0)} />
-                    <Tab label="Colaboradores" {...a11yProps(1)} />
-                    <Tab label="Bloqueados" {...a11yProps(2)} />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 0 ? classes.active : ""}
+                        >
+                          Alunos
+                        </StyledBadge>
+                      }
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 1 ? classes.active : ""}
+                        >
+                          Colaboradores
+                        </StyledBadge>
+                      }
+                      {...a11yProps(1)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={0}
+                          className={value == 2 ? classes.redactive : ""}
+                        >
+                          Bloqueados
+                        </StyledBadge>
+                      }
+                      {...a11yProps(2)}
+                    />
                   </Tabs>
                 </div>
                 <TabPanel value={value} index={0}>
@@ -197,10 +261,47 @@ export default function Member() {
                     onChange={handleChange}
                     variant="scrollable"
                     scrollButtons="on"
+                    indicatorColor="primary"
                   >
-                    <Tab label="Alunos" {...a11yProps(0)} />
-                    <Tab label="Colaboradores" {...a11yProps(1)} />
-                    <Tab label="Bloqueados" {...a11yProps(2)} />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={152}
+                          className={value == 0 ? classes.active : ""}
+                        >
+                          Alunos
+                        </StyledBadge>
+                      }
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={3}
+                          className={value == 1 ? classes.active : ""}
+                        >
+                          Colaboradores
+                        </StyledBadge>
+                      }
+                      {...a11yProps(1)}
+                    />
+                    <Tab
+                      label={
+                        <StyledBadge
+                          showZero
+                          max={999}
+                          badgeContent={2}
+                          className={value == 2 ? classes.redactive : ""}
+                        >
+                          Bloqueados
+                        </StyledBadge>
+                      }
+                      {...a11yProps(2)}
+                    />
                   </Tabs>
                 </div>
                 <TabPanel value={value} index={0}>
