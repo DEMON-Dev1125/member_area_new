@@ -46,11 +46,11 @@ html,
   border-radius: 15px;
   padding: 15px 30px;
   font-weight: 400;
-  background-color: #066bc9;
+  background-color: #0779e4;
   color: white;
 }
 .outer .inner form .btn-lg:hover {
-  background-color: #7b9cbb;
+  background-color: #066bc9;
 }
 .sidebar-header {
   display: flex;

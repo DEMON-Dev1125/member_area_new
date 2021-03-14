@@ -26,7 +26,11 @@ export default function Certificate() {
           <div className="Edit-ft1">MÉTODO REMOTO 3.0</div>
           <div className="Edit-ft2 mt-1">Certificado</div>
           <hr />
-          <div className="group-content" onClick={EditCertificate}>
+          <div
+            className="group-content"
+            onClick={EditCertificate}
+            style={{ cursor: "pointer" }}
+          >
             <div className="row">
               <div className="col-lg-6 col-sm-12">
                 <img
