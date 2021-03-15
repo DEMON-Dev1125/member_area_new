@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import AddMoudle from "./Addmodule";
 import DeleteMoudle from "./Deletedialog";
 import { makeStyles } from "@material-ui/core/styles";
-import "assets/scss/entire.scss";
+// import "assets/scss/entire.scss";
 
 const CheckBule = "check-bule.svg";
 const FileIcon = "fileIcon.svg";

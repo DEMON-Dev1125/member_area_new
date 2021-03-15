@@ -3,7 +3,7 @@ import { useHistory} from "react-router-dom";
 import TextWYSIWYG from "../../components/Wysiwyg";
 import Fileupload from "../../components/Fileupload";
 import StyledCheckbox from "../../components/Checkbox.js";
-import "../../assets/css/login.css";
+// import "../../assets/css/login.css";
 
 export default function EditContent() {
   const history = useHistory();

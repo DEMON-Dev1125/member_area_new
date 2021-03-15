@@ -1,0 +1,15 @@
+.rdw-editor-toolbar {
+  background-color: #ebecee;
+  border-radius: 15px;
+}
+.demo-editor.rdw-editor-main {
+  background-color: #ebecee;
+  border-radius: 15px;
+  padding: 1rem;
+}
+.rdw-option-wrapper {
+  background-color: #ebecee;
+}
+.rdw-dropdown-wrapper a {
+  color: black !important;
+}

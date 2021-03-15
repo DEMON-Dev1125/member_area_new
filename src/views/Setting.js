@@ -3,7 +3,7 @@ import { FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import TextWYSIWYG from "../components/Wysiwyg";
 import Timezone from "../components/Timezone";
-import "../assets/css/login.css";
+// import "../assets/css/login.css";
 import "../assets/css/certificate.css";
 
 const useStyles = makeStyles((theme) => ({
