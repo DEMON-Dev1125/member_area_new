@@ -24,6 +24,9 @@ function Sidebar(props) {
     history.push("/main/profile");
   };
 
+  const logoutClick =()=>{
+    localStorage.removeItem("user");
+  }
   $(window).on("resize", function () {
     if (window.innerWidth > 770) {
       document.querySelector(".wrapper .mobile-sidebar ").style.transform =
@@ -86,6 +89,28 @@ function Sidebar(props) {
         <p className="nav-title mt-5">CONFIGURAÇÕES AVANÇADAS</p>
         <Nav>
           {routes.map((prop, key) => {
+            if(prop.logout){
+              return (
+                <li
+                  onClick={logoutClick}
+                  className={
+                    prop.upgrade
+                      ? "active active-pro"
+                      : activeRoute(prop.layout + prop.path)
+                  }
+                  key={key}
+                >
+                  <NavLink
+                    to={prop.layout + prop.path}
+                    className="nav-link"
+                    activeClassName="active"
+                  >
+                    <i className={prop.icon} />
+                    <p>{prop.name}</p>
+                  </NavLink>
+                </li>
+              );
+            }
             if (prop.permission === "private")
               return (
                 <li

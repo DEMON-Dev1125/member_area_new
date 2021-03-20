@@ -2,6 +2,7 @@ import React from "react";
 import Timezone from "../components/Timezone";
 import "../assets/css/login.css";
 import "../assets/css/certificate.css";
+import Fileupload from "components/Fileupload";
 
 export default function Profile() {
   return (
@@ -16,6 +17,14 @@ export default function Profile() {
             </div>
           </div>
           <hr />
+          <div className="mt-5">
+            <div className="user_avatar">
+              <Fileupload />
+              <div className="mt-3 text-center">
+                <button className="btn_upload">Alterar avatar</button>
+              </div>
+            </div>
+          </div>
           <div className="mt-5">
             <div className="Edit-ft3">Nome completo</div>
             <input

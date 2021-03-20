@@ -79,7 +79,8 @@ var routes = [
     name: "Sair",
     icon: "fa fa-sign-out-alt",
     layout: "/login",
-    permission: "private",
+    logout: "logout",
+    // permission: "private",
   },
 ];
 

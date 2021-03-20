@@ -30,14 +30,18 @@
     "react-dropzone": "^11.3.1",
     "react-mui-draft-wysiwyg": "^1.0.3",
     "react-notification-alert": "0.0.13",
+    "react-notifications-component": "^3.0.4",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-transition-group": "^4.4.1",
+    "react-validation": "^3.0.7",
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "validator": "^13.5.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

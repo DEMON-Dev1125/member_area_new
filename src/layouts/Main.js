@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, Route, Switch, useHistory } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar.js";
+import PrivateRoute from "../components/Privateroute.js";
 import $ from "jquery";
 import routes from "../routes.js";
 import Profile from "./../views/Profile";
@@ -16,15 +17,18 @@ function Main() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
+  const isLoggedIn = localStorage.getItem("user")?true:false;
 
   const getRoutes = (routes) => {
+    
     return routes.map((prop, key) => {
       if (prop.layout === "/main") {
         return (
-          <Route
+          <PrivateRoute
             path={prop.layout + prop.path}
-            render={(props) => <prop.component {...props} />}
-          ></Route>
+            isLoggedIn={isLoggedIn}
+            component={prop.component}
+          ></PrivateRoute>
         );
       } else {
         return null;
