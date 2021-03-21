@@ -35,9 +35,6 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  const { message } = useSelector((state) => state.message);
-
   const dispatch = useDispatch();
 
   const onChangeEmail = (e) => {

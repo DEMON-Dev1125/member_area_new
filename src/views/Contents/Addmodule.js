@@ -1,26 +1,98 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
+import Input from "react-validation/build/input";
+import Form from "react-validation/build/form";
+import { add } from "../../actions/content";
+import { store } from "react-notifications-component";
+
 const AddIcon = "add_icon.svg";
 const CloseIcon = "ios-close.svg";
 
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
 export default function AddMoudle() {
+  const form = useRef();
   const history = useHistory();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [moduleName, setModuleName] = useState();
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => state.content.data);
+  useEffect(() => {
+    if (data["success"]) {
+      store.addNotification({
+        title: "Success!",
+        message: "Add module success",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+      setOpen(false);
+    } else if (data.errors) {
+      store.addNotification({
+        title: "Worning!",
+        message: data.errors["name"],
+        type: "warning",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    }
+  }, [data]);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
-  const [namemarket, setNamemarket] = useState("true");
-  const Handle_NameMarket = () => {
-    setNamemarket(!namemarket);
+
+  const onChangeModuleName = (e) => {
+    const moduleName = e.target.value;
+    setModuleName(moduleName);
   };
+
+  const addModule = (e) => {
+    e.preventDefault();
+
+    form.current.validateAll();
+
+    if (!moduleName) {
+      return;
+    } else {
+      dispatch(add(moduleName));
+    }
+  };
+
   return (
     <div>
-      <div className="con-ft4" onClick={handleClickOpen}>
+      <div
+        className="con-ft4"
+        onClick={handleClickOpen}
+        style={{ cursor: "pointer" }}
+      >
         Novo módulo
       </div>
       <Dialog
@@ -34,9 +106,9 @@ export default function AddMoudle() {
           <div className=" d-flex align-items-center">
             <div
               className="mr-auto"
-              onClick={() => {
-                history.push("/main/content/editor");
-              }}
+              // onClick={() => {
+              //   history.push("/main/content/editor");
+              // }}
             >
               <img
                 className="add_icon"
@@ -54,16 +126,24 @@ export default function AddMoudle() {
           </div>
           <div className="Edit-ft6 mt-5">Adicionar módulo</div>
           <div className="con-ft5 mt-3">Nome do módulo</div>
-          <div className="Edit-warp mt-2 w-100" onClick={Handle_NameMarket}>
-            {namemarket ? (
-              <div className="Edit-ft4">Nome do módulo</div>
-            ) : (
-              <div className="market">Descobrindo o Mercado</div>
-            )}
-          </div>
-          <div className="mt-5">
-            <div className="add_but add_pd ">Adicionar módulo</div>
-          </div>
+          <Form onSubmit={addModule} ref={form}>
+            <div className="form-group">
+              <Input
+                type="text"
+                className="input-ft1 w-100 mt-1"
+                placeholder="Nome do módulo"
+                value={moduleName}
+                onChange={onChangeModuleName}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="mt-5">
+              <button className="add_but add_pd" style={{ cursor: "pointer" }}>
+                Adicionar módulo
+              </button>
+            </div>
+          </Form>
         </div>
       </Dialog>
     </div>

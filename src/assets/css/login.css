@@ -407,7 +407,7 @@ html,
   color: #ffffff;
   opacity: 1;
 }
-.dropbut {
+.dropBtn {
   width: 45px;
   height: 45px;
   border-radius: 10px;
@@ -435,6 +435,7 @@ html,
 }
 .select-item {
   height: 29px;
+  cursor: pointer;
 }
 .con-color1 {
   color: #e43f5a;
@@ -478,13 +479,14 @@ html,
   animation-duration: 10ms;
   -webkit-tap-highlight-color: transparent;
 }
-.dropbut1 {
+.checkBtn {
   width: 45px;
   height: 45px;
   background: #0779e4 0% 0% no-repeat padding-box;
   border-radius: 10px;
   color: #fff;
-  opacity: 1;
+  outline-style: none;
+  border: none;
 }
 .pdl-76 {
   padding-left: 76px !important;
@@ -615,13 +617,17 @@ html,
   background-color: #0779e4;
   border-radius: 15px;
   opacity: 1;
+  outline-style: none;
+  border: none;
 }
 .add_but:hover {
   background-color: #066bc9;
+  outline-style: none;
+  border: none;
 }
 .add_pd {
   padding: 25px 35px;
-  width: 260px;
+  width: auto;
 }
 .market {
   line-height: 29px;
@@ -739,6 +745,7 @@ html,
   outline-style: none;
   letter-spacing: 0px;
   border-radius: 15px;
+  cursor: pointer;
   background-color: #e43f5a;
 }
 .but_delete:hover {
@@ -2115,6 +2122,7 @@ html,
     outline-style: none;
     letter-spacing: 0px;
     border-radius: 15px;
+    cursor: pointer;
     background-color: #e43f5a;
   }
   .but_delete:hover {

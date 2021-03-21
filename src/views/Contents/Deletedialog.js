@@ -1,26 +1,81 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
+import { store } from "react-notifications-component";
+import { deleteModule } from "../../actions/content";
+
 const CloseIcon = "ios-close.svg";
 const DeleteIcon = "delete_icon.svg";
 
-export default function Deletedialog() {
-  const history = useHistory();
-  const [open, setOpen] = React.useState(false);
+export default function Deletedialog(props) {
+  const { moduleId } = props;
+  console.log(moduleId);
 
-  const handleClickOpen = () => {
+  const [open, setOpen] = useState(false);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {
+
+  const handleCancel = () => {
     setOpen(false);
   };
+
+  const deleteModuleName = () => {
+    if (!moduleId) {
+      return;
+    } else {
+      const id = moduleId;
+      dispatch(deleteModule(id));
+    }
+  };
+
+  const data = useSelector((state) => state.content.delData);
+  console.log("=====", data);
+  useEffect(() => {
+    if (data["success"]) {
+      store.addNotification({
+        title: "Success!",
+        message: "Delete success!",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+      setOpen(false);
+    } else if (data.errors) {
+      store.addNotification({
+        title: "Worning!",
+        message: data.errors["name"],
+        type: "warning",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    }
+  }, [data]);
+
   return (
     <div>
-      <div className="select-item con-color1" onClick={handleClickOpen}>
+      <div className="select-item con-color1" onClick={handleOpen}>
         Excluir
       </div>
       <Dialog
-        onClose={handleClose}
+        onClose={handleCancel}
         aria-labelledby="customized-dialog-title"
         open={open}
         maxWidth="false"
@@ -36,12 +91,12 @@ export default function Deletedialog() {
             >
               <img
                 className="add_icon"
-                style={{ cursor: "pointer" }}
                 src={require(`../../assets/img/${DeleteIcon}`).default}
               />
             </div>
-            <div className="mobile-position" onClick={handleClose}>
+            <div className="mobile-position">
               <img
+                onClick={handleCancel}
                 className="close_icon"
                 style={{ cursor: "pointer" }}
                 src={require(`../../assets/img/${CloseIcon}`).default}
@@ -57,7 +112,10 @@ export default function Deletedialog() {
             excluídos também.
           </div>
           <div className="mgt-50">
-            <div className="but_delete delete_content_dialog1 text-center">
+            <div
+              className="but_delete delete_content_dialog1 text-center"
+              onClick={deleteModuleName}
+            >
               Excluir módulo
             </div>
           </div>

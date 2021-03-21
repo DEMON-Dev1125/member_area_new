@@ -9,3 +9,7 @@ export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 // member action
 
+// module
+export const ADD_MODULE = "ADD_MODULE";
+export const DELETE_MODULE = "DELETE_MODULE";
+export const GET_ALLMODULEDATA = "GET_ALLMODULEDATA";
