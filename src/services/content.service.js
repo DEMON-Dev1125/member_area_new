@@ -3,16 +3,12 @@ import authHeader from "./auth-header";
 //sever url
 const API_URL = "http://192.168.107.163:5000/api";
 
-const add = (name) => {
+const addModule = (name) => {
   return axios.post(
     API_URL + "/modules/add",
     { name },
     { headers: authHeader() }
   );
-};
-
-const getAll = () => {
-  return axios.get(API_URL + "/modules", { headers: authHeader() });
 };
 
 const deleteModule = (id) => {
@@ -21,8 +17,12 @@ const deleteModule = (id) => {
   });
 };
 
+const getAllModule = () => {
+  return axios.get(API_URL + "/modules", { headers: authHeader() });
+};
+
 export default {
-  add,
-  getAll,
+  addModule,
+  getAllModule,
   deleteModule,
 };

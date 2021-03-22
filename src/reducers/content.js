@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
       return { ...state, delData: payload.data };
 
     case GET_ALLMODULEDATA:
-      return { ...state, allData: payload };
+      return { ...state, allData: payload.data };
 
     default:
       return state;

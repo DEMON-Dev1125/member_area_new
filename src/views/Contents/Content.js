@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import { getAll } from "actions/content";
+import { getAllModule } from "actions/content";
 import DeleteMoudle from "./Deletedialog";
 import AddMoudle from "./Addmodule";
 // import "assets/scss/entire.scss";
@@ -72,14 +72,13 @@ export default function ContentIndex() {
   };
 
   useEffect(() => {
-    dispatch(getAll());
+    dispatch(getAllModule());
   }, []);
 
   const allModuleData = useSelector((state) => state.content.allData);
 
   const [active1, setActive1] = useState(false);
-  const selectFold1 = (e) => {
-    console.log(e.target);
+  const selectFold1 = () => {
     setActive1(!active1);
   };
   const [active2, setActive2] = useState(false);
@@ -88,8 +87,7 @@ export default function ContentIndex() {
   };
   const [select1, setSelect1] = useState(false);
   const [select2, setSelect2] = useState(false);
-  const HandleMore = (e) => {
-    // console.log("e", e.target.id);
+  const HandleMore = () => {
     setSelect1(!select1);
   };
   const Handle_Select2 = () => {
@@ -97,7 +95,7 @@ export default function ContentIndex() {
   };
   const [edit, setEdit] = useState(true);
 
-  const editModuleName = (e) => {
+  const editModuleName = () => {
     setEdit(!edit);
     setSelect1(!select1);
     setMoveflag(true);
@@ -124,6 +122,7 @@ export default function ContentIndex() {
     history.push("/main/content/editor");
   };
   const goAddContent = () => {
+    // state.eData.data.modules
     history.push("/main/content/newcontent");
   };
   const goImprove = () => {
@@ -192,7 +191,7 @@ export default function ContentIndex() {
         </div>
         <div className="col-12 col-lg-12 col-xl-5 mgt-70 d-flex justify-content-center flex-column">
           {allModuleData
-            ? allModuleData.data.modules.map((item, key) => {
+            ? allModuleData.modules.map((item, key) => {
                 return (
                   <div
                     className="accordion mt-3"

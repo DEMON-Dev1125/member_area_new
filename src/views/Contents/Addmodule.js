@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import Input from "react-validation/build/input";
 import Form from "react-validation/build/form";
-import { add } from "../../actions/content";
+import { addModule } from "../../actions/content";
 import { store } from "react-notifications-component";
 
 const AddIcon = "add_icon.svg";
@@ -74,7 +74,7 @@ export default function AddMoudle() {
     setModuleName(moduleName);
   };
 
-  const addModule = (e) => {
+  const addModules = (e) => {
     e.preventDefault();
 
     form.current.validateAll();
@@ -82,7 +82,7 @@ export default function AddMoudle() {
     if (!moduleName) {
       return;
     } else {
-      dispatch(add(moduleName));
+      dispatch(addModule(moduleName));
     }
   };
 
@@ -126,7 +126,7 @@ export default function AddMoudle() {
           </div>
           <div className="Edit-ft6 mt-5">Adicionar módulo</div>
           <div className="con-ft5 mt-3">Nome do módulo</div>
-          <Form onSubmit={addModule} ref={form}>
+          <Form onSubmit={addModules} ref={form}>
             <div className="form-group">
               <Input
                 type="text"

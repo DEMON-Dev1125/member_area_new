@@ -1,6 +1,9 @@
 .rdw-editor-toolbar {
   background-color: #ebecee;
-  border-radius: 15px;
+  /* border-radius: 15px; */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-bottom: 0px !important;
 }
 .demo-editor.rdw-editor-main {
   background-color: #ebecee;
@@ -15,4 +18,36 @@
 }
 .public-DraftStyleDefault-block {
   margin: 0 !important;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 5vh;
+  text-align: center;
+}
+.wrapper-class {
+  /* padding: 1rem;
+  border: 1px solid #ccc; */
+}
+.DraftEditor-root {
+  height: 200px;
+}
+.editor-class {
+  background-color: #ebecee;
+  padding: 1rem;
+  border: 1px solid #ebecee;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-size: 24px;
+  line-height: 36px;
+  color: #88929e;
+}
+.toolbar-class {
+  border-bottom-color: #ccc;
 }
