@@ -1,7 +1,6 @@
 import axios from "axios";
-
-// server url
-const API_URL = "http://192.168.107.163:5000/api";
+import { config } from "../config/config";
+const API_URL = config.SERVER_URL;
 
 const register = (name, username, email, password, confirmPassword) => {
   return axios.post(API_URL + "/users/signup", {

@@ -1,4 +1,9 @@
-import { ADD_MODULE, GET_ALLMODULEDATA, DELETE_MODULE } from "./types";
+import {
+  ADD_MODULE,
+  GET_ALLMODULEDATA,
+  DELETE_MODULE,
+  ADD_MODULECONTENT,
+} from "./types";
 
 import ContentService from "../services/content.service";
 
@@ -25,6 +30,15 @@ export const getAllModule = () => (dispatch) => {
     dispatch({
       type: GET_ALLMODULEDATA,
       payload: allData,
+    });
+  });
+};
+
+export const addContent = (contentData) => (dispatch) => {
+  return ContentService.addContent(contentData).then((data) => {
+    dispatch({
+      type: ADD_MODULECONTENT,
+      payload: data,
     });
   });
 };

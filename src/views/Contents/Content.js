@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import { getAllModule } from "actions/content";
+import { getAllModule } from "../../actions/content";
 import DeleteMoudle from "./Deletedialog";
 import AddMoudle from "./Addmodule";
 // import "assets/scss/entire.scss";
@@ -58,7 +58,7 @@ export default function ContentIndex() {
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
+  const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
@@ -191,7 +191,7 @@ export default function ContentIndex() {
         </div>
         <div className="col-12 col-lg-12 col-xl-5 mgt-70 d-flex justify-content-center flex-column">
           {allModuleData
-            ? allModuleData.modules.map((item, key) => {
+            ? allModuleData.map((item, key) => {
                 return (
                   <div
                     className="accordion mt-3"

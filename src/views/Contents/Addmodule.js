@@ -28,8 +28,9 @@ export default function AddMoudle() {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.content.data);
+
   useEffect(() => {
-    if (data["success"]) {
+    if (data && data["success"]) {
       store.addNotification({
         title: "Success!",
         message: "Add module success",
@@ -44,7 +45,7 @@ export default function AddMoudle() {
         },
       });
       setOpen(false);
-    } else if (data.errors) {
+    } else if (data && data.errors) {
       store.addNotification({
         title: "Worning!",
         message: data.errors["name"],

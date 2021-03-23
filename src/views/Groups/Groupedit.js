@@ -66,7 +66,7 @@ export default function EditContent() {
             <i className="fas fa-chevron-left img_back"></i>
           </button>
           <div className="Edit-ft1 mt-5">MÉTODO REMOTO 3.0</div>
-          <div className="Edit-ft2">Nova turma</div>
+          <div className="Edit-ft2">Editar turma</div>
           <div className="row mt-5">
             <div className="col-lg-8">
               <div className="Edit-ft3">Nome da turma</div>
@@ -187,9 +187,9 @@ export default function EditContent() {
                   >
                     <Select
                       native
-                      defaultValue="Aula"
                       id="grouped-native-select"
                       onChange={Handle_Role3}
+                      label="rule"
                     >
                       <optgroup className="opt-group" label="1 - Introdução">
                         <option value={0} hidden className="opt-item">
@@ -262,14 +262,25 @@ export default function EditContent() {
               </CSSTransition>
             )}
           </TransitionGroup>
-          <div className="row mt-5">
-            <div className="col-lg-6 col-sm-12">
-              <button className="but_save w-100" onClick={Handle_Add}>
-                {drpdwn ? "Adicionar turma" : "Adicionar conteúdo"}
+          <div className="row mt-5 mb-5">
+            <div className="col-xl-6 col-12 mt-2">
+              <button
+                type="button"
+                className="but_save w-100"
+                onClick={Handle_Add}
+              >
+                Salvar edição
               </button>
             </div>
-            <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100">Cancelar</button>
+            <div className="col-xl-3 col-6 mt-2">
+              <button type="button" className="but_cancel w-100">
+                Cancelar
+              </button>
+            </div>
+            <div className="col-xl-3 col-6 mt-2">
+              <button type="button" className="but_delete w-100">
+                Excluir turma
+              </button>
             </div>
           </div>
         </div>

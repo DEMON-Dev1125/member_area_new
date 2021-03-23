@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getAllGroup } from "../../actions/group";
 import "../../assets/css/login.css";
 
 const MemberImg1 = "member1.png";
@@ -8,9 +10,18 @@ const MemberImg3 = "member3.png";
 
 export default function Group() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const Handle_Newgroup = () => {
     history.push("/main/group/newgroup");
   };
+
+  useEffect(() => {
+    dispatch(getAllGroup());
+  }, []);
+
+  const groupDatas = useSelector((state) => state.group.allData);
+  console.log("group", groupDatas);
+
   const EditClass = () => {
     history.push("/main/group/editclass");
   };

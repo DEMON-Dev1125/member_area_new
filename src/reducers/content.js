@@ -1,9 +1,11 @@
-import { ADD_MODULE, GET_ALLMODULEDATA, DELETE_MODULE } from "../actions/types";
+import {
+  ADD_MODULE,
+  GET_ALLMODULEDATA,
+  DELETE_MODULE,
+  ADD_MODULECONTENT,
+} from "../actions/types";
 
-const initialState = {
-  data: "",
-  delData: "",
-};
+const initialState = {};
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -16,7 +18,15 @@ export default function (state = initialState, action) {
       return { ...state, delData: payload.data };
 
     case GET_ALLMODULEDATA:
-      return { ...state, allData: payload.data };
+      let temp = [];
+      payload.data.modules.map((item) => {
+        item.ruleKey = 0;
+        temp.push(item);
+      });
+      return { ...state, allData: temp };
+
+    case ADD_MODULECONTENT:
+      return { ...state, contentData: payload.data };
 
     default:
       return state;

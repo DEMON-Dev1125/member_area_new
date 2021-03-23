@@ -7,9 +7,24 @@ export const LOGOUT = "LOGOUT";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
-// member action
-
 // module
 export const ADD_MODULE = "ADD_MODULE";
 export const DELETE_MODULE = "DELETE_MODULE";
 export const GET_ALLMODULEDATA = "GET_ALLMODULEDATA";
+export const ADD_MODULECONTENT = "ADD_MODULECONTENT";
+
+// member
+export const ADD_MEMBER = "ADD_MEMBER";
+export const EDIT_MEMBER = "EDIT_MEMBER";
+export const DELETE_MEMBER = "DELETE_MEMBER";
+export const GET_ALLMEMBER = "GET_ALLMEMBER";
+
+// group
+export const ADD_GROUP = "ADD_GROUP";
+export const EDIT_GROUP = "EDIT_GROUP";
+export const DELETE_GROUP = "DELETE_GROUP";
+export const GET_ALLGROUP = "GET_ALLGROUP";
+
+//certificate
+export const EDIT_CERTIFICATE = "EDIT_CERTIFICATE";
+export const GET_ALLCERTIFICATE = "GET_ALLCERTIFICATE";

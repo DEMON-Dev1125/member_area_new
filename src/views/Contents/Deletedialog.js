@@ -10,7 +10,6 @@ const DeleteIcon = "delete_icon.svg";
 
 export default function Deletedialog(props) {
   const { moduleId } = props;
-  console.log(moduleId);
 
   const [open, setOpen] = useState(false);
 
@@ -35,9 +34,9 @@ export default function Deletedialog(props) {
   };
 
   const data = useSelector((state) => state.content.delData);
-  console.log("=====", data);
+
   useEffect(() => {
-    if (data["success"]) {
+    if (data && data["success"]) {
       store.addNotification({
         title: "Success!",
         message: "Delete success!",
@@ -52,7 +51,7 @@ export default function Deletedialog(props) {
         },
       });
       setOpen(false);
-    } else if (data.errors) {
+    } else if (data && data.errors) {
       store.addNotification({
         title: "Worning!",
         message: data.errors["name"],
