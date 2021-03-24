@@ -22,8 +22,8 @@ export default function Group() {
   const groupDatas = useSelector((state) => state.group.allData);
   console.log("group", groupDatas);
 
-  const EditClass = () => {
-    history.push("/main/group/editclass");
+  const GroupEdit = () => {
+    history.push("/main/group/groupedit");
   };
   return (
     <div className="container-fluid mt-5">
@@ -50,7 +50,7 @@ export default function Group() {
           <hr />
           <div
             className="group-content container-fluid p-5 mt-5"
-            onClick={EditClass}
+            onClick={GroupEdit}
             style={{ cursor: "pointer" }}
           >
             <div className="row">

@@ -55,12 +55,7 @@ export default function NewContent() {
   };
 
   const contentDatas = useSelector((state) => state.content.contentData);
-  // useEffect(() => {
-  //   if(contentDatas && contentDatas) {
-
-  //   }
-  // }, [contentDatas])
-
+  
   useEffect(() => {
     dispatch(getAllModule());
   }, []);

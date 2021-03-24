@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import { useHistory } from "react-router-dom";
 import TextWYSIWYG from "../../components/Wysiwyg";
@@ -9,8 +10,9 @@ import "../../assets/css/certificate.css";
 const ImageName = "Certificado@2x.png";
 
 export default function Certificate() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleShowImage = () => {
     setOpen(true);
@@ -22,6 +24,15 @@ export default function Certificate() {
 
   const Back_fun = () => {
     history.goBack();
+  };
+
+  const SaveEdit = () => {
+    dispatch(editCertificate(contentDetail));
+  };
+
+  const [contentDetail, setEditorData] = useState("");
+  const editorData = (data) => {
+    setEditorData(data);
   };
 
   return (
@@ -49,7 +60,7 @@ export default function Certificate() {
               <span className="tag_style mt-1 ml-2">@Nome aluno(a)</span>
             </div>
             <div className="mt-5">
-              <TextWYSIWYG />
+              <TextWYSIWYG editorData={editorData} />
             </div>
             <div className="mt-5 img_style">
               <img
@@ -73,7 +84,9 @@ export default function Certificate() {
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-lg-6 col-sm-12">
-              <button className="but_save w-100">Salvar edição</button>
+              <button className="but_save w-100" onClick={SaveEdit}>
+                Salvar edição
+              </button>
             </div>
             <div className="col-lg-6 col-sm-12">
               <button className="but_cancel w-100">Cancelar</button>

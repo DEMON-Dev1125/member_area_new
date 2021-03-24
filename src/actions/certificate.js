@@ -14,7 +14,7 @@ export const editCertificate = () => (dispatch) => {
   return CertificateServic.editCertificate().then((editData) => {
     dispatch({
       type: EDIT_CERTIFICATE,
-      payload: allData,
+      payload: editData,
     });
   });
 };

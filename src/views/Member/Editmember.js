@@ -123,17 +123,17 @@ export default function EditContent() {
             </div>
           </div>
           <div className="row mt-5 mb-5">
-            <div className="col-xl-6 col-12">
+            <div className="col-xl-6 col-12 mt-2">
               <button type="button" className="but_save w-100">
                 Salvar edição
               </button>
             </div>
-            <div className="col-xl-3 col-6">
+            <div className="col-xl-3 col-6 mt-2">
               <button type="button" className="but_cancel w-100">
                 Cancelar
               </button>
             </div>
-            <div className="col-xl-3 col-6">
+            <div className="col-xl-3 col-6 mt-2">
               <button type="button" className="but_delete w-100">
                 Excluir membro
               </button>

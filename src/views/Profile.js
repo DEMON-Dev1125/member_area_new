@@ -1,10 +1,12 @@
-import React from "react";
-import Timezone from "../components/Timezone";
+import React, { useState } from "react";
+import TimezoneSelect from "react-timezone-select";
 import "../assets/css/login.css";
 import "../assets/css/certificate.css";
 import Fileupload from "components/Fileupload";
 
 export default function Profile() {
+  const [selectedTimezone, setSelectedTimezone] = useState("");
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -50,8 +52,11 @@ export default function Profile() {
             />
           </div>
           <div className="mt-5">
-            <div className="Edit-ft3">Fuso horário padrão</div>
-            <Timezone />
+            <div className="Edit-ft3 mb-3">Fuso horário padrão</div>
+            <TimezoneSelect
+              value={selectedTimezone}
+              onChange={setSelectedTimezone}
+            />
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Nova senha</div>

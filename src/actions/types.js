@@ -28,3 +28,7 @@ export const GET_ALLGROUP = "GET_ALLGROUP";
 //certificate
 export const EDIT_CERTIFICATE = "EDIT_CERTIFICATE";
 export const GET_ALLCERTIFICATE = "GET_ALLCERTIFICATE";
+
+//setting
+export const EDIT_SETTING = "EDIT_SETTING";
+export const GET_SETTINGDATA = "GET_SETTINGDATA";

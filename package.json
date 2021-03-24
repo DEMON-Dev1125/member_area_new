@@ -38,6 +38,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-timezone-select": "^0.10.7",
     "react-transition-group": "^4.4.1",
     "react-validation": "^3.0.7",
     "reactstrap": "^8.9.0",

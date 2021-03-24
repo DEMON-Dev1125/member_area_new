@@ -1,69 +1,22 @@
-.timezone-picker {
-  display: inline-block;
-  font: 13px sans-serif;
-  position: relative;
-  width: 100%;
+.css-2b097c-container {
+  font-size: 24px !important;
+  border-radius: 15px !important;
+}
+.css-yk16xz-control {
+  border: none !important;
+  padding: 15px !important;
+  border-radius: 15px !important;
+  background-color: #ebecee !important;
+}
+.css-yk16xz-control:hover,
+.css-1pahdxg-control:hover {
+  border: none !important;
+  border-color: #ebecee !important;
 }
 
-.timezone-picker-textfield input {
-  height: 89px;
-  background: #12263f0d 0% 0% no-repeat padding-box;
-  border-radius: 15px;
-  opacity: 1;
-  padding: 30px;
-  color: #88929e;
-  font-size: 24px;
-  border: none;
-}
-
-.timezone-picker-list {
-  top: 100%;
-  left: 0;
-  right: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  margin: 0;
-  padding: 0;
-  border: 1px solid #e6ebec;
-  margin-top: -1px;
-  border-radius: 0 0 3px 3px;
-  display: none;
-}
-
-.timezone-picker-list-rel {
-  position: relative;
-}
-
-.timezone-picker-list-abs {
-  position: absolute;
-  background-color: white;
-  z-index: 2000;
-  opacity: 0.99;
-}
-
-.timezone-picker-list-item {
-  color: #444444;
-  padding: 5px 12px;
-}
-
-.timezone-picker-list-item-active {
-  background: #12263f0d 0% 0% no-repeat padding-box;
-  cursor: pointer;
-}
-
-.timezone-picker-open .timezone-picker-list {
-  display: block;
-  font-size: 24px;
-  color: #88929e;
-}
-
-.timezone-picker-selected .timezone-picker-textfield input {
-  height: 89px;
-  background: #12263f0d 0% 0% no-repeat padding-box;
-  border-radius: 15px;
-  opacity: 1;
-  padding: 30px;
-  color: #88929e;
-  font-size: 24px;
-  border: none;
+.css-1pahdxg-control {
+  border: none !important;
+  padding: 15px !important;
+  border-radius: 15px !important;
+  background-color: #ebecee !important;
 }

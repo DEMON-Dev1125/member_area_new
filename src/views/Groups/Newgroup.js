@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { getAllModule } from "../../actions/content";
 import "../../assets/css/login.css";
-import { CompassCalibrationOutlined } from "@material-ui/icons";
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
@@ -21,21 +21,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
+
 export default function EditContent() {
   const history = useHistory();
   const classes = useStyles();
   const Back_fun = () => {
     history.goBack();
   };
-  const [newgroup, setNewgroup] = useState("");
   const [drpdwn, setDrpDwn] = useState(false);
-  const Handle_Newgroup = (e) => {
-    setNewgroup(e.target.value);
-  };
-  const [itemaccess, setItemaccess] = useState("");
-  const Handle_Itemaccess = (e) => {
-    setItemaccess(e.target.value);
-  };
   const [role1, setRole1] = useState(10);
   const Handle_Role1 = (e) => {
     setRole1(e.target.value);
@@ -44,15 +37,12 @@ export default function EditContent() {
   const Handle_Role2 = (e) => {
     setRole2(e.target.value);
   };
-  const [role3, setRole3] = useState(10);
-  const Handle_Role3 = (e) => {
-    setRole3(e.target.value);
-  };
+
   const Handle_Add = () => {
     history.push("/main/group/groupadd");
   };
 
-  const showLearning = () => {
+  const addClass = () => {
     setDrpDwn(!drpdwn);
   };
 
@@ -68,10 +58,14 @@ export default function EditContent() {
 
   const allModuleData = useSelector((state) => state.content.allData);
 
-  const [rule, setRule] = useState(false);
-  const selectRule = (e, item) => {
-    item.ruleKey = e.target.value;
-    setRule(!rule);
+  const [NewGroupName, setNewGroupName] = useState("");
+  const ChangeGroupName = (e) => {
+    setNewGroupName(e.target.value);
+  };
+
+  const [ItemAccess, setItemAccess] = useState("");
+  const changeItemAccess = (e) => {
+    setItemAccess(e.target.value);
   };
 
   const [status, setStatus] = useState();
@@ -79,9 +73,40 @@ export default function EditContent() {
     setStatus(status);
   };
 
+  const [rule, setRule] = useState(false);
+  const selectRule = (e, item) => {
+    item.ruleKey = e.target.value;
+    setRule(!rule);
+  };
+
+  const [StartDate, setStartDate] = useState("");
+  const changeStartDate = (e) => {
+    setStartDate(e.target.value);
+  };
+
+  const [EndDate, setEndDate] = useState("");
+  const changeEndDate = (e) => {
+    setEndDate(e.target.value);
+  };
+
+  const [AccessTerm, setAccessTerm] = useState("");
+  const changeAccessTerm = (e) => {
+    setAccessTerm(e.target.value);
+  };
+
+  const [ClassRule, setClassRule] = useState();
+  const changeClassRule = (e) => {
+    setClassRule(e.target.value);
+  };
+
   const addGroup = () => {
     const groupInfo = {
+      NewGroupName,
+      ItemAccess,
       status,
+      StartDate,
+      EndDate,
+      AccessTerm,
     };
     console.log("=====", groupInfo);
   };
@@ -102,9 +127,9 @@ export default function EditContent() {
               <input
                 type="text"
                 className="Edit-warp mt-3 w-100 Edit-ft4"
-                placeholder="Turma A"
-                value={newgroup}
-                onChange={Handle_Newgroup}
+                placeholder="Nome da turma"
+                value={NewGroupName}
+                onChange={ChangeGroupName}
               />
             </div>
             <div className="col-lg-4">
@@ -114,8 +139,8 @@ export default function EditContent() {
                   type="number"
                   className="Edit-warp mt-3 Edit-ft4 w-100"
                   placeholder="01"
-                  value={itemaccess}
-                  onChange={Handle_Itemaccess}
+                  value={ItemAccess}
+                  onChange={changeItemAccess}
                 />
                 <div className="item-day Edit-ft1">DIAS</div>
               </div>
@@ -140,7 +165,7 @@ export default function EditContent() {
             {allModuleData &&
               allModuleData.map((item, key) => {
                 return (
-                  <div className="group-new41">
+                  <div className="group-new41" key={key}>
                     <div>
                       <div className="Edit-ft1">MÓDULO {key + 1}</div>
                       <div className="mt-1 con-ft5">{item.name}</div>
@@ -173,15 +198,21 @@ export default function EditContent() {
                           <div className="mb-3">
                             <div className="Edit-ft1">DATA LIBERAÇÃO</div>
                             <input
+                              type="text"
                               className="input-ft2 mt-2 w-100"
                               placeholder="05/01/2021 12:00"
+                              value={StartDate}
+                              onChange={changeStartDate}
                             />
                           </div>
                           <div className="mb-3">
                             <div className="Edit-ft1">DATA FECHAMENTO</div>
                             <input
+                              type="text"
                               className="input-ft2 mt-2 w-100"
                               placeholder="14/01/2021 12:00"
+                              value={EndDate}
+                              onChange={changeEndDate}
                             />
                           </div>
                         </div>
@@ -193,8 +224,8 @@ export default function EditContent() {
                               type="number"
                               className="Edit-warp mt-3 Edit-ft4-1 w-100"
                               placeholder="01"
-                              value={itemaccess}
-                              onChange={Handle_Itemaccess}
+                              value={AccessTerm}
+                              onChange={changeAccessTerm}
                             />
                             <div className="item-day-1 Edit-ft1">DIAS</div>
                           </div>
@@ -224,10 +255,11 @@ export default function EditContent() {
                     <Select
                       native
                       id="grouped-native-select"
-                      onChange={Handle_Role3}
+                      onChange={changeClassRule}
                       label="role"
-                      value={role3}
+                      value={ClassRule}
                     >
+                      <option>Aula</option>
                       {allModuleData &&
                         allModuleData.map((item, key) => {
                           return (
@@ -239,7 +271,9 @@ export default function EditContent() {
                               {allModuleData &&
                                 allModuleData.map((item, key) => {
                                   return (
-                                    <option value={key + 1}>{item._id}</option>
+                                    <option key={key} value={key + 1}>
+                                      {item._id}
+                                    </option>
                                   );
                                 })}
                             </optgroup>
@@ -250,7 +284,7 @@ export default function EditContent() {
                 </div>
               </div>
               <div className="col-2 col-xl-1">
-                <div className="but-plus mt-3" onClick={() => showLearning()}>
+                <div className="but-plus mt-3" onClick={() => addClass()}>
                   <i className="fas fa-plus"></i>
                 </div>
               </div>
