@@ -13,3 +13,9 @@ export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const ADD_MODULE = "ADD_MODULE";
 export const DELETE_MODULE = "DELETE_MODULE";
 export const GET_ALLMODULEDATA = "GET_ALLMODULEDATA";
+export const GET_ALL_CONTENT = "GET_ALL_CONTENT";
+export const UPDATE_CONTENT = "UPDATE_CONTENT";
+export const UPDATE_MODULE = "UPDATE_MODULE";
+
+// Invite
+export const ADD_INVITE = "ADD_INVITE";

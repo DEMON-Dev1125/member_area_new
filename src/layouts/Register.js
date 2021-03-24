@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { isEmail } from "validator";
+import { register } from "../actions/auth";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -9,7 +10,6 @@ import "../assets/css/login.css";
 
 const LogoWL = "Logo-WL.svg";
 
-import { register } from "../actions/auth";
 
 const required = (value) => {
   if (!value) {

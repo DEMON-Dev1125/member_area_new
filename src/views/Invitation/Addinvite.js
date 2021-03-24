@@ -1,20 +1,34 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import Fileupload from "../../components/Fileupload";
 
 import "../../assets/css/login.css";
 import "../../assets/css/invite.css";
 
+import { addInvite } from '../../actions/invite';
+
 export default function Invite() {
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
 
   const history = useHistory();
   const Back_fun = () => {
     history.goBack();
   };
-  const Handle_Description = (e) => {
-    setDescription(e.target.value);
-  };
+
+  const handleSave = () => {
+    if(!title || !description) return;
+    else {
+      var sendData = {
+        'title': title,
+        'description': description
+      }
+
+      dispatch(addInvite(sendData));
+    }
+  }
 
   return (
     <div className="container-fluid mt-5">
@@ -25,23 +39,25 @@ export default function Invite() {
             <i className="fas fa-chevron-left img_back"></i>
           </button>
           <div className="Edit-ft1 mt-5 none-mobile">MÉTODO REMOTO 3.0</div>
-          <div className="Edit-ft2">Novo conteúdo</div>
+          <div className="Edit-ft2">Novo convite</div>
           <div className="mt-5">
-            <div className="Edit-ft3">Título do conteúdo</div>
+            <div className="Edit-ft3">Título do convite</div>
             <input
               className="input-ft1 mt-2 w-100"
-              placeholder="Título do conteúdo"
+              placeholder="Título do convite"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
             />
           </div>
           <div className="mt-5">
-            <div className="Edit-ft3 w-100">Descrição do curso</div>
+            <div className="Edit-ft3 w-100">Descrição do convite</div>
             <div className="w-100">
               <textarea
                 rows="4"
                 className="Edit-warp Edit-ft4 w-100 text__style"
-                placeholder="Treinamento MR 3.0 foi criado para ajudar pessoas a conseguirem prestar serviço online."
+                placeholder="Descrição do convite..."
                 value={description}
-                onChange={Handle_Description}
+                onChange={(event) => setDescription(event.target.value)}
               />
             </div>
           </div>
@@ -51,8 +67,8 @@ export default function Invite() {
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_save w-100">
-                Adicionar conteúdo
+              <button type="button" className="but_save w-100" onClick={handleSave}>
+                Adicionar convite
               </button>
             </div>
             <div className="col-xl-6 col-12">

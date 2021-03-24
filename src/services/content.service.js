@@ -21,8 +21,31 @@ const getAllModule = () => {
   return axios.get(API_URL + "/modules", { headers: authHeader() });
 };
 
+const getAllContent = () => {
+  return axios.get(API_URL + "/contents", { headers: authHeader() });
+};
+
+const updateContent = (contents) => {
+  return axios.post(
+    API_URL + "/contents/edit",
+    { contents },
+    { headers: authHeader() }
+  );
+};
+
+const updateModule = (modules) => {
+  return axios.post(
+    API_URL + "/modules/edit",
+    { modules },
+    { headers: authHeader() }
+  );
+};
+
 export default {
   addModule,
   getAllModule,
   deleteModule,
+  getAllContent,
+  updateContent,
+  updateModule,
 };

@@ -25,6 +25,7 @@ function Main() {
       if (prop.layout === "/main") {
         return (
           <PrivateRoute
+            key={key}
             path={prop.layout + prop.path}
             isLoggedIn={isLoggedIn}
             component={prop.component}

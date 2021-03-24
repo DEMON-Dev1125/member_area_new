@@ -1,4 +1,11 @@
-import { ADD_MODULE, GET_ALLMODULEDATA, DELETE_MODULE } from "./types";
+import {
+  ADD_MODULE,
+  GET_ALLMODULEDATA,
+  DELETE_MODULE,
+  GET_ALL_CONTENT,
+  UPDATE_CONTENT,
+  UPDATE_MODULE,
+} from "./types";
 
 import ContentService from "../services/content.service";
 
@@ -25,6 +32,33 @@ export const getAllModule = () => (dispatch) => {
     dispatch({
       type: GET_ALLMODULEDATA,
       payload: allData,
+    });
+  });
+};
+
+export const getAllContent = () => (dispatch) => {
+  return ContentService.getAllContent().then((allContentData) => {
+    dispatch({
+      type: GET_ALL_CONTENT,
+      payload: allContentData,
+    });
+  });
+};
+
+export const updateContent = (contents) => (dispatch) => {
+  return ContentService.updateContent(contents).then((status) => {
+    dispatch({
+      type: UPDATE_CONTENT,
+      payload: status,
+    });
+  });
+};
+
+export const updateModule = (modules) => (dispatch) => {
+  return ContentService.updateModule(modules).then((updateData) => {
+    dispatch({
+      type: UPDATE_MODULE,
+      payload: updateData,
     });
   });
 };
