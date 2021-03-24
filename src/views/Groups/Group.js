@@ -38,11 +38,10 @@ export default function Group() {
             <div className="col-lg-6 col-sm-12">
               <button
                 type="button"
+                onClick={Handle_Newgroup}
                 className="u-btn-group u-btn-color btn-ft1 d-flex align-items-center justify-content-center dropbtn w-100"
               >
-                <div className="mr-3" onClick={Handle_Newgroup}>
-                  Nova turma
-                </div>
+                <div className="mr-3">Nova turma</div>
                 <i className="fas fa-plus"></i>
               </button>
             </div>

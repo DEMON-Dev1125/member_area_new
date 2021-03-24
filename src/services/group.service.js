@@ -4,7 +4,7 @@ import { config } from "../config/config";
 const API_URL = config.SERVER_URL;
 
 const getAllGroup = () => {
-  return axios.post(API_URL + "/groups", { headers: authHeader() });
+  return axios.get(API_URL + "/groups", { headers: authHeader() });
 };
 
 const addGroup = (name) => {

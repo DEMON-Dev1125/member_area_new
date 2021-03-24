@@ -9,6 +9,7 @@ import TextWYSIWYG from "../../components/Wysiwyg";
 import Fileupload from "../../components/Fileupload";
 import StyledCheckbox from "../../components/Checkbox.js";
 import { getAllModule, addContent } from "../../actions/content";
+import { store } from "react-notifications-component";
 import "../../assets/css/login.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,46 +26,25 @@ export default function NewContent() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const [contentTitle, setContentTitle] = useState("");
   const [link, setLink] = useState("");
   const [moduleId, setModuleName] = useState("");
-  const [contentDetail, setEditorData] = useState("");
-  const [status, setCheckStatus] = useState("");
-  const [sourceFile, setFileUpload] = useState("");
 
   const Back_fun = () => {
     history.goBack();
   };
 
-  const addContentInfo = (e) => {
-    e.preventDefault();
-
-    // if (!(contentTitle && moduleId, contentDetail, link, sourceFile, status)) {
-    //   return;
-    // } else {
-    const contentData = {
-      contentTitle,
-      contentDetail,
-      moduleId,
-      link,
-      sourceFile,
-      status,
-    };
-    dispatch(addContent(contentData));
-    // }
-  };
-
-  const contentDatas = useSelector((state) => state.content.contentData);
-  
   useEffect(() => {
     dispatch(getAllModule());
   }, []);
 
   const allModuleData = useSelector((state) => state.content.allData);
 
+  const [contentTitle, setContentTitle] = useState("");
   const onChangeTitle = (e) => {
     setContentTitle(e.target.value);
   };
+
+  const [contentDetail, setEditorData] = useState("");
   const editorData = (data) => {
     setEditorData(data);
   };
@@ -76,13 +56,72 @@ export default function NewContent() {
     setLink(e.target.value);
   };
 
+  const [status, setCheckStatus] = useState("");
   const checkStatus = (status) => {
     setCheckStatus(status);
   };
 
+  const [sourceFile, setFileUpload] = useState("");
   const fileUpload = (sourceFile) => {
     setFileUpload(sourceFile);
   };
+
+  const addContentInfo = (e) => {
+    e.preventDefault();
+
+    // if (!(contentTitle && moduleId, contentDetail, link, sourceFile, status)) {
+    //   return;
+    // } else {
+
+    const title = contentTitle;
+    const module = moduleId;
+    const contentData = {
+      title,
+      contentDetail,
+      module,
+      link,
+      sourceFile,
+      status,
+    };
+    dispatch(addContent(contentData));
+    // console.log(contentData);
+    // }
+  };
+
+  const data = useSelector((state) => state.content.contentData);
+  // console.log("===", data);
+
+  useEffect(() => {
+    if (data && data["success"]) {
+      store.addNotification({
+        title: "Success!",
+        message: "Add module success",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    } else if (data && data.errors) {
+      store.addNotification({
+        title: "Worning!",
+        message: data.errors["name"],
+        type: "warning",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    }
+  }, [data]);
 
   return (
     <div className="container-fluid mt-5">
