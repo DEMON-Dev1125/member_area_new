@@ -26,8 +26,6 @@ export default function NewContent() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const [link, setLink] = useState("");
-  const [moduleId, setModuleName] = useState("");
 
   const Back_fun = () => {
     history.goBack();
@@ -44,14 +42,21 @@ export default function NewContent() {
     setContentTitle(e.target.value);
   };
 
+  // const [contentDetail, setEditorData] = useState("");
+  // const editorData = data;
   const [contentDetail, setEditorData] = useState("");
   const editorData = (data) => {
     setEditorData(data);
   };
+  // useEffect(() => {
+  //   setEditorData(data);
+  // }, [editorData]);
 
+  const [moduleId, setModuleName] = useState("");
   const onChangeSelect = (e) => {
     setModuleName(e.target.value);
   };
+  const [link, setLink] = useState("");
   const onChangeLink = (e) => {
     setLink(e.target.value);
   };
@@ -69,27 +74,46 @@ export default function NewContent() {
   const addContentInfo = (e) => {
     e.preventDefault();
 
-    // if (!(contentTitle && moduleId, contentDetail, link, sourceFile, status)) {
-    //   return;
-    // } else {
-
-    const title = contentTitle;
-    const module = moduleId;
-    const contentData = {
-      title,
-      contentDetail,
-      module,
-      link,
-      sourceFile,
-      status,
-    };
-    dispatch(addContent(contentData));
-    // console.log(contentData);
-    // }
+    if (
+      !(
+        (contentTitle && moduleId && contentDetail && link)
+        // sourceFile &&
+        // status
+      )
+    ) {
+      store.addNotification({
+        title: "Errors!",
+        message: "This filed is required!",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+      return;
+    } else {
+      const title = contentTitle;
+      const module = moduleId;
+      const text = contentDetail;
+      const videolink = link;
+      const comment = status;
+      const contentData = {
+        title,
+        text,
+        module,
+        videolink,
+        sourceFile,
+        comment,
+      };
+      dispatch(addContent(contentData));
+    }
   };
 
   const data = useSelector((state) => state.content.contentData);
-  // console.log("===", data);
 
   useEffect(() => {
     if (data && data["success"]) {
@@ -106,9 +130,16 @@ export default function NewContent() {
           onScreen: true,
         },
       });
+
+      setContentTitle("");
+      setModuleName("");
+      setEditorData("");
+      setLink("");
+      setCheckStatus("");
+      setFileUpload("");
     } else if (data && data.errors) {
       store.addNotification({
-        title: "Worning!",
+        title: "Warning!",
         message: data.errors["name"],
         type: "warning",
         insert: "top",
@@ -174,6 +205,7 @@ export default function NewContent() {
           <div className="mt-5 form-group">
             <div className="Edit-ft3">Texto do conteúdo</div>
             <TextWYSIWYG editorData={editorData} />
+            {/* <TextWYSIWYG editorData={editorData} value={contentDetail} /> */}
           </div>
           <div className="mt-5 form-group">
             <div className="Edit-ft3">Link do vídeo</div>

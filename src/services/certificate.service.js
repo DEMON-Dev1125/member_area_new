@@ -7,13 +7,22 @@ const getAllCertificate = () => {
   return axios.get(API_URL + "/certificates", { headers: authHeader() });
 };
 
-const editCertificate = (id) => {
-  return (
-    axios.post(API_URL + "/certificate/edit"), { id }, { headers: authHeader() }
+const getPrevData = (id) => {
+  return axios.get(API_URL + `/certificates/${id}`, { headers: authHeader() });
+};
+
+const editCertificate = (id, contentDetail) => {
+  return axios.post(
+    API_URL + `/certificates/edit/${id}`,
+    { contentDetail },
+    {
+      headers: authHeader(),
+    }
   );
 };
 
 export default {
   getAllCertificate,
   editCertificate,
+  getPrevData,
 };

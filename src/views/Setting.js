@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -68,42 +68,42 @@ export default function Setting() {
   };
 
   useEffect(() => {
-    dispatch(getSettingData());
+    // dispatch(getSettingData());
   }, []);
 
-  const data = useSelector((state) => state.setting.data);
+  // const data = useSelector((state) => state.setting.data);
 
-  useEffect(() => {
-    if (data && data["success"]) {
-      store.addNotification({
-        title: "Success!",
-        message: "Add module success",
-        type: "success",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-        },
-      });
-    } else if (data && data.errors) {
-      store.addNotification({
-        title: "Worning!",
-        message: data.errors["name"],
-        type: "warning",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-        },
-      });
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data && data["success"]) {
+  //     store.addNotification({
+  //       title: "Success!",
+  //       message: "Setting success",
+  //       type: "success",
+  //       insert: "top",
+  //       container: "top-right",
+  //       animationIn: ["animate__animated", "animate__fadeIn"],
+  //       animationOut: ["animate__animated", "animate__fadeOut"],
+  //       dismiss: {
+  //         duration: 3000,
+  //         onScreen: true,
+  //       },
+  //     });
+  //   } else if (data && data.errors) {
+  //     store.addNotification({
+  //       title: "Worning!",
+  //       message: data.errors["name"],
+  //       type: "warning",
+  //       insert: "top",
+  //       container: "top-right",
+  //       animationIn: ["animate__animated", "animate__fadeIn"],
+  //       animationOut: ["animate__animated", "animate__fadeOut"],
+  //       dismiss: {
+  //         duration: 3000,
+  //         onScreen: true,
+  //       },
+  //     });
+  //   }
+  // }, [data]);
 
   const saveSetting = (e) => {
     e.preventDefault();
@@ -117,7 +117,7 @@ export default function Setting() {
       access,
       contentDetail,
     };
-    
+
     if (!settingData) {
       return;
     } else {

@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import { useHistory } from "react-router-dom";
 import TextWYSIWYG from "../../components/Wysiwyg";
+import { getPrevData, editCertificate } from "../../actions/certificate";
+import { store } from "react-notifications-component";
 
 import "../../assets/css/login.css";
 import "../../assets/css/certificate.css";
 
 const ImageName = "Certificado@2x.png";
 
-export default function Certificate() {
+export default function Certificate(props) {
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -26,14 +28,59 @@ export default function Certificate() {
     history.goBack();
   };
 
-  const SaveEdit = () => {
-    dispatch(editCertificate(contentDetail));
-  };
+  const id = props.location.state.id;
 
   const [contentDetail, setEditorData] = useState("");
   const editorData = (data) => {
     setEditorData(data);
   };
+
+  useEffect(() => {
+    dispatch(getPrevData(id));
+  }, []);
+
+  const prevData = useSelector((state) =>
+    state.certificate.prevData ? state.certificate.prevData : ""
+  );
+  const value = prevData ? prevData.certificates.contentDetail : "";
+
+  const SaveEdit = () => {
+    dispatch(editCertificate(id, contentDetail));
+  };
+
+  const updateData = useSelector((state) => state.certificate.editData);
+
+  useEffect(() => {
+    if (updateData && updateData["success"]) {
+      store.addNotification({
+        title: "Success!",
+        message: "Update certificate success",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    } else if (updateData && updateData.errors) {
+      store.addNotification({
+        title: "Error!",
+        message: updateData.errors["name"],
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    }
+  }, [ ]);
 
   return (
     <div className="container-fluid mt-5">
@@ -60,7 +107,7 @@ export default function Certificate() {
               <span className="tag_style mt-1 ml-2">@Nome aluno(a)</span>
             </div>
             <div className="mt-5">
-              <TextWYSIWYG editorData={editorData} />
+              <TextWYSIWYG editorData={editorData} value={value} />
             </div>
             <div className="mt-5 img_style">
               <img

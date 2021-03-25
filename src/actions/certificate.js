@@ -1,20 +1,36 @@
-import { EDIT_CERTIFICATE, GET_ALLCERTIFICATE } from "../actions/types";
+import {
+  EDIT_CERTIFICATE,
+  GET_ALLCERTIFICATE,
+  GET_PREVDATA,
+} from "../actions/types";
 
-import CertificateServic from "../services/certificate.service";
+import CertificateService from "../services/certificate.service";
 
 export const getAllCertificate = () => (dispatch) => {
-  return CertificateServic.getAllCertificate().then((allData) => {
+  return CertificateService.getAllCertificate().then((allData) => {
     dispatch({
       type: GET_ALLCERTIFICATE,
       payload: allData,
     });
   });
 };
-export const editCertificate = () => (dispatch) => {
-  return CertificateServic.editCertificate().then((editData) => {
+
+export const getPrevData = (id) => (dispatch) => {
+  return CertificateService.getPrevData(id).then((prevData) => {
     dispatch({
-      type: EDIT_CERTIFICATE,
-      payload: editData,
+      type: GET_PREVDATA,
+      payload: prevData,
     });
   });
+};
+
+export const editCertificate = (id, contentDetail) => (dispatch) => {
+  return CertificateService.editCertificate(id, contentDetail).then(
+    (editData) => {
+      dispatch({
+        type: EDIT_CERTIFICATE,
+        payload: editData,
+      });
+    }
+  );
 };

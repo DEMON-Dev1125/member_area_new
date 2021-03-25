@@ -417,7 +417,7 @@ html,
 }
 .select-content {
   position: absolute;
-  right: 45px;
+  right: 5%;
   top: 130px;
   background-color: #fff;
   min-width: 220px;

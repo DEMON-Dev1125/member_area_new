@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, Provider } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import { getAllModule } from "../../actions/content";
+import {
+  getAllModule,
+  getAllContent,
+  updateContent,
+  updateModule,
+} from "../../actions/content";
 import DeleteMoudle from "./Deletedialog";
 import AddMoudle from "./Addmodule";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // import "assets/scss/entire.scss";
 
 const CheckBule = "check-bule.svg";
@@ -71,15 +77,21 @@ export default function ContentIndex() {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const allModuleData = useSelector((state) => state.content.allData);
+  const allContentData = useSelector((state) => state.content.allContentData);
+  const [characters, updateCharacters] = useState([]);
+
   useEffect(() => {
+    dispatch(getAllContent());
     dispatch(getAllModule());
   }, []);
 
-  const allModuleData = useSelector((state) => state.content.allData);
-
   const [active1, setActive1] = useState(false);
-  const selectFold1 = () => {
+  const selectFold1 = (item) => {
+    if (item.collapseKey) item.collapseKey = false;
+    else item.collapseKey = true;
     setActive1(!active1);
+    updateCharacters(allContentData ? allContentData.contents : []);
   };
   const [active2, setActive2] = useState(false);
   const selectFold2 = () => {
@@ -87,7 +99,9 @@ export default function ContentIndex() {
   };
   const [select1, setSelect1] = useState(false);
   const [select2, setSelect2] = useState(false);
-  const HandleMore = () => {
+  const HandleMore = (item) => {
+    if (item.moreButtonKey) item.moreButtonKey = false;
+    else item.moreButtonKey = true;
     setSelect1(!select1);
   };
   const Handle_Select2 = () => {
@@ -95,7 +109,9 @@ export default function ContentIndex() {
   };
   const [edit, setEdit] = useState(true);
 
-  const editModuleName = () => {
+  const editModuleName = (item) => {
+    item.editKey = true;
+    item.moreButtonKey = false;
     setEdit(!edit);
     setSelect1(!select1);
     setMoveflag(true);
@@ -108,13 +124,15 @@ export default function ContentIndex() {
     setTextvalue(moduleName);
   };
 
-  const editModuleSuccess = () => {
+  const editModuleSuccess = (item) => {
+    item.editKey = false;
     setEdit(!edit);
   };
 
   const [moveflag, setMoveflag] = useState(true);
 
-  const handleMove = () => {
+  const handleMove = (item) => {
+    item.moreButtonKey = false;
     setMoveflag(false);
     setSelect1(false);
   };
@@ -128,6 +146,83 @@ export default function ContentIndex() {
   const goImprove = () => {
     history.push("/main/content/improve");
   };
+
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(characters);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    let temp = [];
+    let contents = [];
+    items.map((data, index) => {
+      data.order = index;
+      temp.push(data);
+      let content = {};
+      content.order = index + 1;
+      content._id = data._id;
+      contents.push(content);
+    });
+
+    updateCharacters(temp);
+    dispatch(updateContent(contents));
+  };
+
+  const moveUp = (item) => {
+    item.moreButtonKey = false;
+    let modules = [];
+    if (item.order === 0) {
+      // allModuleData.map(data => {
+      //   modules.push(data);
+      // });
+    } else {
+      allModuleData.map((data) => {
+        let module = {};
+        module._id = data._id;
+        if (data._id === item._id) {
+          data.order = item.order - 1;
+        }
+        if (item.order - 1 === data.order) {
+          data.order = item.order;
+        }
+        module.order = data.order;
+        modules.push(module);
+      });
+
+      dispatch(updateModule(modules));
+    }
+  };
+
+  const moveDown = (item) => {
+    item.moreButtonKey = false;
+    let modules = [];
+    if (item.order === allModuleData.length - 1) {
+    } else {
+      allModuleData.map((data) => {
+        let module = {};
+        module._id = data._id;
+        if (data._id === item._id && data.order === item.order) {
+          data.order = item.order + 1;
+        }
+        if (item.order === data.order && data._id !== item._id) {
+          data.order = item.order - 1;
+        }
+
+        module.order = data.order;
+        modules.push(module);
+      });
+
+      dispatch(updateModule(modules));
+    }
+  };
+
+  const [delDig, setDelDig] = useState(false);
+  const [moreButtonKeys, setMoreButtonKeys] = useState(false);
+
+  const handleOnBlur = (item) => {
+    item.moreButtonKey = false;
+    setMoreButtonKeys(!moreButtonKeys);
+  };
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -206,8 +301,10 @@ export default function ContentIndex() {
                         id={`elActive` + key}
                       >
                         <button
-                          className={`fold_trigger ${active1 ? "open" : ""}`}
-                          onClick={edit && selectFold1}
+                          className={`fold_trigger ${
+                            item.collapseKey ? "open" : ""
+                          }`}
+                          onClick={edit && (() => selectFold1(item))}
                         >
                           <div className="Edit-ft1 mgl-40">
                             MÓDULO {key + 1}
@@ -215,10 +312,10 @@ export default function ContentIndex() {
                           <div className="d-flex align-items-center">
                             <i
                               className={`fas fa-chevron-up mr-2 down-up ${
-                                active1 ? "open1" : ""
+                                item.collapseKey ? "open1" : ""
                               }`}
                             ></i>
-                            {edit ? (
+                            {!item.editKey ? (
                               <div className="con-ft1">{item.name}</div>
                             ) : (
                               <input
@@ -230,369 +327,156 @@ export default function ContentIndex() {
                             )}
                           </div>
                         </button>
-                        {edit ? (
+                        {!item.editKey ? (
                           <button
                             id={`moreBtn` + key}
                             className="dropBtn text-center"
-                            onClick={(e) => HandleMore(e)}
+                            onClick={() => HandleMore(item)}
+                            // onBlur={() => handleOnBlur(item)}
                           >
                             <i className="fas fa-ellipsis-v"></i>
                           </button>
                         ) : (
                           <button
                             className="checkBtn text-center"
-                            onClick={editModuleSuccess}
+                            onClick={() => editModuleSuccess(item)}
                           >
                             <i className="fas fa-check"></i>
                           </button>
                         )}
 
-                        {select1 && (
-                          <div className="select-content con-ft2">
+                        {item.moreButtonKey && (
+                          <div
+                            className="select-content con-ft2"
+                            onMouseLeave={() => handleOnBlur(item)}
+                          >
                             <div
-                              className="select-item mgb-15"
-                              onClick={editModuleName}
+                              className="select-item pb-4"
+                              onClick={() => editModuleName(item)}
                             >
                               Editar
                             </div>
-                            <div className="select-item mgb-15">Mover cima</div>
-                            <div className="select-item mgb-15">
+                            <div
+                              className="select-item py-4"
+                              onClick={() => moveUp(item)}
+                            >
+                              Mover cima
+                            </div>
+                            <div
+                              className="select-item py-4"
+                              onClick={() => moveDown(item)}
+                            >
                               Mover baixo
                             </div>
-                            <div className="select-item mgb-15">Duplicar</div>
+                            <div className="select-item py-4">Duplicar</div>
                             <div
-                              className="select-item mgb-15"
-                              onClick={handleMove}
+                              className="select-item py-4 mb-4"
+                              onClick={(e) => handleMove(item)}
                             >
                               Mover aulas
                             </div>
-                            <DeleteMoudle moduleId={item._id} />
+                            <DeleteMoudle
+                              moduleId={item._id}
+                              title={item.name}
+                            />
                           </div>
                         )}
                       </div>
 
-                      <div className={`fold_content ${active1 ? "open" : ""}`}>
+                      <div
+                        className={`fold_content ${
+                          item.collapseKey ? "open" : ""
+                        }`}
+                      >
                         <hr className="line" />
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${CheckBule}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div onClick={() => goImprove()}>
-                            <div className="Edit-ft1 mb-2">AULA 1 | 7:23</div>
-                            <div className="con-ft5">
-                              Como melhorar o seu Aprendizado?
-                            </div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${CheckBule}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 2 | VÍDEO 12:54
-                            </div>
-                            <div className="con-ft5">Revolução Digital</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${DotIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 3 | VÍDEO 15:54
-                            </div>
-                            <div className="con-ft5">O que é Home Office?</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${VideoIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 4 | VÍDEO 5:05
-                            </div>
-                            <div className="con-ft5">Área de Atuação</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${VideoIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 5 | VÍDEO 12:39
-                            </div>
-                            <div className="con-ft5">
-                              Vantagens do Home Office
-                            </div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${FileIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 6 | ARQUIVO
-                            </div>
-                            <div className="con-ft5">
-                              Boas Práticas Home Office
-                            </div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${TextIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">AULA 7 | TEXTO</div>
-                            <div className="con-ft5">Por que Home Office?</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${FileIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 8 | ARQUIVO
-                            </div>
-                            <div className="con-ft5">
-                              Relacionamento Interpessoal
-                            </div>
-                          </div>
-                        </div>
+                        {moveflag ? (
+                          characters.map((data, index) => {
+                            return (
+                              <div key={index}>
+                                {item._id === data.module && (
+                                  <div className="test-content d-flex mb-4">
+                                    <img
+                                      src={
+                                        require(`../../assets/img/${CheckBule}`)
+                                          .default
+                                      }
+                                      className="mr-2"
+                                    />
+                                    <div onClick={() => goImprove()}>
+                                      <div className="Edit-ft1 mb-2">
+                                        AULA {index + 1} | {data.type}{" "}
+                                        {data.time}
+                                      </div>
+                                      <div className="con-ft5">
+                                        {data.title}
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <DragDropContext onDragEnd={handleOnDragEnd}>
+                            <Droppable droppableId="characters">
+                              {(provided) => (
+                                <div
+                                  {...provided.droppableProps}
+                                  ref={provided.innerRef}
+                                >
+                                  {characters.map((data, index) => {
+                                    return (
+                                      <>
+                                        {item._id === data.module && (
+                                          <Draggable
+                                            key={data.order}
+                                            draggableId={"item" + data.order}
+                                            index={index}
+                                          >
+                                            {(provided) => (
+                                              <div
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                className="test-content d-flex mb-4"
+                                              >
+                                                <img
+                                                  src={
+                                                    require(`../../assets/img/${MoveIcon}`)
+                                                      .default
+                                                  }
+                                                  className="mr-2"
+                                                />
+                                                <div
+                                                  onClick={() => goImprove()}
+                                                >
+                                                  <div className="Edit-ft1 mb-2">
+                                                    AULA {index + 1} |{" "}
+                                                    {data.type} {data.time}
+                                                  </div>
+                                                  <div className="con-ft5">
+                                                    {data.title}
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            )}
+                                          </Draggable>
+                                        )}
+                                      </>
+                                    );
+                                  })}
+                                  {provided.placeholder}
+                                </div>
+                              )}
+                            </Droppable>
+                          </DragDropContext>
+                        )}
                       </div>
                     </div>
                   </div>
                 );
               })
             : ""}
-          {/* <div className="accordion">
-            <div className="fold">
-              <div
-                className={`d-flex justify-content-between align-items-center  ${
-                  active2 ? "open-fold" : ""
-                }`}
-              >
-                <button
-                  className={`fold_trigger ${active2 ? "open" : ""}`}
-                  onClick={selectFold2}
-                >
-                  <div className="Edit-ft1 mgl-40">MÓDULO 2</div>
-                  <div className="d-flex align-items-center">
-                    <i
-                      className={`fas fa-chevron-up mr-2 down-up ${
-                        active2 ? "open1" : ""
-                      }`}
-                    ></i>
-                    <div className="con-ft1">Agora é pra Valer!</div>
-                  </div>
-                </button>
-                <button
-                  className="dropbut text-center"
-                  // onClick={Handle_Select2}
-                >
-                  <i className="fas fa-ellipsis-v"></i>
-                </button>
-                {select2 && (
-                  <div className="select-content con-ft2">
-                    <div className="select-item mgb-15">Editar</div>
-                    <div className="select-item mgb-15">Mover cima</div>
-                    <div className="select-item mgb-15">Mover baixo</div>
-                    <div className="select-item mgb-15">Duplicar</div>
-                    <div className="select-item mgb-15">Mover aulas</div>
-                    <div className="select-item con-color1">Excluir</div>
-                  </div>
-                )}
-              </div>
-
-              <div className={`fold_content ${active2 ? "open" : ""}`}>
-                <hr className="line" />
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${CheckBule}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 1 | 7:23</div>
-                    <div className="con-ft5">
-                      Como melhorar o seu Aprendizado?
-                    </div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${CheckBule}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 2 | VÍDEO 12:54</div>
-                    <div className="con-ft5">Revolução Digital</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${DotIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 3 | VÍDEO 15:54</div>
-                    <div className="con-ft5">O que é Home Office?</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${VideoIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 4 | VÍDEO 5:05</div>
-                    <div className="con-ft5">Área de Atuação</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${VideoIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 5 | VÍDEO 12:39</div>
-                    <div className="con-ft5">Vantagens do Home Office</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${FileIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 6 | ARQUIVO</div>
-                    <div className="con-ft5">Boas Práticas Home Office</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${TextIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 7 | TEXTO</div>
-                    <div className="con-ft5">Por que Home Office?</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${FileIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 8 | ARQUIVO</div>
-                    <div className="con-ft5">Relacionamento Interpessoal</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
         <div className="col-xl-1"></div>
       </div>

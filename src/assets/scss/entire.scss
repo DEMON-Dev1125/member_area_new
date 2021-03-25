@@ -5,10 +5,11 @@ $line-color: rgba(34, 36, 38, 0.35);
   display: flex;
   flex-direction: column;
   border-radius: 10%;
-  overflow-y: auto;
+  // overflow-y: auto;
   background: white;
   border-radius: 20px;
   margin-bottom: 50px;
+  position: relative;
 }
 .fold {
   .fold_trigger {
