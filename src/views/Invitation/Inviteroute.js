@@ -17,7 +17,7 @@ export default function Inviteroute() {
         component={(props) => <Addinvite {...props} />}
       />
       <Route
-        path="/main/invite/editinvite"
+        path="/main/invite/editinvite/:id"
         component={(props) => <Editinvite {...props} />}
       />
     </Switch>

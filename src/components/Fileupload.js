@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-export default function Fileupload() {
+export default function Fileupload(props) {
   const FileIcon = "fileIcon.svg";
   const [image, setImage] = useState(null);
   const handleImgChange = ({ target: { files } }) => {
     const cancel = !files.length;
     if (cancel) return;
     setImage(URL.createObjectURL(files[0]));
+    props.fileData(files);
   };
   const hiddenFileInput = React.useRef(null);
   const handleClick = () => {

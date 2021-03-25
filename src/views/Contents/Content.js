@@ -270,9 +270,11 @@ export default function ContentIndex() {
   const [moreButtonKey, setMoreButtonKey] = useState(false);
 
   const handleOnBlur = (item) => {
-    item.moreButtonKey = false;
-    setMoreButtonKey(!moreButtonKey);
-  }
+    setTimeout(() => {
+      item.moreButtonKey = false;
+      setMoreButtonKey(!moreButtonKey);
+    }, 100);
+  };
 
   return (
     <div className="container-fluid mt-5">

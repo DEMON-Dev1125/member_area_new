@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import Fileupload from "../../components/Fileupload";
 
 import "../../assets/css/login.css";
 import "../../assets/css/invite.css";
 
-import { addInvite } from '../../actions/invite';
+import { addInvite } from "../../actions/invite";
 
 export default function Invite() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [file, setFile] = useState([]);
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -18,17 +19,20 @@ export default function Invite() {
     history.goBack();
   };
 
-  const handleSave = () => {
-    if(!title || !description) return;
-    else {
-      var sendData = {
-        'title': title,
-        'description': description
-      }
+  const fileData = (file) => {
+    setFile(file);
+  };
 
-      dispatch(addInvite(sendData));
+  const handleSave = () => {
+    if (!title || !description) return;
+    else {
+      dispatch(addInvite(history, title, description));
     }
-  }
+  };
+
+  // useEffect(() => {
+  //   if(status && status.success === "success") history.push("/main/invite");
+  // }, [status]);
 
   return (
     <div className="container-fluid mt-5">
@@ -63,16 +67,24 @@ export default function Invite() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Imagem destaque</div>
-            <Fileupload />
+            <Fileupload fileData={fileData} />
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_save w-100" onClick={handleSave}>
+              <button
+                type="button"
+                className="but_save w-100"
+                onClick={handleSave}
+              >
                 Adicionar convite
               </button>
             </div>
             <div className="col-xl-6 col-12">
-              <button type="button" className="but_cancel w-100">
+              <button
+                type="button"
+                className="but_cancel w-100"
+                onClick={Back_fun}
+              >
                 Cancelar
               </button>
             </div>
