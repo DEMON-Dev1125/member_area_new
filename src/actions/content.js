@@ -2,6 +2,7 @@ import {
   ADD_MODULE,
   GET_ALLMODULEDATA,
   DELETE_MODULE,
+  ADD_MODULECONTENT,
   GET_ALL_CONTENT,
   UPDATE_CONTENT,
   UPDATE_MODULE,
@@ -32,6 +33,15 @@ export const getAllModule = () => (dispatch) => {
     dispatch({
       type: GET_ALLMODULEDATA,
       payload: allData,
+    });
+  });
+};
+
+export const addContent = (contentData) => (dispatch) => {
+  return ContentService.addContent(contentData).then((data) => {
+    dispatch({
+      type: ADD_MODULECONTENT,
+      payload: data,
     });
   });
 };

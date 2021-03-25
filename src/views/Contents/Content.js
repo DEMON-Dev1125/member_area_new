@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, Provider } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import {
@@ -115,7 +115,7 @@ export default function ContentIndex() {
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
+  const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
@@ -150,7 +150,6 @@ export default function ContentIndex() {
   };
   const [select1, setSelect1] = useState(false);
   const [select2, setSelect2] = useState(false);
-
   const HandleMore = (item) => {
     if (item.moreButtonKey) item.moreButtonKey = false;
     else item.moreButtonKey = true;
@@ -255,7 +254,7 @@ export default function ContentIndex() {
         if (data._id === item._id && data.order === item.order) {
           data.order = item.order + 1;
         }
-        if(item.order === data.order && data._id !== item._id) {
+        if (item.order === data.order && data._id !== item._id) {
           data.order = item.order - 1;
         }
 
@@ -266,14 +265,13 @@ export default function ContentIndex() {
       dispatch(updateModule(modules));
     }
   };
-  
-  const [moreButtonKey, setMoreButtonKey] = useState(false);
+
+  const [delDig, setDelDig] = useState(false);
+  const [moreButtonKeys, setMoreButtonKeys] = useState(false);
 
   const handleOnBlur = (item) => {
-    setTimeout(() => {
-      item.moreButtonKey = false;
-      setMoreButtonKey(!moreButtonKey);
-    }, 100);
+    item.moreButtonKey = false;
+    setMoreButtonKeys(!moreButtonKeys);
   };
 
   return (
@@ -340,7 +338,6 @@ export default function ContentIndex() {
         <div className="col-12 col-lg-12 col-xl-5 mgt-70 d-flex justify-content-center flex-column">
           {allModuleData
             ? allModuleData.map((item, key) => {
-                console.log("dd");
                 return (
                   <div
                     className="accordion mt-3"
@@ -386,7 +383,7 @@ export default function ContentIndex() {
                             id={`moreBtn` + key}
                             className="dropBtn text-center"
                             onClick={() => HandleMore(item)}
-                            onBlur={() => handleOnBlur(item)}
+                            // onBlur={() => handleOnBlur(item)}
                           >
                             <i className="fas fa-ellipsis-v"></i>
                           </button>
@@ -400,33 +397,39 @@ export default function ContentIndex() {
                         )}
 
                         {item.moreButtonKey && (
-                          <div className="select-content con-ft2">
+                          <div
+                            className="select-content con-ft2"
+                            onMouseLeave={() => handleOnBlur(item)}
+                          >
                             <div
-                              className="select-item mgb-15"
+                              className="select-item pb-4"
                               onClick={() => editModuleName(item)}
                             >
                               Editar
                             </div>
                             <div
-                              className="select-item mgb-15"
+                              className="select-item py-4"
                               onClick={() => moveUp(item)}
                             >
                               Mover cima
                             </div>
                             <div
-                              className="select-item mgb-15"
+                              className="select-item py-4"
                               onClick={() => moveDown(item)}
                             >
                               Mover baixo
                             </div>
-                            <div className="select-item mgb-15">Duplicar</div>
+                            <div className="select-item py-4">Duplicar</div>
                             <div
-                              className="select-item mgb-15"
+                              className="select-item py-4 mb-4"
                               onClick={(e) => handleMove(item)}
                             >
                               Mover aulas
                             </div>
-                            <DeleteMoudle moduleId={item._id} />
+                            <DeleteMoudle
+                              moduleId={item._id}
+                              title={item.name}
+                            />
                           </div>
                         )}
                       </div>
@@ -519,326 +522,12 @@ export default function ContentIndex() {
                             </Droppable>
                           </DragDropContext>
                         )}
-                        {/* <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${CheckBule}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div onClick={() => goImprove()}>
-                            <div className="Edit-ft1 mb-2">AULA 1 | 7:23</div>
-                            <div className="con-ft5">
-                              Como melhorar o seu Aprendizado?
-                            </div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${CheckBule}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 2 | VÍDEO 12:54
-                            </div>
-                            <div className="con-ft5">Revolução Digital</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${DotIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 3 | VÍDEO 15:54
-                            </div>
-                            <div className="con-ft5">O que é Home Office?</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${VideoIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 4 | VÍDEO 5:05
-                            </div>
-                            <div className="con-ft5">Área de Atuação</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${VideoIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 5 | VÍDEO 12:39
-                            </div>
-                            <div className="con-ft5">
-                              Vantagens do Home Office
-                            </div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${FileIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 6 | ARQUIVO
-                            </div>
-                            <div className="con-ft5">
-                              Boas Práticas Home Office
-                            </div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${TextIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">AULA 7 | TEXTO</div>
-                            <div className="con-ft5">Por que Home Office?</div>
-                          </div>
-                        </div>
-                        <div className="test-content d-flex mb-4">
-                          {moveflag ? (
-                            <img
-                              src={
-                                require(`../../assets/img/${FileIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          ) : (
-                            <img
-                              src={
-                                require(`../../assets/img/${MoveIcon}`).default
-                              }
-                              className="mr-2"
-                            />
-                          )}
-                          <div>
-                            <div className="Edit-ft1 mb-2">
-                              AULA 8 | ARQUIVO
-                            </div>
-                            <div className="con-ft5">
-                              Relacionamento Interpessoal
-                            </div>
-                          </div>
-                        </div> */}
                       </div>
                     </div>
                   </div>
                 );
               })
             : ""}
-          {/* <div className="accordion">
-            <div className="fold">
-              <div
-                className={`d-flex justify-content-between align-items-center  ${
-                  active2 ? "open-fold" : ""
-                }`}
-              >
-                <button
-                  className={`fold_trigger ${active2 ? "open" : ""}`}
-                  onClick={selectFold2}
-                >
-                  <div className="Edit-ft1 mgl-40">MÓDULO 2</div>
-                  <div className="d-flex align-items-center">
-                    <i
-                      className={`fas fa-chevron-up mr-2 down-up ${
-                        active2 ? "open1" : ""
-                      }`}
-                    ></i>
-                    <div className="con-ft1">Agora é pra Valer!</div>
-                  </div>
-                </button>
-                <button
-                  className="dropbut text-center"
-                  // onClick={Handle_Select2}
-                >
-                  <i className="fas fa-ellipsis-v"></i>
-                </button>
-                {select2 && (
-                  <div className="select-content con-ft2">
-                    <div className="select-item mgb-15">Editar</div>
-                    <div className="select-item mgb-15">Mover cima</div>
-                    <div className="select-item mgb-15">Mover baixo</div>
-                    <div className="select-item mgb-15">Duplicar</div>
-                    <div className="select-item mgb-15">Mover aulas</div>
-                    <div className="select-item con-color1">Excluir</div>
-                  </div>
-                )}
-              </div>
-
-              <div className={`fold_content ${active2 ? "open" : ""}`}>
-                <hr className="line" />
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${CheckBule}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 1 | 7:23</div>
-                    <div className="con-ft5">
-                      Como melhorar o seu Aprendizado?
-                    </div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${CheckBule}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 2 | VÍDEO 12:54</div>
-                    <div className="con-ft5">Revolução Digital</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${DotIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 3 | VÍDEO 15:54</div>
-                    <div className="con-ft5">O que é Home Office?</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${VideoIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 4 | VÍDEO 5:05</div>
-                    <div className="con-ft5">Área de Atuação</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${VideoIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 5 | VÍDEO 12:39</div>
-                    <div className="con-ft5">Vantagens do Home Office</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${FileIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 6 | ARQUIVO</div>
-                    <div className="con-ft5">Boas Práticas Home Office</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${TextIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 7 | TEXTO</div>
-                    <div className="con-ft5">Por que Home Office?</div>
-                  </div>
-                </div>
-                <div className="test-content d-flex mb-4">
-                  <img
-                    src={require(`../../assets/img/${FileIcon}`).default}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="Edit-ft1 mb-2">AULA 8 | ARQUIVO</div>
-                    <div className="con-ft5">Relacionamento Interpessoal</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
         <div className="col-xl-1"></div>
       </div>

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getAllGroup } from "../../actions/group";
 import "../../assets/css/login.css";
 
 const MemberImg1 = "member1.png";
@@ -8,11 +10,20 @@ const MemberImg3 = "member3.png";
 
 export default function Group() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const Handle_Newgroup = () => {
     history.push("/main/group/newgroup");
   };
-  const EditClass = () => {
-    history.push("/main/group/editclass");
+
+  useEffect(() => {
+    dispatch(getAllGroup());
+  }, []);
+
+  const groupDatas = useSelector((state) => state.group.allData);
+  console.log("group", groupDatas);
+
+  const GroupEdit = () => {
+    history.push("/main/group/groupedit");
   };
   return (
     <div className="container-fluid mt-5">
@@ -27,11 +38,10 @@ export default function Group() {
             <div className="col-lg-6 col-sm-12">
               <button
                 type="button"
+                onClick={Handle_Newgroup}
                 className="u-btn-group u-btn-color btn-ft1 d-flex align-items-center justify-content-center dropbtn w-100"
               >
-                <div className="mr-3" onClick={Handle_Newgroup}>
-                  Nova turma
-                </div>
+                <div className="mr-3">Nova turma</div>
                 <i className="fas fa-plus"></i>
               </button>
             </div>
@@ -39,7 +49,7 @@ export default function Group() {
           <hr />
           <div
             className="group-content container-fluid p-5 mt-5"
-            onClick={EditClass}
+            onClick={GroupEdit}
             style={{ cursor: "pointer" }}
           >
             <div className="row">

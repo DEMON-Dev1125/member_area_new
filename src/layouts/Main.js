@@ -17,10 +17,9 @@ function Main() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
-  const isLoggedIn = localStorage.getItem("user")?true:false;
+  const isLoggedIn = localStorage.getItem("user") ? true : false;
 
   const getRoutes = (routes) => {
-    
     return routes.map((prop, key) => {
       if (prop.layout === "/main") {
         return (

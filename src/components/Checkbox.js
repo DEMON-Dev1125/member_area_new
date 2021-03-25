@@ -50,15 +50,21 @@ const useStyles = makeStyles({
 export default function StyledCheckbox(props) {
   const classes = useStyles();
 
+  const onCheck = (e) => {
+    const status = e.target.checked;
+    props.status(status);
+  };
+
   return (
     <Checkbox
-      className={classes.root}
+      // {...props}
       disableRipple
       color="default"
-      checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+      className={classes.root}
       icon={<span className={classes.icon} />}
       inputProps={{ "aria-label": "decorative checkbox" }}
-      {...props}
+      checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+      onChange={onCheck}
     />
   );
 }

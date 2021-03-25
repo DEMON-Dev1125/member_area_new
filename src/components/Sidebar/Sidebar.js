@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import $ from "jquery";
+// import $ from "jquery";
 
 const AvatarImg = "Avatar.png";
 const LogoSvg = "Logo.svg";
@@ -27,12 +27,12 @@ function Sidebar(props) {
   const logoutClick =()=>{
     localStorage.removeItem("user");
   }
-  $(window).on("resize", function () {
-    if (window.innerWidth > 770) {
-      document.querySelector(".wrapper .mobile-sidebar ").style.transform =
-        "translate3d(0px, 0, 0)";
-    } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
-  });
+  // $(window).on("resize", function () {
+  //   if (window.innerWidth > 770) {
+  //     document.querySelector(".wrapper .mobile-sidebar ").style.transform =
+  //       "translate3d(0px, 0, 0)";
+  //   } else document.querySelector(".wrapper .mobile-sidebar ").style.transform = "translate3d(-343px, 0, 0)";
+  // });
 
   return (
     <div

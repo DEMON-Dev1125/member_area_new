@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-//sever url
-const API_URL = "http://192.168.107.163:5000/api";
+import { config } from "../config/config";
+const API_URL = config.SERVER_URL;
 
 const addModule = (name) => {
   return axios.post(
@@ -19,6 +19,12 @@ const deleteModule = (id) => {
 
 const getAllModule = () => {
   return axios.get(API_URL + "/modules", { headers: authHeader() });
+};
+
+const addContent = (contentData) => {
+  return axios.post(API_URL + "/contents/add", contentData, {
+    headers: authHeader(),
+  });
 };
 
 const getAllContent = () => {
@@ -45,6 +51,7 @@ export default {
   addModule,
   getAllModule,
   deleteModule,
+  addContent,
   getAllContent,
   updateContent,
   updateModule,

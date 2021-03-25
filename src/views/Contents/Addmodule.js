@@ -24,12 +24,12 @@ export default function AddMoudle() {
   const form = useRef();
   const history = useHistory();
   const [open, setOpen] = useState(false);
-  const [moduleName, setModuleName] = useState();
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.content.data);
+
   useEffect(() => {
-    if (data["success"]) {
+    if (data && data["success"]) {
       store.addNotification({
         title: "Success!",
         message: "Add module success",
@@ -43,10 +43,11 @@ export default function AddMoudle() {
           onScreen: true,
         },
       });
+      setModuleName("");
       setOpen(false);
-    } else if (data.errors) {
+    } else if (data && data.errors) {
       store.addNotification({
-        title: "Worning!",
+        title: "Warning!",
         message: data.errors["name"],
         type: "warning",
         insert: "top",
@@ -61,7 +62,7 @@ export default function AddMoudle() {
     }
   }, [data]);
 
-  const handleClickOpen = () => {
+  const handleDelete = () => {
     setOpen(true);
   };
 
@@ -69,6 +70,7 @@ export default function AddMoudle() {
     setOpen(false);
   };
 
+  const [moduleName, setModuleName] = useState();
   const onChangeModuleName = (e) => {
     const moduleName = e.target.value;
     setModuleName(moduleName);
@@ -90,7 +92,7 @@ export default function AddMoudle() {
     <div>
       <div
         className="con-ft4"
-        onClick={handleClickOpen}
+        onClick={handleDelete}
         style={{ cursor: "pointer" }}
       >
         Novo módulo

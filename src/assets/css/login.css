@@ -1070,6 +1070,7 @@ html,
   border-radius: 10px;
   opacity: 1;
   color: white;
+  float: right;
 }
 .but-plus:hover {
   cursor: pointer;
@@ -1403,7 +1404,7 @@ html,
 .group-new41 {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 69px;
+  margin-bottom: 70px;
 }
 .group-new42 {
   display: flex;
@@ -2911,16 +2912,6 @@ html,
   .group-new4 {
     margin-top: 30px;
     padding: 30px;
-  }
-  .group-new41 {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 69px;
-  }
-  .group-new42 {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 19px;
   }
   .group-new .mgl-210 {
     text-align: center;

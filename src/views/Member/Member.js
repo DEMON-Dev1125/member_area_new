@@ -24,6 +24,21 @@ import StyledCheckbox from "components/Checkbox";
 const MemberAvatar = "face-5.jpg";
 const MemberBack = "membro.png";
 
+const MemberData = [
+  {
+    _id: 123123123,
+    name: "asdfasdf",
+    role: 1,
+    team: 1,
+  },
+  {
+    _id: 1232123123,
+    name: "asdfasdf",
+    role: 1,
+    team: 1,
+  },
+];
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -110,7 +125,7 @@ export default function Member() {
     history.push("/main/member/editmember");
   };
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -120,7 +135,7 @@ export default function Member() {
     setMember((prevState) => !prevState);
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {

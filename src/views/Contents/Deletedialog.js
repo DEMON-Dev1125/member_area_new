@@ -4,40 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import { store } from "react-notifications-component";
 import { deleteModule } from "../../actions/content";
+import Item from "antd/lib/list/Item";
 
 const CloseIcon = "ios-close.svg";
 const DeleteIcon = "delete_icon.svg";
 
-export default function Deletedialog(props) {
-  const { moduleId } = props;
-  console.log(moduleId);
+export default function DeleteModule(props) {
+  const { moduleId, title } = props;
 
   const [open, setOpen] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
-  const deleteModuleName = () => {
-    if (!moduleId) {
-      return;
-    } else {
-      const id = moduleId;
-      dispatch(deleteModule(id));
-    }
-  };
-
   const data = useSelector((state) => state.content.delData);
-  console.log("=====", data);
+
   useEffect(() => {
-    if (data["success"]) {
+    if (data && data["success"]) {
       store.addNotification({
         title: "Success!",
         message: "Delete success!",
@@ -52,7 +35,7 @@ export default function Deletedialog(props) {
         },
       });
       setOpen(false);
-    } else if (data.errors) {
+    } else if (data && data.errors) {
       store.addNotification({
         title: "Worning!",
         message: data.errors["name"],
@@ -69,9 +52,29 @@ export default function Deletedialog(props) {
     }
   }, [data]);
 
+  const handleDelete = () => {
+    setOpen(true);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  const deleteModuleName = (e) => {
+    e.preventDefault();
+
+    if (!moduleId) {
+      return;
+    } else {
+      const id = moduleId;
+      console.log("id", id);
+      dispatch(deleteModule(id));
+    }
+  };
+
   return (
     <div>
-      <div className="select-item con-color1" onClick={handleOpen}>
+      <div className="select-item con-color1" onClick={handleDelete}>
         Excluir
       </div>
       <Dialog
@@ -106,7 +109,7 @@ export default function Deletedialog(props) {
           <div className="Edit-ft6 mgt-50">Deseja excluir esse módulo?</div>
           <div className="mgt-30 conl-ft5">
             Você está prestes a excluir o módulo{" "}
-            <span className="con-color2">1-Introdução</span> do curso{" "}
+            <span className="con-color2">{title}</span> do curso{" "}
             <span className="con-color2">Método Remoto 3.0</span>! Caso prossiga
             com a ação, todos os conteúdos presentes nesse módulo serão
             excluídos também.

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ToogleButton from "../../components/Togglebutton.js";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { getAllModule } from "../../actions/content";
 import "../../assets/css/login.css";
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(0),
@@ -18,21 +21,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
+
 export default function EditContent() {
   const history = useHistory();
   const classes = useStyles();
   const Back_fun = () => {
     history.goBack();
   };
-  const [newgroup, setNewgroup] = useState("");
   const [drpdwn, setDrpDwn] = useState(false);
-  const Handle_Newgroup = (e) => {
-    setNewgroup(e.target.value);
-  };
-  const [itemaccess, setItemaccess] = useState("");
-  const Handle_Itemaccess = (e) => {
-    setItemaccess(e.target.value);
-  };
   const [role1, setRole1] = useState(10);
   const Handle_Role1 = (e) => {
     setRole1(e.target.value);
@@ -41,21 +37,80 @@ export default function EditContent() {
   const Handle_Role2 = (e) => {
     setRole2(e.target.value);
   };
-  const [role3, setRole3] = useState(10);
-  const Handle_Role3 = (e) => {
-    setRole3(e.target.value);
-  };
+
   const Handle_Add = () => {
     history.push("/main/group/groupadd");
   };
 
-  const showLearning = () => {
+  const addClass = () => {
     setDrpDwn(!drpdwn);
   };
 
   const drpdwnCls = drpdwn
     ? "group-new6 group-content1"
     : "drpdwn group-new6 group-content1";
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllModule());
+  }, []);
+
+  const allModuleData = useSelector((state) => state.content.allData);
+
+  const [NewGroupName, setNewGroupName] = useState("");
+  const ChangeGroupName = (e) => {
+    setNewGroupName(e.target.value);
+  };
+
+  const [ItemAccess, setItemAccess] = useState("");
+  const changeItemAccess = (e) => {
+    setItemAccess(e.target.value);
+  };
+
+  const [status, setStatus] = useState();
+  const toogleStatus = (status) => {
+    setStatus(status);
+  };
+
+  const [rule, setRule] = useState(false);
+  const selectRule = (e, item) => {
+    item.ruleKey = e.target.value;
+    setRule(!rule);
+  };
+
+  const [StartDate, setStartDate] = useState("");
+  const changeStartDate = (e) => {
+    setStartDate(e.target.value);
+  };
+
+  const [EndDate, setEndDate] = useState("");
+  const changeEndDate = (e) => {
+    setEndDate(e.target.value);
+  };
+
+  const [AccessTerm, setAccessTerm] = useState("");
+  const changeAccessTerm = (e) => {
+    setAccessTerm(e.target.value);
+  };
+
+  const [ClassRule, setClassRule] = useState();
+  const changeClassRule = (e) => {
+    setClassRule(e.target.value);
+  };
+
+  const addGroup = () => {
+    const groupInfo = {
+      NewGroupName,
+      ItemAccess,
+      status,
+      StartDate,
+      EndDate,
+      AccessTerm,
+    };
+    console.log("=====", groupInfo);
+  };
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -72,9 +127,9 @@ export default function EditContent() {
               <input
                 type="text"
                 className="Edit-warp mt-3 w-100 Edit-ft4"
-                placeholder="Turma A"
-                value={newgroup}
-                onChange={Handle_Newgroup}
+                placeholder="Nome da turma"
+                value={NewGroupName}
+                onChange={ChangeGroupName}
               />
             </div>
             <div className="col-lg-4">
@@ -84,15 +139,15 @@ export default function EditContent() {
                   type="number"
                   className="Edit-warp mt-3 Edit-ft4 w-100"
                   placeholder="01"
-                  value={itemaccess}
-                  onChange={Handle_Itemaccess}
+                  value={ItemAccess}
+                  onChange={changeItemAccess}
                 />
                 <div className="item-day Edit-ft1">DIAS</div>
               </div>
             </div>
           </div>
           <div className="mt-5 d-flex">
-            <ToogleButton />
+            <ToogleButton status={toogleStatus} />
             <div className="ml-3">
               <div className="Edit-ft3">Turma padrão</div>
               <div className="Edit-ft5">
@@ -107,67 +162,79 @@ export default function EditContent() {
             </div>
           </div>
           <div className="group-new4 group-content">
-            <div className="group-new41">
-              <div>
-                <div className="Edit-ft1">MÓDULO 1</div>
-                <div className="mt-1 con-ft5">Introdução</div>
-              </div>
-              <div className="topmargin">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative ht-45 new_group_select">
-                  <FormControl
-                    variant="outlined"
-                    className={`${classes.formControl} mt-3`}
-                    width="100%"
-                  >
-                    <Select
-                      native
-                      defaultValue="Aula"
-                      id="grouped-native-select"
-                      onChange={Handle_Role1}
-                      label="lang"
-                    >
-                      <option value={10}>Acesso Livre</option>
-                      <option value={20}>Data programada</option>
-                      <option value={30}>Dias após compra</option>
-                      <option value={40}>Oculto</option>
-                      <option value={50}>Bloqueado</option>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
-            <div className="group-new42">
-              <div>
-                <div className="Edit-ft1">MÓDULO 2</div>
-                <div className="mt-1 con-ft5">Agora é pra Valer!</div>
-              </div>
-              <div className="topmargin">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative new_group_select">
-                  <FormControl
-                    variant="outlined"
-                    className={`${classes.formControl} mt-3`}
-                    width="100%"
-                  >
-                    <Select
-                      native
-                      defaultValue="Aula"
-                      id="grouped-native-select"
-                      onChange={Handle_Role2}
-                      label="lang"
-                      value={role2}
-                    >
-                      <option value={10}>Acesso Livre</option>
-                      <option value={20}>Data programada</option>
-                      <option value={30}>Dias após compra</option>
-                      <option value={40}>Oculto</option>
-                      <option value={50}>Bloqueado</option>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
+            {allModuleData &&
+              allModuleData.map((item, key) => {
+                return (
+                  <div className="group-new41" key={key}>
+                    <div>
+                      <div className="Edit-ft1">MÓDULO {key + 1}</div>
+                      <div className="mt-1 con-ft5">{item.name}</div>
+                    </div>
+                    <div className="topmargin">
+                      <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl} mt-3`}
+                          width="100%"
+                        >
+                          <Select
+                            native
+                            id="grouped-native-select"
+                            onChange={(e) => selectRule(e, item)}
+                            label="rule"
+                          >
+                            <option value={10}>Acesso Livre</option>
+                            <option value={20}>Data programada</option>
+                            <option value={30}>Dias após compra</option>
+                            <option value={40}>Oculto</option>
+                            <option value={50}>Bloqueado</option>
+                          </Select>
+                        </FormControl>
+                      </div>
+
+                      {item.ruleKey == 20 && (
+                        <div className="mt-5">
+                          <div className="mb-3">
+                            <div className="Edit-ft1">DATA LIBERAÇÃO</div>
+                            <input
+                              type="text"
+                              className="input-ft2 mt-2 w-100"
+                              placeholder="05/01/2021 12:00"
+                              value={StartDate}
+                              onChange={changeStartDate}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <div className="Edit-ft1">DATA FECHAMENTO</div>
+                            <input
+                              type="text"
+                              className="input-ft2 mt-2 w-100"
+                              placeholder="14/01/2021 12:00"
+                              value={EndDate}
+                              onChange={changeEndDate}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      {item.ruleKey == 30 && (
+                        <div className="mt-5">
+                          <div className="position-relative">
+                            <input
+                              type="number"
+                              className="Edit-warp mt-3 Edit-ft4-1 w-100"
+                              placeholder="01"
+                              value={AccessTerm}
+                              onChange={changeAccessTerm}
+                            />
+                            <div className="item-day-1 Edit-ft1">DIAS</div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
           <div className="group-new5">
             <div className="Edit-ft3">Regras de Liberação de Aulas</div>
@@ -187,31 +254,37 @@ export default function EditContent() {
                   >
                     <Select
                       native
-                      defaultValue="Aula"
                       id="grouped-native-select"
-                      onChange={Handle_Role3}
+                      onChange={changeClassRule}
                       label="role"
-                      value={role3}
+                      value={ClassRule}
                     >
-                      <optgroup className="opt-group" label="1 - Introdução">
-                        <option value={0} hidden className="opt-item">
-                          Aula
-                        </option>
-                        <option value={1}>
-                          Como melhorar o seu Aprendizado?
-                        </option>
-                        <option value={2}>Revolução Digital</option>
-                        <option value={3}>O que é Home Office?</option>
-                        <option value={4}>Área de Atuação</option>
-                        <option value={5}>Vantagens do Home Office</option>
-                        <option value={6}>Boas Práticas Home Office</option>
-                      </optgroup>
+                      <option>Aula</option>
+                      {allModuleData &&
+                        allModuleData.map((item, key) => {
+                          return (
+                            <optgroup
+                              className="opt-group"
+                              key={key}
+                              label={`${key + 1} - ${item.name}`}
+                            >
+                              {allModuleData &&
+                                allModuleData.map((item, key) => {
+                                  return (
+                                    <option key={key} value={key + 1}>
+                                      {item._id}
+                                    </option>
+                                  );
+                                })}
+                            </optgroup>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                 </div>
               </div>
               <div className="col-2 col-xl-1">
-                <div className="but-plus mt-3" onClick={() => showLearning()}>
+                <div className="but-plus mt-3" onClick={() => addClass()}>
                   <i className="fas fa-plus"></i>
                 </div>
               </div>
@@ -266,7 +339,7 @@ export default function EditContent() {
           </TransitionGroup>
           <div className="row mt-5 mb-5">
             <div className="col-lg-6 col-sm-12">
-              <button className="but_save w-100" onClick={Handle_Add}>
+              <button className="but_save w-100" onClick={addGroup}>
                 {drpdwn ? "Adicionar turma" : "Adicionar conteúdo"}
               </button>
             </div>

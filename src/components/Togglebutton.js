@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 export default function Toggle(props) {
-  const [toggleState, setToggleState] = useState("off");
+  const [toggleState, setToggleState] = useState(false);
 
-  function toggle() {
-    setToggleState(toggleState === "off" ? "on" : "off");
-  }
+  const toggle = (e) => {
+    setToggleState(!toggleState);
+    props.status(!toggleState);
+  };
 
-  return <div className={`switch ${toggleState}`} onClick={toggle} />;
+  return <div className={`switch ${toggleState ? "on" : "off"}`} onClick={toggle} />;
 }
