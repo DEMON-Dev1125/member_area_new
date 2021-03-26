@@ -10,7 +10,7 @@ import { addMember } from '../../actions/member';
 const InfoIcon = "info-icon.svg";
 
 export default function Newmember() {
-  const [memberType, setMemberType] = useState(false);
+  const [membertype, setmembertype] = useState(false);
   const [dropType, setDropType] = useState(10);
 
   const [fullname, setFullname] = useState("");
@@ -25,7 +25,7 @@ export default function Newmember() {
   
   const onChangeSwitch = (type) => {
     console.log(type);
-    setMemberType(type);
+    setmembertype(type);
   };
 
   const HandleDropType = (e) => {
@@ -34,7 +34,7 @@ export default function Newmember() {
   };
 
   const onSave = () => {
-    let memType = memberType ? "collaborator" : "student";
+    let memType = membertype ? "collaborator" : "student";
     dispatch(addMember(history, fullname, email, memType));
   }
 
@@ -75,13 +75,13 @@ export default function Newmember() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3 mb-3">Tipo de membro</div>
-            <SwitchDrop onChange={onChangeSwitch} value={memberType} />
+            <SwitchDrop onChange={onChangeSwitch} value={membertype} />
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">
-              {memberType ? "Perfil de acesso" : "Turma"}
+              {membertype ? "Perfil de acesso" : "Turma"}
             </div>
-            {memberType ? (
+            {membertype ? (
               <div className="mt-1 position-relative ht-45 new_group_select">
                 <FormControl
                   variant="outlined"

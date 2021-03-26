@@ -12,8 +12,8 @@ export const getAllMember = () => (dispatch) => {
   });
 };
 
-export const addMember = (history, fullname, email, memberType) => (dispatch) => {
-  return MemberService.addMember(fullname, email, memberType).then((status) => {
+export const addMember = (history, fullname, email, membertype) => (dispatch) => {
+  return MemberService.addMember(fullname, email, membertype).then((status) => {
     if (status.data.success === "success") {
       store.addNotification({
         title: "Success!",

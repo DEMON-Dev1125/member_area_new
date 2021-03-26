@@ -17,7 +17,7 @@ import {
 } from "@material-ui/core";
 import { TabContext } from "@material-ui/lab";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { useSelector,  useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 import "../../assets/css/login.css";
 import "../../assets/css/member.css";
@@ -119,11 +119,19 @@ export default function Member() {
   const dispatch = useDispatch();
 
   const [dropType, setDropType] = useState(10);
-  
+
   const HandleDropType = (e) => {
     console.log(e.target.value);
     setDropType(e.target.value);
   };
+
+  const memberData = useSelector((state) =>
+    state.member.allData ? state.member.allData.members : []
+  );
+  
+  const [stuCount, setStuCount] = useState(0);
+  const [colCount, setColCount] = useState(0);
+  const [bloCount, setBloCount] = useState(0);
 
   const AddMember = () => {
     history.push("/main/member/addmember");
@@ -157,6 +165,23 @@ export default function Member() {
     dispatch(getAllMember());
   }, []);
 
+  useEffect(() => {
+    if(memberData.length !== 0) {
+      let stuCount = 0;
+      let colCount = 0;
+      let bloCount = 0;
+      memberData.map(data => {
+        if(data.membertype === "student") stuCount = stuCount + 1;
+        else if(data.membertype === "collaborator") colCount = colCount + 1;
+        else bloCount = bloCount + 1;
+      });
+      
+      setStuCount(stuCount);
+      setColCount(colCount);
+      setBloCount(bloCount);
+    }
+  }, [memberData])
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -185,7 +210,7 @@ export default function Member() {
             </div>
           </div>
           <hr />
-          {NoMember ? (
+          {memberData.length === 0 ? (
             <div className={classes.root}>
               <TabContext value={value}>
                 <div className="d-flex justify-content-center">
@@ -294,7 +319,7 @@ export default function Member() {
                         <StyledBadge
                           showZero
                           max={999}
-                          badgeContent={152}
+                          badgeContent={stuCount}
                           className={value == 0 ? classes.active : ""}
                         >
                           Alunos
@@ -307,7 +332,7 @@ export default function Member() {
                         <StyledBadge
                           showZero
                           max={999}
-                          badgeContent={3}
+                          badgeContent={colCount}
                           className={value == 1 ? classes.active : ""}
                         >
                           Colaboradores
@@ -320,7 +345,7 @@ export default function Member() {
                         <StyledBadge
                           showZero
                           max={999}
-                          badgeContent={2}
+                          badgeContent={bloCount}
                           className={value == 2 ? classes.redactive : ""}
                         >
                           Bloqueados
@@ -330,6 +355,9 @@ export default function Member() {
                     />
                   </Tabs>
                 </div>
+
+                {/*---------------------- student tabpan start -------------------------------------- */}
+
                 <TabPanel value={value} index={0}>
                   <div className="container content_style">
                     <div className="content_header">
@@ -393,240 +421,90 @@ export default function Member() {
                       </div>
                     </div>
                     <div className="content_body mt-5">
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-online">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button
-                              type="button"
-                              className="btn_edit"
-                              onClick={handleEdit}
-                            >
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-away">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-away">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-away">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
+                      {memberData.map((data, index) => {
+                        return (
+                          data.membertype === "student" && (
+                            <>
+                              <div className="row">
+                                <div className="col-sm-9 col-9 d-flex">
+                                  <div className="member_avatar avatar avatar-online">
+                                    <img
+                                      alt="..."
+                                      className="avatar-img"
+                                      src={
+                                        require(`../../assets/img/faces/${MemberAvatar}`)
+                                          .default
+                                      }
+                                    />
+                                  </div>
+                                  <div className="ml-3">
+                                    <div className="member_name">João Lima</div>
+                                    <div className="member_mail">
+                                      joaolimaduarte6@gmail.com
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-sm-3 col-3 mt-1">
+                                  <div className="desktop_hidden">
+                                    <button
+                                      type="button"
+                                      className="btn_edit"
+                                      onClick={handleEdit}
+                                    >
+                                      <i className="fa fa-pen-alt"></i>
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn_eye ml-2"
+                                    >
+                                      <i className="fa fa-eye"></i>
+                                    </button>
+                                  </div>
+                                  <div className="mobile_hidden">
+                                    <IconButton
+                                      aria-label="more"
+                                      aria-controls="long-menu"
+                                      aria-haspopup="true"
+                                      onClick={handleClick}
+                                    >
+                                      <MoreVertIcon />
+                                    </IconButton>
+                                    <Menu
+                                      id="long-menu"
+                                      anchorEl={anchorEl}
+                                      keepMounted
+                                      open={open}
+                                      onClose={handleClose}
+                                      PaperProps={{
+                                        style: {
+                                          maxHeight: ITEM_HEIGHT * 4.5,
+                                          width: "20ch",
+                                        },
+                                      }}
+                                    >
+                                      <MenuItem onClick={handleEdit}>
+                                        Edit
+                                      </MenuItem>
+                                      <MenuItem onClick={handleClose}>
+                                        view
+                                      </MenuItem>
+                                    </Menu>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr />
+                            </>
+                          )
+                        );
+                      })}
                     </div>
                   </div>
                 </TabPanel>
+
+                {/*---------------------- student tabpan end -------------------------------------- */}
+
+                {/*---------------------- collabrate tabpan start -------------------------------------- */}
+
                 <TabPanel value={value} index={1}>
                   <div className="container content_style">
                     <div className="content_header">
@@ -691,122 +569,86 @@ export default function Member() {
                       </div>
                     </div>
                     <div className="content_body mt-5">
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-online">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-away">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
+                      {memberData.map((data, index) => {
+                        return (
+                          data.membertype === "collaborator" && (
+                            <>
+                              <div className="row">
+                                <div className="col-sm-9 col-9 d-flex">
+                                  <div className="member_avatar avatar avatar-online">
+                                    <img
+                                      alt="..."
+                                      className="avatar-img"
+                                      src={
+                                        require(`../../assets/img/faces/${MemberAvatar}`)
+                                          .default
+                                      }
+                                    />
+                                  </div>
+                                  <div className="ml-3">
+                                    <div className="member_name">João Lima</div>
+                                    <div className="member_mail">
+                                      joaolimaduarte6@gmail.com
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-sm-3 col-3 mt-1">
+                                  <div className="desktop_hidden">
+                                    <button type="button" className="btn_edit">
+                                      <i className="fa fa-pen-alt"></i>
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn_eye ml-2"
+                                    >
+                                      <i className="fa fa-eye"></i>
+                                    </button>
+                                  </div>
+                                  <div className="mobile_hidden">
+                                    <IconButton
+                                      aria-label="more"
+                                      aria-controls="long-menu"
+                                      aria-haspopup="true"
+                                      onClick={handleClick}
+                                    >
+                                      <MoreVertIcon />
+                                    </IconButton>
+                                    <Menu
+                                      id="long-menu"
+                                      anchorEl={anchorEl}
+                                      keepMounted
+                                      open={open}
+                                      onClose={handleClose}
+                                      PaperProps={{
+                                        style: {
+                                          maxHeight: ITEM_HEIGHT * 4.5,
+                                          width: "20ch",
+                                        },
+                                      }}
+                                    >
+                                      <MenuItem onClick={handleEdit}>
+                                        Edit
+                                      </MenuItem>
+                                      <MenuItem onClick={handleClose}>
+                                        view
+                                      </MenuItem>
+                                    </Menu>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr />
+                            </>
+                          )
+                        );
+                      })}
                     </div>
                   </div>
                 </TabPanel>
+
+                {/*---------------------- collabrate tabpan end ------------------------- */}
+
+                {/*---------------------- blocked tabpan start -------------------------- */}
+
                 <TabPanel value={value} index={2}>
                   <div className="container content_style">
                     <div className="content_header">
@@ -820,122 +662,83 @@ export default function Member() {
                       </div>
                     </div>
                     <div className="content_body mt-5">
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-block">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-9 col-9 d-flex">
-                          <div className="member_avatar avatar avatar-block">
-                            <img
-                              alt="..."
-                              className="avatar-img"
-                              src={
-                                require(`../../assets/img/faces/${MemberAvatar}`)
-                                  .default
-                              }
-                            />
-                          </div>
-                          <div className="ml-3">
-                            <div className="member_name">João Lima</div>
-                            <div className="member_mail">
-                              joaolimaduarte6@gmail.com
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-3 col-3 mt-1">
-                          <div className="desktop_hidden">
-                            <button type="button" className="btn_edit">
-                              <i className="fa fa-pen-alt"></i>
-                            </button>
-                            <button type="button" className="btn_eye ml-2">
-                              <i className="fa fa-eye"></i>
-                            </button>
-                          </div>
-                          <div className="mobile_hidden">
-                            <IconButton
-                              aria-label="more"
-                              aria-controls="long-menu"
-                              aria-haspopup="true"
-                              onClick={handleClick}
-                            >
-                              <MoreVertIcon />
-                            </IconButton>
-                            <Menu
-                              id="long-menu"
-                              anchorEl={anchorEl}
-                              keepMounted
-                              open={open}
-                              onClose={handleClose}
-                              PaperProps={{
-                                style: {
-                                  maxHeight: ITEM_HEIGHT * 4.5,
-                                  width: "20ch",
-                                },
-                              }}
-                            >
-                              <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                              <MenuItem onClick={handleClose}>view</MenuItem>
-                            </Menu>
-                          </div>
-                        </div>
-                      </div>
+                      {memberData.map((data, index) => {
+                        return (
+                          !data.membertype && (
+                            <>
+                              <div className="row">
+                                <div className="col-sm-9 col-9 d-flex">
+                                  <div className="member_avatar avatar avatar-block">
+                                    <img
+                                      alt="..."
+                                      className="avatar-img"
+                                      src={
+                                        require(`../../assets/img/faces/${MemberAvatar}`)
+                                          .default
+                                      }
+                                    />
+                                  </div>
+                                  <div className="ml-3">
+                                    <div className="member_name">João Lima</div>
+                                    <div className="member_mail">
+                                      joaolimaduarte6@gmail.com
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-sm-3 col-3 mt-1">
+                                  <div className="desktop_hidden">
+                                    <button type="button" className="btn_edit">
+                                      <i className="fa fa-pen-alt"></i>
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn_eye ml-2"
+                                    >
+                                      <i className="fa fa-eye"></i>
+                                    </button>
+                                  </div>
+                                  <div className="mobile_hidden">
+                                    <IconButton
+                                      aria-label="more"
+                                      aria-controls="long-menu"
+                                      aria-haspopup="true"
+                                      onClick={handleClick}
+                                    >
+                                      <MoreVertIcon />
+                                    </IconButton>
+                                    <Menu
+                                      id="long-menu"
+                                      anchorEl={anchorEl}
+                                      keepMounted
+                                      open={open}
+                                      onClose={handleClose}
+                                      PaperProps={{
+                                        style: {
+                                          maxHeight: ITEM_HEIGHT * 4.5,
+                                          width: "20ch",
+                                        },
+                                      }}
+                                    >
+                                      <MenuItem onClick={handleEdit}>
+                                        Edit
+                                      </MenuItem>
+                                      <MenuItem onClick={handleClose}>
+                                        view
+                                      </MenuItem>
+                                    </Menu>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr />
+                            </>
+                          )
+                        );
+                      })}
                     </div>
                   </div>
                 </TabPanel>
+
+                {/*---------------------- blocked tabpan end -------------------------------------- */}
               </TabContext>
               <div className="pagination d-flex justify-content-center">
                 <div className="pagiNum">

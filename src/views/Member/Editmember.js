@@ -9,14 +9,14 @@ const InfoIcon = "info-icon.svg";
 
 export default function EditContent() {
   const history = useHistory();
-  const [memberType, setMemberType] = useState(false);
+  const [membertype, setmembertype] = useState(false);
   const [dropType, setDropType] = useState(10);
 
   const Back_fun = () => {
     history.goBack();
   };
   const onChangeSwitch = (type) => {
-    setMemberType(type);
+    setmembertype(type);
   };
   const HandleDropType = (e) => {
     console.log(e.target.value);
@@ -74,13 +74,13 @@ export default function EditContent() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3 mb-3">Tipo de membro</div>
-            <SwitchDrop onChange={onChangeSwitch} value={memberType} />
+            <SwitchDrop onChange={onChangeSwitch} value={membertype} />
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">
-              {memberType ? "Perfil de acesso" : "Turma"}
+              {membertype ? "Perfil de acesso" : "Turma"}
             </div>
-            {memberType ? (
+            {membertype ? (
               <div className="mt-1 position-relative ht-45 new_group_select">
                 <FormControl variant="outlined" width="100%">
                   <Select
