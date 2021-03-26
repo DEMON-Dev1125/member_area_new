@@ -6,7 +6,7 @@ import Fileupload from "../../components/Fileupload";
 import "../../assets/css/login.css";
 import "../../assets/css/invite.css";
 
-import { addInvite } from "../../actions/invite";
+import { addInvite, addInviteTest } from "../../actions/invite";
 
 export default function Invite() {
   const [title, setTitle] = useState("");
@@ -20,13 +20,18 @@ export default function Invite() {
   };
 
   const fileData = (file) => {
+    console.log("file", file);
     setFile(file);
   };
 
   const handleSave = () => {
     if (!title || !description) return;
     else {
-      dispatch(addInvite(history, title, description));
+      const data = new FormData();
+      data.append("file", file);
+      data.append("title", title);
+      data.append("description", description);
+      dispatch(addInvite(history, data));
     }
   };
 
@@ -67,7 +72,7 @@ export default function Invite() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3">Imagem destaque</div>
-            <Fileupload fileData={fileData} />
+            <Fileupload fileData={fileData} fileUpload={fileData} />
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">

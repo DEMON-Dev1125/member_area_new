@@ -273,13 +273,13 @@ export default function EditContent() {
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
-              <button type="button" className="but_cancel w-100">
+              <button type="button" className="but_cancel w-100" onClick={Back_fun}>
                 Cancelar
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
               <button type="button" className="but_delete w-100">
-                Excluir turma
+                Excluir
               </button>
             </div>
           </div>

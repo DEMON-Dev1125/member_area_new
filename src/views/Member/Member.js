@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -17,10 +17,13 @@ import {
 } from "@material-ui/core";
 import { TabContext } from "@material-ui/lab";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { useSelector,  useDispatch } from 'react-redux';
 
 import "../../assets/css/login.css";
 import "../../assets/css/member.css";
 import StyledCheckbox from "components/Checkbox";
+import { getAllMember } from "../../actions/member";
+
 const MemberAvatar = "face-5.jpg";
 const MemberBack = "membro.png";
 
@@ -113,11 +116,15 @@ function a11yProps(index) {
 export default function Member() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const [dropType, setDropType] = useState(10);
+  
   const HandleDropType = (e) => {
     console.log(e.target.value);
     setDropType(e.target.value);
   };
+
   const AddMember = () => {
     history.push("/main/member/addmember");
   };
@@ -145,6 +152,10 @@ export default function Member() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    dispatch(getAllMember());
+  }, []);
 
   return (
     <div className="container-fluid mt-5">
@@ -174,7 +185,7 @@ export default function Member() {
             </div>
           </div>
           <hr />
-          {!NoMember ? (
+          {NoMember ? (
             <div className={classes.root}>
               <TabContext value={value}>
                 <div className="d-flex justify-content-center">

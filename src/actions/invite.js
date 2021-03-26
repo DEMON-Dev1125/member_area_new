@@ -9,8 +9,8 @@ import {
 import InviteService from "../services/invite.service";
 import { store } from "react-notifications-component";
 
-export const addInvite = (history, title, description) => (dispatch) => {
-  return InviteService.addModule(title, description).then((status) => {
+export const addInvite = (history, data) => (dispatch) => {
+  return InviteService.addInvite(data).then((status) => {
     if (status.data.success === "success") {
       store.addNotification({
         title: "Success!",
@@ -53,10 +53,10 @@ export const getInvite = (id) => (dispatch) => {
   });
 };
 
-export const updateInviteData = (history, id, title, description) => (
+export const updateInviteData = (history, id, data) => (
   dispatch
 ) => {
-  return InviteService.updateInviteData(id, title, description).then(
+  return InviteService.updateInviteData(id, data).then(
     (status) => {
       dispatch({
         type: UPDATE_INVITE,
@@ -108,3 +108,9 @@ export const deleteInvite = (history, id) => (dispatch) => {
     });
   });
 };
+
+export const addInviteTest = (formData) => (dispatch) => {
+  return InviteService.addInviteTest(formData).then((status) => {
+    
+  })
+}

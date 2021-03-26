@@ -18,7 +18,7 @@ const Wysiwyg = (props) => {
 
   useEffect(() => {
     const contentDataState = ContentState.createFromBlockArray(
-      convertFromHTML(props.value)
+      convertFromHTML(props.value ? props.value : "")
     );
     const editorDataState = EditorState.createWithContent(contentDataState);
     setEditorState(editorDataState);
@@ -41,7 +41,7 @@ const Wysiwyg = (props) => {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ height: "auto" }}>
       <Editor
         editorState={editorState}
         onEditorStateChange={handleEditorChange}

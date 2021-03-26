@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
 export default function EditContent() {
   const history = useHistory();
   const classes = useStyles();
+
+  const [data, setData] = useState([]);
+  // const [data, setData] = useState([{ from: "", to: "" }, {from: '', to: ''}]);
+
   const Back_fun = () => {
     history.goBack();
   };
@@ -80,7 +84,8 @@ export default function EditContent() {
   };
 
   const [StartDate, setStartDate] = useState("");
-  const changeStartDate = (e) => {
+  const changeStartDate = (e, order) => {
+    console.log(order);
     setStartDate(e.target.value);
   };
 
@@ -111,6 +116,27 @@ export default function EditContent() {
     console.log("=====", groupInfo);
   };
 
+  // const changeDate = (e, key) => {
+  //   const items = [...data];
+  //   items[key][e.target.name] = e.target.value;
+  //   setData(items);
+  // };
+
+
+  // /////////////////////
+  let arr = [];
+  if(allModuleData){allModuleData.map((item,key)=>{
+    arr[key] = {from:"", to:""}
+  })}
+  const [moduleArray, setModuleArray] = useState(arr);
+
+  const changeDate = (e, key) => {
+    const items = [...moduleArray];
+    items[key][e.target.name] = e.target.value;
+    setModuleArray(items);
+  };
+
+  // ////////////////////
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -198,21 +224,23 @@ export default function EditContent() {
                           <div className="mb-3">
                             <div className="Edit-ft1">DATA LIBERAÇÃO</div>
                             <input
-                              type="text"
+                              type="date"
                               className="input-ft2 mt-2 w-100"
                               placeholder="05/01/2021 12:00"
-                              value={StartDate}
-                              onChange={changeStartDate}
+                              name="from"
+                              value={moduleArray[key]['from']}
+                              onChange={(e) => changeDate(e, key)}
                             />
                           </div>
                           <div className="mb-3">
                             <div className="Edit-ft1">DATA FECHAMENTO</div>
                             <input
-                              type="text"
+                              type="date"
                               className="input-ft2 mt-2 w-100"
                               placeholder="14/01/2021 12:00"
-                              value={EndDate}
-                              onChange={changeEndDate}
+                              name="to"
+                              value={data.to}
+                              onChange={(e) => changeDate(e, key)}
                             />
                           </div>
                         </div>
@@ -344,7 +372,9 @@ export default function EditContent() {
               </button>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100">Cancelar</button>
+              <button className="but_cancel w-100" onClick={Back_fun}>
+                Cancelar
+              </button>
             </div>
           </div>
         </div>

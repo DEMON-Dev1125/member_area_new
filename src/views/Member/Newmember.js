@@ -1,30 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import { Select, FormControl, MenuItem } from "@material-ui/core";
 import SwitchDrop from "../../components/Switch";
 import "../../assets/css/login.css";
+
+import { addMember } from '../../actions/member';
+
 const InfoIcon = "info-icon.svg";
 
 export default function Newmember() {
   const [memberType, setMemberType] = useState(false);
   const [dropType, setDropType] = useState(10);
+
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const Back_fun = () => {
+    history.goBack();
+  };
+  
   const onChangeSwitch = (type) => {
+    console.log(type);
     setMemberType(type);
   };
+
   const HandleDropType = (e) => {
     console.log(e.target.value);
     setDropType(e.target.value);
   };
-  const Back_fun = () => {
-    history.goBack();
-  };
-  const NewMember = () => {
-    alert("get new memeber name");
-  };
-  const NewMail = () => {
-    alert("get new memeber mail");
-  };
+
+  const onSave = () => {
+    let memType = memberType ? "collaborator" : "student";
+    dispatch(addMember(history, fullname, email, memType));
+  }
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -41,7 +54,7 @@ export default function Newmember() {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="Nome completo"
-              onChange={NewMember}
+              onChange={(e) => setFullname(e.target.value)}
             />
           </div>
           <div className="mt-5">
@@ -50,7 +63,7 @@ export default function Newmember() {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="E-mail"
-              onChange={NewMail}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mt-5">
@@ -109,10 +122,10 @@ export default function Newmember() {
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-lg-6 col-sm-12">
-              <button className="but_save w-100">Adicionar membro</button>
+              <button className="but_save w-100" onClick={onSave}>Adicionar membro</button>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100">Cancelar</button>
+              <button className="but_cancel w-100" onClick={Back_fun}>Cancelar</button>
             </div>
           </div>
         </div>

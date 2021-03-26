@@ -6,6 +6,7 @@ import content from "./content";
 import group from "./group";
 import certificate from "./certificate";
 import invite from './invite';
+import improve from './improve';
 
 export default combineReducers({
   auth,
@@ -14,5 +15,6 @@ export default combineReducers({
   content,
   group,
   certificate,
-  invite
+  invite,
+  improve,
 });

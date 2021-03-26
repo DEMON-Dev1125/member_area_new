@@ -194,8 +194,12 @@ export default function ContentIndex() {
     // state.eData.data.modules
     history.push("/main/content/newcontent");
   };
-  const goImprove = () => {
-    history.push("/main/content/improve");
+  const goImprove = (item) => {
+    console.log(item.name, item._id);
+    history.push({
+      pathname: "/main/content/improve",
+      state: { id: item._id, name: item.name },
+    });
   };
 
   const handleOnDragEnd = (result) => {
@@ -453,7 +457,7 @@ export default function ContentIndex() {
                                       }
                                       className="mr-2"
                                     />
-                                    <div onClick={() => goImprove()}>
+                                    <div onClick={() => goImprove(item)}>
                                       <div className="Edit-ft1 mb-2">
                                         AULA {index + 1} | {data.type}{" "}
                                         {data.time}

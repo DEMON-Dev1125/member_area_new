@@ -7,10 +7,10 @@ const getAllMember = () => {
   return axios.get(API_URL + "/members", { headers: authHeader() });
 };
 
-const addMember = (name) => {
+const addMember = (fullname, email, memberType) => {
   return axios.post(
-    API_URL + "/member/add",
-    { name },
+    API_URL + "/members/add",
+    { fullname, email, email, memberType},
     { headers: authHeader() }
   );
 };

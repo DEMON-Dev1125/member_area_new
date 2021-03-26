@@ -1,26 +1,85 @@
-import React, { useState } from "react";
-import { useHistory} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import TextWYSIWYG from "../../components/Wysiwyg";
 import Fileupload from "../../components/Fileupload";
 import StyledCheckbox from "../../components/Checkbox.js";
 // import "../../assets/css/login.css";
 
-export default function EditContent() {
+import { getContentById, updateContentData, deleteContentData } from "../../actions/improve";
+
+const API_URL = 'http://192.168.107.163:5000';
+
+export default function EditContent(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const id = props.location.state.id;
+  const moduleId = props.location.state.moduleId;
+
+  const contentData = useSelector((state) =>
+    state.improve.contentData ? state.improve.contentData.content : {}
+  );
+
   const Back_fun = () => {
     history.goBack();
   };
   const [title, setTitle] = useState("");
+  const [videoLink, setVideoLink] = useState("");
+  const [value, setValue] = useState("");
+  const [path, setPath] = useState("");
+
   const Handle_Title = (e) => {
     setTitle(e.target.value);
   };
   const [contenttext, setContenttext] = useState("");
-  const Handle_ContentText = (e) => {
-    setContenttext(e.target.value);
+
+  const [contentDetail, setEditorData] = useState("");
+  const editorData = (data) => {
+    setEditorData(data);
+    // setValue(data);
   };
+
+  const [sourceFile, setFileUpload] = useState("");
+  const fileUpload = (sourceFile) => {
+    setFileUpload(sourceFile);
+  };
+
   const Handle_Save = () => {
-    history.push("/main/content/improve");
+    const data = new FormData();
+    data.append('file', sourceFile);
+    data.append('module', moduleId);
+    data.append('title', title);
+    data.append('contentDetail', contentDetail);
+    data.append('videoLink', videoLink);
+    dispatch(updateContentData(history, id, data));
   };
+
+  const onDelete = () => {
+    dispatch(deleteContentData(history, id));
+  }
+
+  const onStatus = () => {
+    console.log("dd");
+  };
+
+  useEffect(() => {
+    dispatch(getContentById(id));
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(contentData).length !== 0) {
+      if (contentData._id !== id) return;
+      setTitle(contentData.title);
+      setVideoLink(contentData.videolink);
+      setValue(contentData.text);
+
+      let pathName = contentData.file.path.replace(/\\/g, '/');
+      if(pathName[0] !== '/') pathName = '/' + pathName;
+      setPath(API_URL + pathName);
+    }
+  }, [contentData]);
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -37,22 +96,24 @@ export default function EditContent() {
             className="Edit-warp mt-3 Edit-ft4 w-100"
             placeholder="Como melhorar o seu Aprendizado?"
             value={title}
-            onChange={Handle_Title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
           />
           <div className="Edit-ft3 mt-5">Módulo do conteúdo</div>
-          <TextWYSIWYG />
+          <TextWYSIWYG editorData={editorData} value={value} />
           <div className="Edit-ft3 mt-5">Link do vídeoo</div>
           <input
             type="text"
             className="Edit-warp mt-3 Edit-ft4 w-100"
             placeholder="https://www.youtube.com/watch?v=Gbc"
-            value={contenttext}
-            onChange={Handle_ContentText}
+            value={videoLink}
+            onChange={(e) => setVideoLink(e.target.value)}
           />
           <div className="Edit-ft3 mt-5">Arquivos</div>
-          <Fileupload />
+          <Fileupload fileUpload={fileUpload} imagePath={path} />
           <div className="d-flex mt-5">
-            <StyledCheckbox />
+            <StyledCheckbox status={onStatus} />
             <div>
               <div className="Edit-ft3">Desativar comentários</div>
               <div className="Edit-ft5 mt-2">
@@ -72,13 +133,13 @@ export default function EditContent() {
               </button>
             </div>
             <div className="col-xl-3 col-6">
-              <button type="button" className="but_cancel w-100">
+              <button type="button" className="but_cancel w-100" onClick={Back_fun}>
                 Cancelar
               </button>
             </div>
             <div className="col-xl-3 col-6">
-              <button type="button" className="but_delete w-100">
-                Excluir conteúdo
+              <button type="button" className="but_delete w-100" onClick={onDelete}>
+                Excluir
               </button>
             </div>
           </div>

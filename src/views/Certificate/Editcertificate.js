@@ -136,7 +136,7 @@ export default function Certificate(props) {
               </button>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100">Cancelar</button>
+              <button className="but_cancel w-100" onClick={Back_fun}>Cancelar</button>
             </div>
           </div>
         </div>

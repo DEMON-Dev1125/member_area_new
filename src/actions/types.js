@@ -45,3 +45,9 @@ export const ALL_INVITE_DATA = "ALL_INVITE_DATA";
 export const GET_INVITE = "GET_INVITE";
 export const UPDATE_INVITE = "UPDATE_INVITE";
 export const DELETE_INVITE = "DELETE_INVITE";
+
+// Improve
+export const GET_MODULE_BY_ID = "GET_MODULE_BY_ID";
+export const UPDATE_STATUS_BY_ID = "UPDATE_STATUS_BY_ID";
+export const GET_CONTENT_BY_ID = "GET_CONTENT_BY_ID";
+export const UPDATE_CONTENT_DATA = "UPDATE_CONTENT_DATA";

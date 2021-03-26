@@ -17,13 +17,13 @@ export default function Deletedialog() {
   return (
     <div>
       <div className="delete_icon text-center" onClick={handleClickOpen}>
-        <i class="fas fa-trash icon-all"></i>
+        <i className="fas fa-trash icon-all"></i>
       </div>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        maxWidth="false"
+        maxWidth={false}
         PaperProps={{ style: { borderRadius: 20 } }}
       >
         <div className="container_delete">

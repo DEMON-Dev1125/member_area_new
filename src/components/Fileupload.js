@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function Fileupload(props) {
   const FileIcon = "fileIcon.svg";
@@ -16,6 +16,12 @@ export default function Fileupload(props) {
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
+  console.log(image);
+
+  useEffect(() => {
+    if(props.imagePath) setImage(props.imagePath);
+  }, [props.imagePath])
+
   return (
     <div className="upload_before d-flex flex-column align-items-center">
       {!image ? (
@@ -50,6 +56,7 @@ export default function Fileupload(props) {
           <input
             id="file"
             type="file"
+            name="file"
             ref={hiddenFileInput}
             onChange={handleImgChange}
             style={{ display: "none" }}

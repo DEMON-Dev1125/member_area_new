@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -9,6 +9,9 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import DeleteDialogIcon from "./Deleteicon.js";
 import "../../assets/scss/entire.scss";
 import "../../assets/css/login.css";
+
+import { getModuleById, updateStatusById } from "../../actions/improve";
+import { convertFromHTML } from "draft-js";
 
 const CheckBule = "check-bule.svg";
 const FileIcon = "fileIcon.svg";
@@ -25,9 +28,45 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 98,
   },
 }));
-export default function NewContent() {
+export default function NewContent(props) {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const moduleId = props.location.state.id;
+  const moduleName = props.location.state.name;
+
+  const moduleData = useSelector((state) =>
+    state.improve.moduleData ? state.improve.moduleData.contents : []
+  );
+  const status = useSelector((state) => state.improve.status ? state.improve.status.success : "");
+  console.log(moduleData);
+
+  const [title, setTitle] = useState("");
+  const [subTitle, setSubTitle] = useState("");
+  const [text, setText] = useState("");
+  const [readStatus, setReadStatus] = useState("");
+  const [itemStatusId, setItemStatusId] = useState("");
+  
+  const [classcomplete, setClasscomplete] = useState(true);
+
+  const getContent = (data) => {
+    setTitle(data.title);
+    setSubTitle(`AULA ${data.order}`);
+    // setText(convertFromHTML(data.text));
+    setText(data.text);
+    setItemStatusId(data._id);
+    if(data.status === "read") setClasscomplete(false);
+    else setClasscomplete(true);
+  };
+
+  const goEditContent = () => {
+    history.push({
+      pathname: "/main/content/editcontent",
+      state: { id: itemStatusId, moduleId: moduleId }
+    });
+  }
+
   const [active1, setActive1] = useState(true);
   const selectFold1 = () => {
     setActive1(!active1);
@@ -83,10 +122,22 @@ export default function NewContent() {
     setResponder(false);
     setPublish1(true);
   };
-  const [classcomplete, setClasscomplete] = useState("true");
   const Handle_Complete = () => {
-    setClasscomplete(!classcomplete);
+    // setClasscomplete(!classcomplete);
+    dispatch(updateStatusById(itemStatusId));
   };
+
+  useEffect(() => {
+    dispatch(getModuleById(moduleId));
+  }, []);
+
+  useEffect(() => {
+    if(status === "success") {
+      dispatch(getModuleById(moduleId));
+      setClasscomplete(false);
+    }
+  }, [status]);
+
   return (
     <>
       <div>
@@ -101,10 +152,38 @@ export default function NewContent() {
             </div>
           </div>
           <div className="introduction">
-            <div className="Edit-ft1">MÓDULO 1</div>
-            <div className="imp-ft1 mgt-10">Introdução</div>
+            <div className="Edit-ft1">{moduleName}</div>
+            <div className="imp-ft1 mgt-10">{moduleName}</div>
             <div className="intro-list mgt-50">
-              <div className="test-content d-flex mgb-32">
+              {moduleData.map((data, index) => {
+                return (
+                  <div key={index}>
+                    <div className="test-content d-flex mb-4">
+                      {data.status === "read" && (
+                        <img
+                          src={require(`../../assets/img/${CheckBule}`).default}
+                          className="mr-2"
+                        />
+                      )}
+                      {data.status === "unread" && (
+                        <img
+                          src={require(`../../assets/img/${VideoIcon}`).default}
+                          className="mgr-20"
+                        />
+                      )}
+                      <div onClick={() => getContent(data)}>
+                        <div className="Edit-ft1 mb-2">
+                          AULA {index + 1} | {data.type} {data.time}
+                        </div>
+                        <div className="con-ft5" style={{ color: "white" }}>
+                          {data.title}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${CheckBule}`).default}
@@ -122,8 +201,8 @@ export default function NewContent() {
                     Como melhorar o seu Aprendizado?
                   </div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${CheckBule}`).default}
@@ -139,8 +218,8 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 2 | VÍDEO 12:54</div>
                   <div className="imp-ft2">Revolução Digital</div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${DotIcon}`).default}
@@ -156,8 +235,8 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 3 | VÍDEO 15:54</div>
                   <div className="imp-ft2">O que é Home Office?</div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${VideoIcon}`).default}
@@ -173,8 +252,8 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 4 | VÍDEO 5:05</div>
                   <div className="imp-ft2">Área de Atuação</div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${VideoIcon}`).default}
@@ -190,8 +269,8 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 5 | VÍDEO 12:39</div>
                   <div className="imp-ft2">Vantagens do Home Office</div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${FileIcon}`).default}
@@ -207,8 +286,8 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 6 | ARQUIVO</div>
                   <div className="imp-ft2">Boas Práticas Home Office</div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${TextIcon}`).default}
@@ -224,8 +303,8 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 7 | TEXTO</div>
                   <div className="imp-ft2">Por que Home Office?</div>
                 </div>
-              </div>
-              <div className="test-content d-flex mgb-32">
+              </div> */}
+              {/* <div className="test-content d-flex mgb-32">
                 {moveflag ? (
                   <img
                     src={require(`../../assets/img/${FileIcon}`).default}
@@ -241,7 +320,7 @@ export default function NewContent() {
                   <div className="Edit-ft1 mgb-5">AULA 8 | ARQUIVO</div>
                   <div className="imp-ft2">Relacionamento Interpessoal</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -253,20 +332,11 @@ export default function NewContent() {
                 history.push("/main/content");
               }}
             >
-              Módulo 1: Introdução
+              {moduleName}: {moduleName}
             </div>
-            <div className="mgt-50 Edit-ft1">AULA 1</div>
-            <div className="mgt-10 Edit-ft2">
-              Como melhorar o seu Aprendizado?
-            </div>
-            <div className="mgt-30 con-ft3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              tortor orci, fermentum sed lectus vitae, tristique hendrerit
-              neque. Integer vel tempor orci. Nunc finibus vehicula tellus sit
-              amet malesuada. Integer tempor at risus sed lacinia. In id libero
-              lectus. Aliquam erat volutpat. Mauris ante tortor, ultricies nec
-              mauris in, pharetra facilisis justo.
-            </div>
+            <div className="mgt-50 Edit-ft1">{subTitle}</div>
+            <div className="mgt-10 Edit-ft2">{title}</div>
+            <div className="mgt-30 con-ft3">{text}</div>
             <div className="mgt-50 Edit-ft1">ARQUIVOS COMPLEMENTARES</div>
             <div className="pdf">
               <div className="con-ft7 pd-5 mgr-15">PDF</div>
@@ -284,7 +354,7 @@ export default function NewContent() {
               ) : (
                 <div className="mgr-15">Concluído</div>
               )}
-              <i class="fa fa-check" aria-hidden="true"></i>
+              <i className="fa fa-check" aria-hidden="true"></i>
             </button>
             <button
               type="button"
@@ -292,9 +362,7 @@ export default function NewContent() {
             >
               <div
                 className="mgr-15"
-                onClick={() => {
-                  history.push("/main/content/editcontent");
-                }}
+                onClick={goEditContent}
               >
                 Editar conteúdo
               </div>

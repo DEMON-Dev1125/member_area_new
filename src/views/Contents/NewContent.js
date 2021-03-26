@@ -96,20 +96,14 @@ export default function NewContent() {
       });
       return;
     } else {
-      const title = contentTitle;
-      const module = moduleId;
-      const text = contentDetail;
-      const videolink = link;
-      const comment = status;
-      const contentData = {
-        title,
-        text,
-        module,
-        videolink,
-        sourceFile,
-        comment,
-      };
-      dispatch(addContent(contentData));
+      const data = new FormData();
+      data.append('file', sourceFile);
+      data.append('title', contentTitle);
+      data.append('module', moduleId);
+      data.append('text', contentDetail);
+      data.append('videolink', link);
+      data.append('comment', status);
+      dispatch(addContent(data));
     }
   };
 
@@ -131,12 +125,13 @@ export default function NewContent() {
         },
       });
 
-      setContentTitle("");
-      setModuleName("");
-      setEditorData("");
-      setLink("");
-      setCheckStatus("");
-      setFileUpload("");
+      // setContentTitle("");
+      // setModuleName("");
+      // setEditorData("");
+      // setLink("");
+      // setCheckStatus("");
+      // setFileUpload("");
+      history.push("/main/content");
     } else if (data && data.errors) {
       store.addNotification({
         title: "Warning!",

@@ -11,10 +11,14 @@ import {
 import "../../assets/css/login.css";
 import "../../assets/css/invite.css";
 
+const API_URL = 'http://192.168.107.163:5000';
+
 export default function EditInvite() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
+  const [file, setFile] = useState("");
+  const [path, setPath] = useState("");
 
   const inviteDataById = useSelector((state) =>
     state.invite.inviteDataById.invite ? state.invite.inviteDataById.invite : {}
@@ -29,8 +33,16 @@ export default function EditInvite() {
     history.goBack();
   };
 
+  const fileUpload = (file) => {
+    setFile(file);
+  }
+
   const onSave = () => {
-    dispatch(updateInviteData(history, id, title, description));
+    const data = new FormData();
+    data.append('file', file);
+    data.append('title', title);
+    data.append('description', description);
+    dispatch(updateInviteData(history, id, data));
   };
 
   const onDelete = () => {
@@ -46,6 +58,10 @@ export default function EditInvite() {
       if (inviteDataById._id !== id) return;
       setTitle(inviteDataById.title);
       setDescription(inviteDataById.description);
+
+      let pathName = inviteDataById.file.path.replace(/\\/g, '/');
+      if(pathName[0] !== '/') pathName = '/' + pathName;
+      setPath(API_URL + pathName);
     }
   }, [inviteDataById]);
 
@@ -90,7 +106,7 @@ export default function EditInvite() {
           </div>
           <div className="mt-5">
             <div className="Edit-ft3 mb-3">Imagem destaque</div>
-            <Fileupload />
+            <Fileupload fileUpload={fileUpload} imagePath={path} />
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-xl-6 col-12">
