@@ -128,7 +128,7 @@ export default function Member() {
   const memberData = useSelector((state) =>
     state.member.allData ? state.member.allData.members : []
   );
-  
+
   const [stuCount, setStuCount] = useState(0);
   const [colCount, setColCount] = useState(0);
   const [bloCount, setBloCount] = useState(0);
@@ -136,8 +136,12 @@ export default function Member() {
   const AddMember = () => {
     history.push("/main/member/addmember");
   };
-  const handleEdit = () => {
-    history.push("/main/member/editmember");
+  
+  const handleEdit = (id) => {
+    history.push({
+      pathname: "/main/member/editmember",
+      state: { id: id },
+    });
   };
 
   const [value, setValue] = useState(0);
@@ -166,21 +170,21 @@ export default function Member() {
   }, []);
 
   useEffect(() => {
-    if(memberData.length !== 0) {
+    if (memberData.length !== 0) {
       let stuCount = 0;
       let colCount = 0;
       let bloCount = 0;
-      memberData.map(data => {
-        if(data.membertype === "student") stuCount = stuCount + 1;
-        else if(data.membertype === "collaborator") colCount = colCount + 1;
+      memberData.map((data) => {
+        if (data.membertype === "student") stuCount = stuCount + 1;
+        else if (data.membertype === "collaborator") colCount = colCount + 1;
         else bloCount = bloCount + 1;
       });
-      
+
       setStuCount(stuCount);
       setColCount(colCount);
       setBloCount(bloCount);
     }
-  }, [memberData])
+  }, [memberData]);
 
   return (
     <div className="container-fluid mt-5">
@@ -424,7 +428,7 @@ export default function Member() {
                       {memberData.map((data, index) => {
                         return (
                           data.membertype === "student" && (
-                            <>
+                            <div key={index}>
                               <div className="row">
                                 <div className="col-sm-9 col-9 d-flex">
                                   <div className="member_avatar avatar avatar-online">
@@ -438,9 +442,11 @@ export default function Member() {
                                     />
                                   </div>
                                   <div className="ml-3">
-                                    <div className="member_name">João Lima</div>
+                                    <div className="member_name">
+                                      {data.fullname}
+                                    </div>
                                     <div className="member_mail">
-                                      joaolimaduarte6@gmail.com
+                                      {data.email}
                                     </div>
                                   </div>
                                 </div>
@@ -449,7 +455,7 @@ export default function Member() {
                                     <button
                                       type="button"
                                       className="btn_edit"
-                                      onClick={handleEdit}
+                                      onClick={() => handleEdit(data._id)}
                                     >
                                       <i className="fa fa-pen-alt"></i>
                                     </button>
@@ -482,7 +488,9 @@ export default function Member() {
                                         },
                                       }}
                                     >
-                                      <MenuItem onClick={handleEdit}>
+                                      <MenuItem
+                                        onClick={() => handleEdit(data._id)}
+                                      >
                                         Edit
                                       </MenuItem>
                                       <MenuItem onClick={handleClose}>
@@ -493,7 +501,7 @@ export default function Member() {
                                 </div>
                               </div>
                               <hr />
-                            </>
+                            </div>
                           )
                         );
                       })}
@@ -572,7 +580,7 @@ export default function Member() {
                       {memberData.map((data, index) => {
                         return (
                           data.membertype === "collaborator" && (
-                            <>
+                            <div key={index}>
                               <div className="row">
                                 <div className="col-sm-9 col-9 d-flex">
                                   <div className="member_avatar avatar avatar-online">
@@ -586,9 +594,11 @@ export default function Member() {
                                     />
                                   </div>
                                   <div className="ml-3">
-                                    <div className="member_name">João Lima</div>
+                                    <div className="member_name">
+                                      {data.fullname}
+                                    </div>
                                     <div className="member_mail">
-                                      joaolimaduarte6@gmail.com
+                                      {data.email}
                                     </div>
                                   </div>
                                 </div>
@@ -626,7 +636,9 @@ export default function Member() {
                                         },
                                       }}
                                     >
-                                      <MenuItem onClick={handleEdit}>
+                                      <MenuItem
+                                        onClick={() => handleEdit(data._id)}
+                                      >
                                         Edit
                                       </MenuItem>
                                       <MenuItem onClick={handleClose}>
@@ -637,7 +649,7 @@ export default function Member() {
                                 </div>
                               </div>
                               <hr />
-                            </>
+                            </div>
                           )
                         );
                       })}
@@ -679,9 +691,11 @@ export default function Member() {
                                     />
                                   </div>
                                   <div className="ml-3">
-                                    <div className="member_name">João Lima</div>
+                                    <div className="member_name">
+                                      {data.fullname}
+                                    </div>
                                     <div className="member_mail">
-                                      joaolimaduarte6@gmail.com
+                                      {data.email}
                                     </div>
                                   </div>
                                 </div>
@@ -719,7 +733,9 @@ export default function Member() {
                                         },
                                       }}
                                     >
-                                      <MenuItem onClick={handleEdit}>
+                                      <MenuItem
+                                        onClick={() => handleEdit(data._id)}
+                                      >
                                         Edit
                                       </MenuItem>
                                       <MenuItem onClick={handleClose}>

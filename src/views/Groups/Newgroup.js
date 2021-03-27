@@ -26,8 +26,21 @@ export default function EditContent() {
   const history = useHistory();
   const classes = useStyles();
 
-  const [data, setData] = useState([]);
-  // const [data, setData] = useState([{ from: "", to: "" }, {from: '', to: ''}]);
+  // ------------------------------------------------------------------------
+
+  const [free, setFree] = useState(false);
+  const [schedule, setSchedule] = useState(false);
+  const [purchase, setPurchase] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [fromdate, setFromdate] = useState();
+  const [todate, setTodate] = useState();
+  const [moduleId, setModuleId] = useState();
+  const [name, setName] = useState();
+  // const [accessterm, setAccessTerm] = useState();
+  const [standardclass, setStandardClass] = useState();
+
+  // ------------------------------------------------------------------------
+
 
   const Back_fun = () => {
     history.goBack();
@@ -84,9 +97,8 @@ export default function EditContent() {
   };
 
   const [StartDate, setStartDate] = useState("");
-  const changeStartDate = (e, order) => {
-    console.log(order);
-    setStartDate(e.target.value);
+  const changeStartDate = (e, item) => {
+    console.log(document.getElementById(`date-start${item.order}`).value);
   };
 
   const [EndDate, setEndDate] = useState("");
@@ -95,7 +107,8 @@ export default function EditContent() {
   };
 
   const [AccessTerm, setAccessTerm] = useState("");
-  const changeAccessTerm = (e) => {
+  const changeAccessTerm = (e, item) => {
+    document.getElementById(`access-term${item.order}`);
     setAccessTerm(e.target.value);
   };
 
@@ -105,38 +118,9 @@ export default function EditContent() {
   };
 
   const addGroup = () => {
-    const groupInfo = {
-      NewGroupName,
-      ItemAccess,
-      status,
-      StartDate,
-      EndDate,
-      AccessTerm,
-    };
-    console.log("=====", groupInfo);
+      
   };
 
-  // const changeDate = (e, key) => {
-  //   const items = [...data];
-  //   items[key][e.target.name] = e.target.value;
-  //   setData(items);
-  // };
-
-
-  // /////////////////////
-  let arr = [];
-  if(allModuleData){allModuleData.map((item,key)=>{
-    arr[key] = {from:"", to:""}
-  })}
-  const [moduleArray, setModuleArray] = useState(arr);
-
-  const changeDate = (e, key) => {
-    const items = [...moduleArray];
-    items[key][e.target.name] = e.target.value;
-    setModuleArray(items);
-  };
-
-  // ////////////////////
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -228,8 +212,9 @@ export default function EditContent() {
                               className="input-ft2 mt-2 w-100"
                               placeholder="05/01/2021 12:00"
                               name="from"
-                              value={moduleArray[key]['from']}
-                              onChange={(e) => changeDate(e, key)}
+                              id={`date-start${item.order}`}
+                              // value={StartDate}
+                              onChange={(e) => changeStartDate(e, item)}
                             />
                           </div>
                           <div className="mb-3">
@@ -239,8 +224,9 @@ export default function EditContent() {
                               className="input-ft2 mt-2 w-100"
                               placeholder="14/01/2021 12:00"
                               name="to"
-                              value={data.to}
-                              onChange={(e) => changeDate(e, key)}
+                              id={`date-end${item.order}`}
+                              // value={EndDate}
+                              onChange={changeEndDate}
                             />
                           </div>
                         </div>
@@ -252,8 +238,9 @@ export default function EditContent() {
                               type="number"
                               className="Edit-warp mt-3 Edit-ft4-1 w-100"
                               placeholder="01"
-                              value={AccessTerm}
-                              onChange={changeAccessTerm}
+                              id={`access-term${item.order}`}
+                              // value={AccessTerm}
+                              onChange={(e) => changeAccessTerm(e, item)}
                             />
                             <div className="item-day-1 Edit-ft1">DIAS</div>
                           </div>

@@ -1,27 +1,13 @@
-import { EDIT_SETTING, GET_SETTINGDATA } from "./types";
+import { EDIT_APPEARANCE, GET_APPEARANCE } from "./types";
 
-import SettingService from "../services/setting.service";
+import AppearanceService from "../services/appearance.service";
 import { store } from "react-notifications-component";
 
-export const addData = () => (dispatch) => {};
-export const editSetting = (
-  history,
-  memberAreaName,
-  contactEmail,
-  domain,
-  lang,
-  timezone,
-  emailsubject,
-  message
+export const editAppearance = (
+  data
 ) => (dispatch) => {
-  return SettingService.editSetting(
-    memberAreaName,
-    contactEmail,
-    domain,
-    lang,
-    timezone,
-    emailsubject,
-    message
+  return AppearanceService.editAppearance(
+    data
   ).then((status) => {
     if (status.data.success === "success") {
       store.addNotification({
@@ -39,16 +25,16 @@ export const editSetting = (
       });
     }
     dispatch({
-      type: EDIT_SETTING,
+      type: EDIT_APPEARANCE,
       payload: status,
     });
   });
 };
 
-export const getSettingData = () => (dispatch) => {
-  return SettingService.getSettingData().then((allData) => {
+export const getAppearance = () => (dispatch) => {
+  return AppearanceService.getAppearance().then((allData) => {
     dispatch({
-      type: GET_SETTINGDATA,
+      type: GET_APPEARANCE,
       payload: allData,
     });
   });

@@ -23,6 +23,7 @@ export const ADD_MEMBER = "ADD_MEMBER";
 export const EDIT_MEMBER = "EDIT_MEMBER";
 export const DELETE_MEMBER = "DELETE_MEMBER";
 export const GET_ALLMEMBER = "GET_ALLMEMBER";
+export const GET_MEMBER_BY_ID = "GET_MEMBER_BY_ID";
 
 // group
 export const ADD_GROUP = "ADD_GROUP";
@@ -51,3 +52,7 @@ export const GET_MODULE_BY_ID = "GET_MODULE_BY_ID";
 export const UPDATE_STATUS_BY_ID = "UPDATE_STATUS_BY_ID";
 export const GET_CONTENT_BY_ID = "GET_CONTENT_BY_ID";
 export const UPDATE_CONTENT_DATA = "UPDATE_CONTENT_DATA";
+
+// Appearance
+export const EDIT_APPEARANCE = "EDIT_APPEARANCE";
+export const GET_APPEARANCE = "GET_APPEARANCE";

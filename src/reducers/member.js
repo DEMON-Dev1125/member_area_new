@@ -3,6 +3,7 @@ import {
   EDIT_MEMBER,
   DELETE_MEMBER,
   GET_ALLMEMBER,
+  GET_MEMBER_BY_ID,
 } from "../actions/types";
 
 const initialState = {};
@@ -22,6 +23,9 @@ export default function (state = initialState, action) {
 
     case GET_ALLMEMBER:
       return { ...state, allData: payload.data };
+
+    case GET_MEMBER_BY_ID:
+      return { ...state, memberData: payload.data };
 
     default:
       return state;

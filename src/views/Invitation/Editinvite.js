@@ -125,7 +125,7 @@ export default function EditInvite() {
                 className="but_delete w-100"
                 onClick={onDelete}
               >
-                Excluir convite
+                Excluir
               </button>
             </div>
           </div>

@@ -16,7 +16,6 @@ export default function Fileupload(props) {
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
-  console.log(image);
 
   useEffect(() => {
     if(props.imagePath) setImage(props.imagePath);

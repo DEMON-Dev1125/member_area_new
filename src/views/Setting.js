@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import TextWYSIWYG from "../components/Wysiwyg";
@@ -7,6 +8,8 @@ import TimezoneSelect from "react-timezone-select";
 import { store } from "react-notifications-component";
 import "../assets/css/certificate.css";
 import "../assets/css/timezone.css";
+
+import { getSettingData, editSetting } from '../actions/setting';
 
 const Language = [
   {
@@ -33,10 +36,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Setting() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const [siteName, setSiteName] = useState("");
+  const settingData = useSelector((state) => state.setting.allData ? state.setting.allData.settings : []);
+  console.log(settingData);
+
+  const [memberareaname, setMemberAreaName] = useState("");
   const changeSiteName = (e) => {
-    setSiteName(e.target.value);
+    setMemberAreaName(e.target.value);
+  };
+
+  const Back_fun = () => {
+    history.goBack();
   };
 
   const [contactEmail, setContactEmail] = useState("");
@@ -44,9 +55,9 @@ export default function Setting() {
     setContactEmail(e.target.value);
   };
 
-  const [domainAddress, setDomainAddress] = useState("");
+  const [domain, setDomain] = useState("");
   const changeDomainAddress = (e) => {
-    setDomainAddress(e.target.value);
+    setDomain(e.target.value);
   };
 
   const [lang, setLanguage] = useState("");
@@ -54,22 +65,38 @@ export default function Setting() {
     setLanguage(e.target.value);
   };
 
-  const [access, setAccess] = useState("");
+  const [emailsubject, setEmailsubject] = useState("");
   const changeAccess = (e) => {
-    setAccess(e.target.value);
+    setEmailsubject(e.target.value);
   };
 
   const [selectedTimezone, setSelectedTimezone] = useState("");
-  const timezone = selectedTimezone.label;
+  const setSelectedTimezones = (value) => {
+    setSelectedTimezone(value.value)
+  }
 
-  const [contentDetail, setEditorData] = useState("");
+  const [message, setEditorData] = useState("");
   const editorData = (data) => {
     setEditorData(data);
   };
 
   useEffect(() => {
-    // dispatch(getSettingData());
+    dispatch(getSettingData());
   }, []);
+
+  useEffect(() => {
+    if(settingData.length !== 0) {
+      settingData.map(data => {
+        setMemberAreaName(data.memberareaname);
+        setContactEmail(data.contactemail);
+        setDomain(data.domain);
+        setLanguage(data.lang);
+        setSelectedTimezone(data.timezone);
+        setEmailsubject(data.emailsubject);
+        setEditorData(data.message);
+      });
+    }
+  }, [settingData])
 
   // const data = useSelector((state) => state.setting.data);
 
@@ -108,22 +135,24 @@ export default function Setting() {
   const saveSetting = (e) => {
     e.preventDefault();
 
-    const settingData = {
-      siteName,
-      contactEmail,
-      domainAddress,
-      lang,
-      timezone,
-      access,
-      contentDetail,
-    };
+    // const settingData = {
+    //   siteName,
+    //   contactEmail,
+    //   domainAddress,
+    //   lang,
+    //   timezone,
+    //   access,
+    //   contentDetail,
+    // };
 
-    if (!settingData) {
-      return;
-    } else {
-      // dispatch(saveSettings(data));
-      console.log("setting", settingData);
-    }
+    dispatch(editSetting(history, memberareaname, contactEmail, domain, lang, selectedTimezone, emailsubject, message));
+
+    // if (!settingData) {
+    //   return;
+    // } else {
+    //   // dispatch(saveSettings(data));
+    //   console.log("setting", settingData);
+    // }
   };
 
   return (
@@ -144,8 +173,8 @@ export default function Setting() {
               type="text"
               className="input-ft1 mt-1 w-100"
               placeholder="Método Remoto"
-              value={siteName}
-              onChange={changeSiteName}
+              value={memberareaname}
+              onChange={changeSiteName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
             />
           </div>
           <div className="mt-5">
@@ -164,7 +193,7 @@ export default function Setting() {
               type="text"
               className="input-ft1 mt-1 w-100"
               placeholder="membros.meusite.com"
-              value={domainAddress}
+              value={domain}
               onChange={changeDomainAddress}
             />
           </div>
@@ -187,7 +216,7 @@ export default function Setting() {
                   >
                     {Language.map((item, key) => {
                       return (
-                        <option value={key + 1} key={key}>
+                        <option value={item.lang} key={key}>
                           {item.lang}
                         </option>
                       );
@@ -200,7 +229,7 @@ export default function Setting() {
               <div className="Edit-ft3 mb-3">Fuso horário padrão</div>
               <TimezoneSelect
                 value={selectedTimezone}
-                onChange={setSelectedTimezone}
+                onChange={setSelectedTimezones}
               />
             </div>
           </div>
@@ -230,12 +259,12 @@ export default function Setting() {
                 type="text"
                 className="input-ft1 mt-1 w-100"
                 placeholder="Seu acesso foi liberado!"
-                value={access}
+                value={emailsubject}
                 onChange={changeAccess}
               />
             </div>
             <div className="mt-5">
-              <TextWYSIWYG editorData={editorData} />
+              <TextWYSIWYG editorData={editorData} value={message} />
             </div>
           </div>
           <div className="row mt-5  mb-5">
@@ -245,7 +274,7 @@ export default function Setting() {
               </button>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100">Cancelar</button>
+              <button className="but_cancel w-100" onClick={Back_fun}>Cancelar</button>
             </div>
           </div>
         </div>
