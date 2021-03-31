@@ -19,11 +19,15 @@ const login = (email, password) => {
       password,
     })
     .then((response) => {
+      console.log("service", response);
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 
       return response.data;
+    })
+    .catch((err) => {
+      return err;
     });
 };
 

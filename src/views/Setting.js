@@ -85,7 +85,7 @@ export default function Setting() {
   }, []);
 
   useEffect(() => {
-    if(settingData.length !== 0) {
+    if(settingData && settingData.length !== 0) {
       settingData.map(data => {
         setMemberAreaName(data.memberareaname);
         setContactEmail(data.contactemail);
@@ -156,7 +156,7 @@ export default function Setting() {
   };
 
   return (
-    <div className="container-fluid mt-5">
+    <div className="container-fluid mt-5" lang="ru">
       <div className="row">
         <div className="col-xl-2"></div>
         <div className="col-xl-8 col-sm-12">

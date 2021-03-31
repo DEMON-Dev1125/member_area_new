@@ -10,10 +10,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0";
 
+import { withNamespaces } from 'react-i18next';
+
 // import { logout } from "./actions/auth";
 // import { history } from "./helpers/history";
 
-function App() {
+function App({ t }) {
   // const logOut = () => {
   //   dispatch(logout());
   // };

@@ -21,43 +21,12 @@ export const register = (name, username, email, password, confirmPassword) => (
     confirmPassword
   ).then(
     (response) => {
+      console.log(response.response);
       if (response.data["success"]) {
         store.addNotification({
           title: "Success!",
           message: "Register" + " " + response.data["success"],
           type: "success",
-          insert: "top",
-          container: "top-right",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 3000,
-            onScreen: true,
-          },
-        });
-      } else if (response.data.errors) {
-        let errMessage = response.data.errors;
-        let errMsg = "";
-        let notiTitle = "";
-        let notiType = "";
-
-        if (errMessage["username"]) {
-          errMsg = errMessage["username"];
-          notiType = "warning";
-          notiTitle = "Warning";
-        } else if (errMessage["confirmPassword"]) {
-          errMsg = errMessage["confirmPassword"];
-          notiType = "danger";
-          notiTitle = "Error";
-        } else if (errMessage["email"]) {
-          errMsg = errMessage["email"];
-          notiType = "warning";
-          notiTitle = "Warning";
-        }
-        store.addNotification({
-          title: notiTitle,
-          message: errMsg,
-          type: notiType,
           insert: "top",
           container: "top-right",
           animationIn: ["animate__animated", "animate__fadeIn"],
@@ -99,7 +68,25 @@ export const register = (name, username, email, password, confirmPassword) => (
     //   return Promise.reject();
     return response;
     }
-  );
+  )
+  .catch((err) => {
+    if (err.response.data.message) {
+      console.log(err.response.data.message);
+      store.addNotification({
+        title: "Error",
+        message: err.response.data.message,
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: true,
+        },
+      });
+    }
+  });
 };
 
 export const login = (email, password) => (dispatch) => {
@@ -118,10 +105,10 @@ export const login = (email, password) => (dispatch) => {
           onScreen: true,
         },
       });
-    } else if (data.errors) {
+    } else if (data.response.data.message) {
       store.addNotification({
         title: "Errors!",
-        message: data.errors["invalidCredentials"],
+        message: data.response.data.message,
         type: "danger",
         insert: "top",
         container: "top-right",
@@ -139,7 +126,7 @@ export const login = (email, password) => (dispatch) => {
     });
 
     return data;
-  });
+  })
 };
 
 export const logout = () => (dispatch) => {

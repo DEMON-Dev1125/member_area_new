@@ -7,6 +7,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import './config/i18n';
 
 ReactDOM.render(
   <Provider store={store}>

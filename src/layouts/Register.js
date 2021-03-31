@@ -109,14 +109,16 @@ function Register(props) {
 
     if (!(name && username && email && password && confirmPassword)) {
     } else {
-      dispatch(register(name, username, email, password, confirmPassword)).then(
+      dispatch(register(name, username, email, password, confirmPassword))
+      .then(
         (response) => {
-          const status = response.data;
-          if (status.success) {
-            props.history.push("/login");
-          } else {
-            return;
-          }
+          console.log(response);
+          // const status = response.data;
+          // if (status.success) {
+          //   props.history.push("/login");
+          // } else {
+          //   return;
+          // }
         }
       );
     }
