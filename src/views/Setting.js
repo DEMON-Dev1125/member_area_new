@@ -156,7 +156,7 @@ export default function Setting() {
   };
 
   return (
-    <div className="container-fluid mt-5" lang="ru">
+    <div className="container-fluid mt-5">
       <div className="row">
         <div className="col-xl-2"></div>
         <div className="col-xl-8 col-sm-12">

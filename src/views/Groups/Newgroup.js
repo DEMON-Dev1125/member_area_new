@@ -41,7 +41,6 @@ export default function EditContent() {
 
   // ------------------------------------------------------------------------
 
-
   const Back_fun = () => {
     history.goBack();
   };
@@ -117,9 +116,7 @@ export default function EditContent() {
     setClassRule(e.target.value);
   };
 
-  const addGroup = () => {
-      
-  };
+  const addGroup = () => {};
 
   return (
     <div className="container-fluid mt-5">

@@ -79,23 +79,29 @@ export default function Appearance() {
   useEffect(() => {
     if (appearanceData.length !== 0) {
       appearanceData.map((data) => {
-        setColorBackground(data.colorBackground);
-        setColorText(data.colorText);
+        setColorBackground(data.color1);
+        setColorText(data.color2);
 
-        let pathNavimgName = data.navimg[0].path.replace(/\\/g, '/');
-        let pathFaviconName = data.favicon[0].path.replace(/\\/g, '/');
-        let pathLoginimgName = data.loginimg[0].path.replace(/\\/g, '/');
-        let pathLoginBackgroundName = data.loginbackground[0].path.replace(/\\/g, '/');
-        
-        if(pathNavimgName[0] !== '/') pathNavimgName = '/' + pathNavimgName;
-        if(pathFaviconName[0] !== '/') pathFaviconName = '/' + pathFaviconName;
-        if(pathLoginimgName[0] !== '/') pathLoginimgName = '/' + pathLoginimgName;
-        if(pathLoginBackgroundName[0] !== '/') pathLoginBackgroundName = '/' + pathLoginBackgroundName;
-        
-        setNavimgPath(API_URL + pathNavimgName);
-        setFaviconPath(API_URL + pathFaviconName);
-        setLoginimgPath(API_URL + pathLoginimgName);
-        setLoginBackgroundPath(API_URL + pathLoginBackgroundName);
+        if(data.navimg) {
+          let pathNavimgName = data.navimg.replace(/\\/g, '/');
+          if(pathNavimgName[0] !== '/') pathNavimgName = '/' + pathNavimgName;
+          setNavimgPath(API_URL + pathNavimgName);
+        }
+        if(data.favicon) {
+          let pathFaviconName = data.favicon.replace(/\\/g, '/');
+          if(pathFaviconName[0] !== '/') pathFaviconName = '/' + pathFaviconName;
+          setFaviconPath(API_URL + pathFaviconName);
+        }
+        if(data.loginimg) {
+          let pathLoginimgName = data.loginimg.replace(/\\/g, '/');
+          if(pathLoginimgName[0] !== '/') pathLoginimgName = '/' + pathLoginimgName;
+          setLoginimgPath(API_URL + pathLoginimgName);
+        }
+        if(data.loginbackground) {
+          let pathLoginBackgroundName = data.loginbackground.replace(/\\/g, '/');
+          if(pathLoginBackgroundName[0] !== '/') pathLoginBackgroundName = '/' + pathLoginBackgroundName;
+          setLoginBackgroundPath(API_URL + pathLoginBackgroundName);
+        }
       });
     }
   }, [appearanceData]);
@@ -120,8 +126,8 @@ export default function Appearance() {
               bem.
             </div>
             <div className="mt-3 d-flex">
-              <ColorBackgroundPicker colorChange={colorBackChange} />
-              <ColorTextPicker colorChange={colorTextChange} />
+              <ColorBackgroundPicker colorChange={colorBackChange} colorBackground={colorBackground} />
+              <ColorTextPicker colorChange={colorTextChange} colorText={colorText} />
             </div>
             <div className="col-sm-6 row mt-3">
               <Fileupload fileUpload={navimgUpload} imagePath={navimgPath} />
@@ -134,7 +140,7 @@ export default function Appearance() {
               .ico para ser exibido na aba do navegador.
             </div>
             <div className="mt-3">
-              {/* <button className="btn_select">Escolher imagem</button> */}
+              <button className="btn_select">Escolher imagem</button>
               <Fileupload fileUpload={faviconUpload} imagePath={faviconPath} />
             </div>
             <div className="col-sm-6 mt-3 row">

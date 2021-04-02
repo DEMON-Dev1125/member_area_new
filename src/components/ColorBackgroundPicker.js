@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import reactCSS from "reactcss";
 import { SketchPicker } from "react-color";
 
@@ -49,9 +49,22 @@ export default function ColorBackgroundPicker(props) {
     props.colorChange(color.rgb);
   };
 
+  useEffect(() => {
+    if (props.colorBackground) {
+      let colorBackground = props.colorBackground;
+      let colorArray = colorBackground.split(",");
+      setColor({r: colorArray[0], g: colorArray[1], b: colorArray[2], a: colorArray[3]});
+    }
+  }, [props.colorBackground]);
+
   return (
     <div>
-      <button type="button" className="mr-2 btn_black" onClick={handleClick} style={styles.color}></button>
+      <button
+        type="button"
+        className="mr-2 btn_black"
+        onClick={handleClick}
+        style={styles.color}
+      ></button>
       {displayColorPicker ? (
         <div style={styles.popover}>
           <div style={styles.cover} onClick={handleClose} />

@@ -18,8 +18,8 @@ export default function Fileupload(props) {
   };
 
   useEffect(() => {
-    if(props.imagePath) setImage(props.imagePath);
-  }, [props.imagePath])
+    if (props.imagePath) setImage(props.imagePath);
+  }, [props.imagePath]);
 
   return (
     <div className="upload_before d-flex flex-column align-items-center">

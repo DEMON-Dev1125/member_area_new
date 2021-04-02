@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import reactCSS from "reactcss";
 import { SketchPicker } from "react-color";
 
@@ -48,6 +48,19 @@ export default function ColorTextPicker(props) {
     setColor(color.rgb);
     props.colorChange(color.rgb);
   };
+
+  useEffect(() => {
+    if (props.colorText) {
+      let colorText = props.colorText;
+      let colorArray = colorText.split(",");
+      setColor({
+        r: colorArray[0],
+        g: colorArray[1],
+        b: colorArray[2],
+        a: colorArray[3],
+      });
+    }
+  }, [props.colorText]);
 
   return (
     <div>
