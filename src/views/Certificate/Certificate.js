@@ -17,7 +17,7 @@ export default function Certificate() {
   const dispatch = useDispatch();
 
   const EditCertificate = (item) => {
-    const certificateId = item._id;
+    const certificateId = item.id;
     history.push({
       pathname: "/main/certificate/editcertificate",
       state: { id: certificateId },

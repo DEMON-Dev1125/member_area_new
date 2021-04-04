@@ -9,7 +9,7 @@ export const editAppearance = (
   return AppearanceService.editAppearance(
     data
   ).then((status) => {
-    if (status.data.success === "success") {
+    if (status.data.length !== 0) {
       store.addNotification({
         title: "Success!",
         message: "Save Success",

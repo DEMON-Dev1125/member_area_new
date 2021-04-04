@@ -24,7 +24,7 @@ export const getPrevData = (id) => (dispatch) => {
   });
 };
 
-export const editCertificate = (id, contentDetail) => (dispatch) => {
+export const editCertificate = (history, id, contentDetail) => (dispatch) => {
   return CertificateService.editCertificate(id, contentDetail).then(
     (editData) => {
       dispatch({

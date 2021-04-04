@@ -39,10 +39,10 @@ export const editSetting = (
           },
         });
       }
-      dispatch({
-        type: GET_SETTINGDATA,
-        payload: status,
-      });
+      // dispatch({
+      //   type: GET_SETTINGDATA,
+      //   payload: status,
+      // });
     })
     .catch((err) => {
       if (err.response.data.message) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -65,6 +65,7 @@ export default function StyledCheckbox(props) {
       inputProps={{ "aria-label": "decorative checkbox" }}
       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       onChange={onCheck}
+      checked={props.checkStatus}
     />
   );
 }

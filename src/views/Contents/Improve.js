@@ -47,6 +47,7 @@ export default function NewContent(props) {
   const [text, setText] = useState("");
   const [readStatus, setReadStatus] = useState("");
   const [itemStatusId, setItemStatusId] = useState("");
+  const [convertText, setConvertText] = useState("");
   
   const [classcomplete, setClasscomplete] = useState(true);
 
@@ -55,7 +56,8 @@ export default function NewContent(props) {
     setSubTitle(`AULA ${data.order}`);
     // setText(convertFromHTML(data.text));
     setText(data.text);
-    setItemStatusId(data._id);
+    setConvertText(convertFromHTML(data.text));
+    setItemStatusId(data.id);
     if(data.status === "read") setClasscomplete(false);
     else setClasscomplete(true);
   };

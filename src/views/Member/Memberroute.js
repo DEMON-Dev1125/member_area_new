@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import MemberIndex from "./Member.js";
 import NewMember from "./Newmember.js";
 import EditMember from "./Editmember.js";
+import Viewmember from "./Viewmember.js";
 
 export default function Inviteroute() {
   return (
@@ -19,6 +20,10 @@ export default function Inviteroute() {
       <Route
         path="/main/member/editmember"
         component={(props) => <EditMember {...props} />}
+      />
+      <Route 
+        path="/main/member/viewmember"
+        component={(props) => <Viewmember {...props} />}
       />
     </Switch>
   );

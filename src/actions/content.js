@@ -19,6 +19,15 @@ export const addModule = (name) => (dispatch) => {
   });
 };
 
+export const moduleNameEdit = (id, name, order) => (dispatch) => {
+  return ContentService.editModuleName(id, name, order).then((status) => {
+    // dispatch({
+    //   type: 
+    // })
+    console.log(status);
+  })
+}
+
 export const deleteModule = (id) => (dispatch) => {
   return ContentService.deleteModule(id).then((delData) => {
     dispatch({

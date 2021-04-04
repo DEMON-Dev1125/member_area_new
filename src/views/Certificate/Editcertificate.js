@@ -35,52 +35,56 @@ export default function Certificate(props) {
     setEditorData(data);
   };
 
+  const prevData = useSelector((state) =>
+    state.certificate.prevData ? state.certificate.prevData.certificate : ""
+  );
+  const value = prevData ? prevData.contentDetail : "";
+
+  const SaveEdit = () => {
+    dispatch(editCertificate(history, id, contentDetail));
+  };
+
   useEffect(() => {
     dispatch(getPrevData(id));
   }, []);
 
-  const prevData = useSelector((state) =>
-    state.certificate.prevData ? state.certificate.prevData : ""
-  );
-  const value = prevData ? prevData.certificates.contentDetail : "";
-
-  const SaveEdit = () => {
-    dispatch(editCertificate(id, contentDetail));
-  };
-
-  const updateData = useSelector((state) => state.certificate.editData);
-
   useEffect(() => {
-    if (updateData && updateData["success"]) {
-      store.addNotification({
-        title: "Success!",
-        message: "Update certificate success",
-        type: "success",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-        },
-      });
-    } else if (updateData && updateData.errors) {
-      store.addNotification({
-        title: "Error!",
-        message: updateData.errors["name"],
-        type: "danger",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 3000,
-          onScreen: true,
-        },
-      });
+    if(Object.keys(prevData).length !== 0) {
+      setEditorData(prevData.contentDetail);
     }
-  }, [ ]);
+  }, [prevData])
+
+  // useEffect(() => {
+  //   if (updateData && updateData["success"]) {
+  //     store.addNotification({
+  //       title: "Success!",
+  //       message: "Update certificate success",
+  //       type: "success",
+  //       insert: "top",
+  //       container: "top-right",
+  //       animationIn: ["animate__animated", "animate__fadeIn"],
+  //       animationOut: ["animate__animated", "animate__fadeOut"],
+  //       dismiss: {
+  //         duration: 3000,
+  //         onScreen: true,
+  //       },
+  //     });
+  //   } else if (updateData && updateData.errors) {
+  //     store.addNotification({
+  //       title: "Error!",
+  //       message: updateData.errors["name"],
+  //       type: "danger",
+  //       insert: "top",
+  //       container: "top-right",
+  //       animationIn: ["animate__animated", "animate__fadeIn"],
+  //       animationOut: ["animate__animated", "animate__fadeOut"],
+  //       dismiss: {
+  //         duration: 3000,
+  //         onScreen: true,
+  //       },
+  //     });
+  //   }
+  // }, [ ]);
 
   return (
     <div className="container-fluid mt-5">

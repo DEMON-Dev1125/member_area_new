@@ -28,6 +28,7 @@ export default function EditContent(props) {
   const [videoLink, setVideoLink] = useState("");
   const [value, setValue] = useState("");
   const [path, setPath] = useState("");
+  const [comment, setComment] = useState(false);
 
   const Handle_Title = (e) => {
     setTitle(e.target.value);
@@ -50,8 +51,9 @@ export default function EditContent(props) {
     data.append('file', sourceFile);
     data.append('module', moduleId);
     data.append('title', title);
-    data.append('contentDetail', contentDetail);
+    data.append('text', contentDetail);
     data.append('videoLink', videoLink);
+    data.append('comment', comment);
     dispatch(updateContentData(history, id, data));
   };
 
@@ -59,8 +61,8 @@ export default function EditContent(props) {
     dispatch(deleteContentData(history, id));
   }
 
-  const onStatus = () => {
-    console.log("dd");
+  const onStatus = (value) => {
+    setComment(value);
   };
 
   useEffect(() => {
@@ -69,12 +71,13 @@ export default function EditContent(props) {
 
   useEffect(() => {
     if (Object.keys(contentData).length !== 0) {
-      if (contentData._id !== id) return;
+      if (contentData.id !== id) return;
       setTitle(contentData.title);
       setVideoLink(contentData.videolink);
       setValue(contentData.text);
+      setComment(contentData.comment)
 
-      let pathName = contentData.file.path.replace(/\\/g, '/');
+      let pathName = contentData.file.replace(/\\/g, '/');
       if(pathName[0] !== '/') pathName = '/' + pathName;
       setPath(API_URL + pathName);
     }
@@ -113,7 +116,7 @@ export default function EditContent(props) {
           <div className="Edit-ft3 mt-5">Arquivos</div>
           <Fileupload fileUpload={fileUpload} imagePath={path} />
           <div className="d-flex mt-5">
-            <StyledCheckbox status={onStatus} />
+            <StyledCheckbox status={onStatus} checkStatus={comment} />
             <div>
               <div className="Edit-ft3">Desativar comentários</div>
               <div className="Edit-ft5 mt-2">

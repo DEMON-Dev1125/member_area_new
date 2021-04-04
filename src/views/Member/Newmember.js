@@ -13,7 +13,7 @@ export default function Newmember() {
   const [membertype, setmembertype] = useState(false);
   const [dropType, setDropType] = useState(10);
 
-  const [fullname, setFullname] = useState("");
+  const [name, setFullname] = useState("");
   const [email, setEmail] = useState("");
 
   const history = useHistory();
@@ -35,7 +35,7 @@ export default function Newmember() {
 
   const onSave = () => {
     let memType = membertype ? "collaborator" : "student";
-    dispatch(addMember(history, fullname, email, memType));
+    dispatch(addMember(history, name, email, memType));
   }
 
   return (

@@ -284,7 +284,7 @@ export default function EditContent() {
                                 allModuleData.map((item, key) => {
                                   return (
                                     <option key={key} value={key + 1}>
-                                      {item._id}
+                                      {item.id}
                                     </option>
                                   );
                                 })}

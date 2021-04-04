@@ -40,6 +40,7 @@ export default function Setting() {
 
   const settingData = useSelector((state) => state.setting.allData ? state.setting.allData.settings : []);
   console.log(settingData);
+  const value = settingData && settingData.length != 0 ? settingData[0].message : "";
 
   const [memberareaname, setMemberAreaName] = useState("");
   const changeSiteName = (e) => {
@@ -264,7 +265,7 @@ export default function Setting() {
               />
             </div>
             <div className="mt-5">
-              <TextWYSIWYG editorData={editorData} value={message} />
+              <TextWYSIWYG editorData={editorData} value={value} />
             </div>
           </div>
           <div className="row mt-5  mb-5">

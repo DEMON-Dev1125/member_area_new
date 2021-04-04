@@ -20,7 +20,7 @@ export default function EditContent(props) {
   const memberData = useSelector((state) => state.member.memberData ? state.member.memberData.member : {});
   console.log(memberData);
 
-  const [fullname, setFullname] = useState("");
+  const [name, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [newPwa, setNewPwa] = useState("");
   const [confirmPwa, setConfirmPwa] = useState("");
@@ -46,7 +46,7 @@ export default function EditContent(props) {
     else if(memberType === true) memberType = "collaborate";
     else memberType = "blocker";
     
-    dispatch(editMember(history, memberId, fullname, email, newPwa, confirmPwa, memberType));
+    dispatch(editMember(history, memberId, name, email, newPwa, confirmPwa, memberType));
   }
 
   const onDelete = () => {
@@ -59,8 +59,8 @@ export default function EditContent(props) {
 
   useEffect(() => {
     if (Object.keys(memberData).length !== 0) {
-      if (memberData._id !== memberId) return;
-      setFullname(memberData.fullname);
+      if (memberData.id !== memberId) return;
+      setFullname(memberData.name);
       setEmail(memberData.email);
 
       if(memberData.membertype === "student") setmembertype(false);
@@ -85,7 +85,7 @@ export default function EditContent(props) {
               type="text"
               className="Edit-warp mt-3 w-100 Edit-ft4"
               placeholder="Editar membro"
-              value={fullname}
+              value={name}
               onChange={(e) => setFullname(e.target.value)}
             />
           </div>

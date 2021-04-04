@@ -11,6 +11,7 @@ import { store } from "react-notifications-component";
 
 export const addInvite = (history, data) => (dispatch) => {
   return InviteService.addInvite(data).then((status) => {
+    console.log("++++++", status);
     if (status.data.success === "success") {
       store.addNotification({
         title: "Success!",

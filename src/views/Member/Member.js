@@ -27,21 +27,6 @@ import { getAllMember } from "../../actions/member";
 const MemberAvatar = "face-5.jpg";
 const MemberBack = "membro.png";
 
-const MemberData = [
-  {
-    _id: 123123123,
-    name: "asdfasdf",
-    role: 1,
-    team: 1,
-  },
-  {
-    _id: 1232123123,
-    name: "asdfasdf",
-    role: 1,
-    team: 1,
-  },
-];
-
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -443,7 +428,7 @@ export default function Member() {
                                   </div>
                                   <div className="ml-3">
                                     <div className="member_name">
-                                      {data.fullname}
+                                      {data.name}
                                     </div>
                                     <div className="member_mail">
                                       {data.email}
@@ -455,7 +440,7 @@ export default function Member() {
                                     <button
                                       type="button"
                                       className="btn_edit"
-                                      onClick={() => handleEdit(data._id)}
+                                      onClick={() => handleEdit(data.id)}
                                     >
                                       <i className="fa fa-pen-alt"></i>
                                     </button>
@@ -489,7 +474,7 @@ export default function Member() {
                                       }}
                                     >
                                       <MenuItem
-                                        onClick={() => handleEdit(data._id)}
+                                        onClick={() => handleEdit(data.id)}
                                       >
                                         Edit
                                       </MenuItem>
@@ -595,7 +580,7 @@ export default function Member() {
                                   </div>
                                   <div className="ml-3">
                                     <div className="member_name">
-                                      {data.fullname}
+                                      {data.name}
                                     </div>
                                     <div className="member_mail">
                                       {data.email}
@@ -637,7 +622,7 @@ export default function Member() {
                                       }}
                                     >
                                       <MenuItem
-                                        onClick={() => handleEdit(data._id)}
+                                        onClick={() => handleEdit(data.id)}
                                       >
                                         Edit
                                       </MenuItem>
@@ -692,7 +677,7 @@ export default function Member() {
                                   </div>
                                   <div className="ml-3">
                                     <div className="member_name">
-                                      {data.fullname}
+                                      {data.name}
                                     </div>
                                     <div className="member_mail">
                                       {data.email}
@@ -734,7 +719,7 @@ export default function Member() {
                                       }}
                                     >
                                       <MenuItem
-                                        onClick={() => handleEdit(data._id)}
+                                        onClick={() => handleEdit(data.id)}
                                       >
                                         Edit
                                       </MenuItem>

@@ -7,6 +7,7 @@ import {
   getAllContent,
   updateContent,
   updateModule,
+  moduleNameEdit,
 } from "../../actions/content";
 import DeleteMoudle from "./Deletedialog";
 import AddMoudle from "./Addmodule";
@@ -166,6 +167,7 @@ export default function ContentIndex() {
     setEdit(!edit);
     setSelect1(!select1);
     setMoveflag(true);
+    setTextvalue(item.name);
   };
 
   const [textvalue, setTextvalue] = useState("");
@@ -178,6 +180,8 @@ export default function ContentIndex() {
   const editModuleSuccess = (item) => {
     item.editKey = false;
     setEdit(!edit);
+    item.name = textvalue;
+    dispatch(moduleNameEdit(item.id, textvalue, item.order));
   };
 
   const [moveflag, setMoveflag] = useState(true);
@@ -195,10 +199,10 @@ export default function ContentIndex() {
     history.push("/main/content/newcontent");
   };
   const goImprove = (item) => {
-    console.log(item.name, item._id);
+    console.log(item.name, item.id);
     history.push({
       pathname: "/main/content/improve",
-      state: { id: item._id, name: item.name },
+      state: { id: item.id, name: item.name },
     });
   };
 
@@ -214,7 +218,7 @@ export default function ContentIndex() {
       temp.push(data);
       let content = {};
       content.order = index + 1;
-      content._id = data._id;
+      content.id = data.id;
       contents.push(content);
     });
 
@@ -229,11 +233,12 @@ export default function ContentIndex() {
       // allModuleData.map(data => {
       //   modules.push(data);
       // });
+      return;
     } else {
       allModuleData.map((data) => {
         let module = {};
-        module._id = data._id;
-        if (data._id === item._id) {
+        module.id = data.id;
+        if (data.id === item.id) {
           data.order = item.order - 1;
         }
         if (item.order - 1 === data.order) {
@@ -251,14 +256,15 @@ export default function ContentIndex() {
     item.moreButtonKey = false;
     let modules = [];
     if (item.order === allModuleData.length - 1) {
+      return;
     } else {
       allModuleData.map((data) => {
         let module = {};
-        module._id = data._id;
-        if (data._id === item._id && data.order === item.order) {
+        module.id = data.id;
+        if (data.id === item.id && data.order === item.order) {
           data.order = item.order + 1;
         }
-        if (item.order === data.order && data._id !== item._id) {
+        if (item.order === data.order && data.id !== item.id) {
           data.order = item.order - 1;
         }
 
@@ -431,7 +437,7 @@ export default function ContentIndex() {
                               Mover aulas
                             </div>
                             <DeleteMoudle
-                              moduleId={item._id}
+                              moduleId={item.id}
                               title={item.name}
                             />
                           </div>
@@ -448,7 +454,7 @@ export default function ContentIndex() {
                           characters.map((data, index) => {
                             return (
                               <div key={index}>
-                                {item._id === data.module && (
+                                {item.id === data.module && (
                                   <div className="test-content d-flex mb-4">
                                     <img
                                       src={
@@ -482,7 +488,7 @@ export default function ContentIndex() {
                                   {characters.map((data, index) => {
                                     return (
                                       <>
-                                        {item._id === data.module && (
+                                        {item.id === data.module && (
                                           <Draggable
                                             key={data.order}
                                             draggableId={"item" + data.order}

@@ -188,7 +188,7 @@ export default function NewContent() {
                 {allModuleData
                   ? allModuleData.map((item, key) => {
                       return (
-                        <option value={item._id} key={key}>
+                        <option value={item.id} key={key}>
                           {key + 1} - {item.name}
                         </option>
                       );

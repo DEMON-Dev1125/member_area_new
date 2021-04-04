@@ -11,6 +11,14 @@ const addModule = (name) => {
   );
 };
 
+const editModuleName = (id, name, order) => {
+  return axios.post(
+    API_URL + `/modules/edit/${id}`,
+    { name, order },
+    { headers: authHeader() }
+  );
+};
+
 const deleteModule = (id) => {
   return axios.delete(API_URL + `/modules/delete/${id}`, {
     headers: authHeader(),
@@ -49,6 +57,7 @@ const updateModule = (modules) => {
 
 export default {
   addModule,
+  editModuleName,
   getAllModule,
   deleteModule,
   addContent,

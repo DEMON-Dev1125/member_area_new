@@ -23,7 +23,6 @@ export default function EditInvite() {
   const inviteDataById = useSelector((state) =>
     state.invite.inviteDataById.invite ? state.invite.inviteDataById.invite : {}
   );
-
   const history = useHistory();
   const { id } = useParams();
 
@@ -48,6 +47,7 @@ export default function EditInvite() {
   const onDelete = () => {
     dispatch(deleteInvite(history, id));
   };
+  console.log(inviteDataById);
 
   useEffect(() => {
     dispatch(getInvite(id));
@@ -55,11 +55,12 @@ export default function EditInvite() {
 
   useEffect(() => {
     if (Object.keys(inviteDataById).length !== 0) {
-      if (inviteDataById._id !== id) return;
+      console.log(inviteDataById.id);
+      if (inviteDataById.id != id) return;
       setTitle(inviteDataById.title);
       setDescription(inviteDataById.description);
 
-      let pathName = inviteDataById.file.path.replace(/\\/g, '/');
+      let pathName = inviteDataById.file.replace(/\\/g, '/');
       if(pathName[0] !== '/') pathName = '/' + pathName;
       setPath(API_URL + pathName);
     }

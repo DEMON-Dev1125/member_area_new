@@ -20,7 +20,7 @@ export default function Invite() {
   const dispatch = useDispatch();
 
   const { inviteData } = useSelector((state) => state.invite);
-
+console.log(inviteData);  
   const history = useHistory();
   const AddInvite = () => {
     history.push("/main/invite/addinvite");
@@ -29,7 +29,6 @@ export default function Invite() {
     alert("Clicked!");
   };
   const EditInvite = (id) => {
-    // history.push("/main/invite/editinvite");
     history.push(`/main/invite/editinvite/${id}`);
   };
   const OneInvite = () => {
@@ -100,7 +99,7 @@ export default function Invite() {
                   <div
                     className="group-content p-5 mt-5"
                     style={{ cursor: "pointer" }}
-                    onClick={() => EditInvite(item._id)}
+                    onClick={() => EditInvite(item.id)}
                   >
                     <div>
                       <div className="Edit-ft3">{item.title}</div>
