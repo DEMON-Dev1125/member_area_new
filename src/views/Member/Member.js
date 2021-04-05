@@ -121,7 +121,7 @@ export default function Member() {
   const AddMember = () => {
     history.push("/main/member/addmember");
   };
-  
+
   const handleEdit = (id) => {
     history.push({
       pathname: "/main/member/editmember",
@@ -148,6 +148,10 @@ export default function Member() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const goViewMember = () => {
+    history.push("/main/member/viewmember");
   };
 
   useEffect(() => {
@@ -589,7 +593,11 @@ export default function Member() {
                                 </div>
                                 <div className="col-sm-3 col-3 mt-1">
                                   <div className="desktop_hidden">
-                                    <button type="button" className="btn_edit">
+                                    <button
+                                      type="button"
+                                      className="btn_edit"
+                                      onClick={() => handleEdit(data.id)}
+                                    >
                                       <i className="fa fa-pen-alt"></i>
                                     </button>
                                     <button
@@ -686,12 +694,17 @@ export default function Member() {
                                 </div>
                                 <div className="col-sm-3 col-3 mt-1">
                                   <div className="desktop_hidden">
-                                    <button type="button" className="btn_edit">
+                                    <button
+                                      type="button"
+                                      className="btn_edit"
+                                      onClick={() => handleEdit(data.id)}
+                                    >
                                       <i className="fa fa-pen-alt"></i>
                                     </button>
                                     <button
                                       type="button"
                                       className="btn_eye ml-2"
+                                      onClick={goViewMember}
                                     >
                                       <i className="fa fa-eye"></i>
                                     </button>

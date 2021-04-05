@@ -6,6 +6,7 @@ import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { getAllModule } from "../../actions/content";
+import { addGroupData } from "../../actions/group";
 import "../../assets/css/login.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -97,7 +98,7 @@ export default function EditContent() {
 
   const [StartDate, setStartDate] = useState("");
   const changeStartDate = (e, item) => {
-    console.log(document.getElementById(`date-start${item.order}`).value);
+    console.log(document.getElementById(`date-start${item.id}`).value);
   };
 
   const [EndDate, setEndDate] = useState("");
@@ -107,7 +108,7 @@ export default function EditContent() {
 
   const [AccessTerm, setAccessTerm] = useState("");
   const changeAccessTerm = (e, item) => {
-    document.getElementById(`access-term${item.order}`);
+    document.getElementById(`access-term${item.id}`);
     setAccessTerm(e.target.value);
   };
 
@@ -116,7 +117,52 @@ export default function EditContent() {
     setClassRule(e.target.value);
   };
 
-  const addGroup = () => {};
+  const addGroup = () => {
+    let moduleTemp = [];
+    allModuleData.map((data) => {
+      let tempData = {};
+      let selectItemValue = document.getElementById(`select-item${data.id}`)
+        .value;
+
+      if (selectItemValue == 10) {
+        tempData.module_id = data.id;
+        tempData.type = "free";
+        moduleTemp.push(tempData);
+      } else if (selectItemValue == 20) {
+        tempData.module_id = data.id;
+        tempData.type = "schedule";
+        tempData.fromdate = document.getElementById(
+          `date-start${data.id}`
+        ).value;
+        tempData.todate = document.getElementById(`date-end${data.id}`).value;
+        moduleTemp.push(tempData);
+      } else if (selectItemValue == 30) {
+        tempData.module_id = data.id;
+        tempData.type = "purchase";
+        tempData.daysafter = document.getElementById(
+          `access-term${data.id}`
+        ).value;
+        moduleTemp.push(tempData);
+      } else if (selectItemValue == 40) {
+        tempData.module_id = data.id;
+        tempData.type = "hidden";
+        moduleTemp.push(tempData);
+      }
+    });
+
+    let temp = {
+      name: NewGroupName,
+      accessterm: ItemAccess,
+      standardclass: status,
+      moduleData: moduleTemp,
+    };
+    
+    dispatch(addGroupData(temp));
+  };
+
+  let startDateRef = React.createRef();
+  let endDateRef = React.createRef();
+  let afterdays = React.createRef();
 
   return (
     <div className="container-fluid mt-5">
@@ -187,7 +233,9 @@ export default function EditContent() {
                         >
                           <Select
                             native
-                            id="grouped-native-select"
+                            // id="grouped-native-select"
+                            // id="select-item"
+                            id={`select-item${item.id}`}
                             onChange={(e) => selectRule(e, item)}
                             label="rule"
                           >
@@ -208,10 +256,10 @@ export default function EditContent() {
                               type="date"
                               className="input-ft2 mt-2 w-100"
                               placeholder="05/01/2021 12:00"
-                              name="from"
-                              id={`date-start${item.order}`}
-                              // value={StartDate}
-                              onChange={(e) => changeStartDate(e, item)}
+                              name={"from" + item.id}
+                              id={`date-start${item.id}`}
+                              ref={startDateRef}
+                              // value={}
                             />
                           </div>
                           <div className="mb-3">
@@ -221,9 +269,10 @@ export default function EditContent() {
                               className="input-ft2 mt-2 w-100"
                               placeholder="14/01/2021 12:00"
                               name="to"
-                              id={`date-end${item.order}`}
+                              id={`date-end${item.id}`}
+                              ref={endDateRef}
                               // value={EndDate}
-                              onChange={changeEndDate}
+                              // onChange={changeEndDate}
                             />
                           </div>
                         </div>
@@ -235,9 +284,8 @@ export default function EditContent() {
                               type="number"
                               className="Edit-warp mt-3 Edit-ft4-1 w-100"
                               placeholder="01"
-                              id={`access-term${item.order}`}
-                              // value={AccessTerm}
-                              onChange={(e) => changeAccessTerm(e, item)}
+                              id={`access-term${item.id}`}
+                              ref={afterdays}
                             />
                             <div className="item-day-1 Edit-ft1">DIAS</div>
                           </div>

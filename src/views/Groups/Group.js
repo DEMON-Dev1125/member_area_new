@@ -1,3 +1,4 @@
+import Item from "antd/lib/list/Item";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -22,8 +23,12 @@ export default function Group() {
   const groupDatas = useSelector((state) => state.group.allData);
   console.log("group", groupDatas);
 
-  const GroupEdit = () => {
-    history.push("/main/group/groupedit");
+  const GroupEdit = (item) => {
+    // history.push("/main/group/groupedit");
+    history.push({
+      pathname: "/main/group/groupedit",
+      id: item.id,
+    });
   };
   return (
     <div className="container-fluid mt-5">
@@ -47,51 +52,67 @@ export default function Group() {
             </div>
           </div>
           <hr />
-          <div
-            className="group-content container-fluid p-5 mt-5"
-            onClick={GroupEdit}
-            style={{ cursor: "pointer" }}
-          >
-            <div className="row">
-              <div className="col-6 col-md-4">
-                <div className="Edit-ft1">TURMA (PADRÃO)</div>
-                <div className="mt-1 con-ft5">Turma A</div>
-              </div>
-              <div className="col-6 col-md-8">
-                <div className="Edit-ft1">MEMBROS</div>
-                <div className="mt-1 position-relative">
-                  <img
-                    className="position-absolute"
-                    src={require(`../../assets/img/${MemberImg1}`).default}
-                  />
-                  <img
-                    className="member2"
-                    src={require(`../../assets/img/${MemberImg2}`).default}
-                  />
-                  <img
-                    className="member3"
-                    src={require(`../../assets/img/${MemberImg3}`).default}
-                  />
-                  <div className="member4">+609</div>
-                </div>
-              </div>
-            </div>
-            <div className="row mt-5">
-              <div className="col-8 col-md-4">
-                <div className="Edit-ft1">COMENTÁRIOS</div>
-                <div className="con-ft5 mt-2">1523</div>
-              </div>
-              <div className="col-8 col-md-8">
-                <div className="Edit-ft1">APROVEITAMENTO</div>
-                <div className="d-flex align-items-center mt-3">
-                  <div className="Edit-ft5">25%</div>
-                  <div className="u-progress w-100">
-                    <div className="u-progress-bar w-25"></div>
+          {groupDatas &&
+            groupDatas.groups.map((item, index) => {
+              return (
+                <div
+                  className="group-content container-fluid p-5 mt-5"
+                  onClick={() => GroupEdit(item)}
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                >
+                  <div className="row">
+                    <div className="col-6 col-md-4">
+                      {item.standardclass ? (
+                        <div className="Edit-ft1">CLASS(STANDARD)</div>
+                      ) : (
+                        <div className="Edit-ft1">CLASS()</div>
+                      )}
+                      <div className="mt-1 con-ft5">{item.name}</div>
+                    </div>
+                    <div className="col-6 col-md-8">
+                      <div className="Edit-ft1">MEMBROS</div>
+                      <div className="mt-1 position-relative">
+                        <img
+                          className="position-absolute"
+                          src={
+                            require(`../../assets/img/${MemberImg1}`).default
+                          }
+                        />
+                        <img
+                          className="member2"
+                          src={
+                            require(`../../assets/img/${MemberImg2}`).default
+                          }
+                        />
+                        <img
+                          className="member3"
+                          src={
+                            require(`../../assets/img/${MemberImg3}`).default
+                          }
+                        />
+                        <div className="member4">+609</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mt-5">
+                    <div className="col-8 col-md-4">
+                      <div className="Edit-ft1">COMENTÁRIOS</div>
+                      <div className="con-ft5 mt-2">1523</div>
+                    </div>
+                    <div className="col-8 col-md-8">
+                      <div className="Edit-ft1">APROVEITAMENTO</div>
+                      <div className="d-flex align-items-center mt-3">
+                        <div className="Edit-ft5">25%</div>
+                        <div className="u-progress w-100">
+                          <div className="u-progress-bar w-25"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              );
+            })}
         </div>
         <div className="col-xl-2"></div>
       </div>

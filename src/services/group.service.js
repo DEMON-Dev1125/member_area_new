@@ -7,20 +7,20 @@ const getAllGroup = () => {
   return axios.get(API_URL + "/groups", { headers: authHeader() });
 };
 
-const addGroup = (name) => {
+const addGroup = (groupData) => {
   return axios.post(
-    API_URL + "/group/add",
-    { name },
+    API_URL + "/groups/add",
+    groupData,
     { headers: authHeader() }
   );
 };
 
 const editGroup = (id) => {
-  return axios.post(API_URL + `/group/edit/${id}`, { headers: authHeader() });
+  return axios.post(API_URL + `/groups/edit/${id}`, { headers: authHeader() });
 };
 
 const deleteGroup = (id) => {
-  return axios.delete(API_URL + `/group/delete/${id}`, {
+  return axios.delete(API_URL + `/groups/delete/${id}`, {
     headers: authHeader(),
   });
 };

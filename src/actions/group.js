@@ -11,8 +11,8 @@ export const getAllGroup = () => (dispatch) => {
   });
 };
 
-export const addGroup = () => (dispatch) => {
-  return GroupService.addGroup().then((data) => {
+export const addGroupData = (groupData) => (dispatch) => {
+  return GroupService.addGroup(groupData).then((data) => {
     dispatch({
       type: ADD_GROUP,
       payload: data,
