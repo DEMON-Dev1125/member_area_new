@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ToogleButton from "../../components/Togglebutton";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+import { getGroupById, editGroup, deleteGroup } from "../../actions/group";
+import { getAllModule } from "../../actions/content";
+
 import "../../assets/css/login.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,12 +24,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-export default function EditContent() {
+export default function EditContent(props) {
   const history = useHistory();
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const Back_fun = () => {
     history.goBack();
   };
+
+  const id = props.location.state.id;
+
   const [newgroup, setNewgroup] = useState("");
   const [drpdwn, setDrpDwn] = useState(false);
   const Handle_Newgroup = (e) => {
@@ -34,6 +44,54 @@ export default function EditContent() {
   const Handle_Itemaccess = (e) => {
     setItemaccess(e.target.value);
   };
+
+  const [rule, setRule] = useState(false);
+  const selectRule = (e, item) => {
+    // item.ruleKey = e.target.value;
+    if (e.target.value == 10) {
+      // document.getElementById(`select-item${item.id}`).value = 10;
+      document
+        .getElementById(`div-schedule${item.id}`)
+        .classList.add("group-secttion-hide");
+      document
+        .getElementById(`div-purchase${item.id}`)
+        .classList.add("group-secttion-hide");
+    } else if (e.target.value == 20) {
+      // document.getElementById(`select-item${item.id}`).value = 20;
+      document
+        .getElementById(`div-schedule${item.id}`)
+        .classList.remove("group-secttion-hide");
+      document
+        .getElementById(`div-purchase${item.id}`)
+        .classList.add("group-secttion-hide");
+    } else if (e.target.value == 30) {
+      // document.getElementById(`select-item${item.id}`).value = 30;
+      document
+        .getElementById(`div-purchase${item.id}`)
+        .classList.remove("group-secttion-hide");
+      document
+        .getElementById(`div-schedule${item.id}`)
+        .classList.add("group-secttion-hide");
+    } else if (e.target.value == 40) {
+      // document.getElementById(`select-item${item.id}`).value = 40;
+      document
+        .getElementById(`div-schedule${item.id}`)
+        .classList.add("group-secttion-hide");
+      document
+        .getElementById(`div-purchase${item.id}`)
+        .classList.add("group-secttion-hide");
+    } else if (e.target.value == 50) {
+      // document.getElementById(`select-item${item.id}`).value = 50;
+      document
+        .getElementById(`div-schedule${item.id}`)
+        .classList.add("group-secttion-hide");
+      document
+        .getElementById(`div-purchase${item.id}`)
+        .classList.add("group-secttion-hide");
+    }
+    setRule(!rule);
+  };
+
   const [role1, setRole1] = useState(10);
   const Handle_Role1 = (e) => {
     setRole1(e.target.value);
@@ -47,16 +105,122 @@ export default function EditContent() {
     setRole3(e.target.value);
   };
   const Handle_Add = () => {
-    history.push("/main/group/groupadd");
+    let moduleTemp = [];
+    allModuleData.map((data) => {
+      let tempData = {};
+      let selectItemValue = document.getElementById(`select-item${data.id}`)
+        .value;
+
+      if (selectItemValue == 10) {
+        tempData.module_id = data.id;
+        tempData.type = "free";
+        moduleTemp.push(tempData);
+      } else if (selectItemValue == 20) {
+        tempData.module_id = data.id;
+        tempData.type = "schedule";
+        tempData.fromdate = document.getElementById(
+          `date-start${data.id}`
+        ).value;
+        tempData.todate = document.getElementById(`date-end${data.id}`).value;
+        moduleTemp.push(tempData);
+      } else if (selectItemValue == 30) {
+        tempData.module_id = data.id;
+        tempData.type = "purchase";
+        tempData.daysafter = document.getElementById(
+          `access-term${data.id}`
+        ).value;
+        moduleTemp.push(tempData);
+      } else if (selectItemValue == 40) {
+        tempData.module_id = data.id;
+        tempData.type = "hidden";
+        moduleTemp.push(tempData);
+      }
+    });
+
+    let temp = {
+      name: newgroup,
+      accessterm: itemaccess,
+      standardclass: status,
+      moduleData: moduleTemp,
+    };
+    
+    dispatch(editGroup(id, temp));
+    // history.push("/main/group/groupadd");
   };
+
+  const deleteData = () => {
+    dispatch(deleteGroup(history, id));
+  }
 
   const showLearning = () => {
     setDrpDwn(!drpdwn);
   };
 
+  const [status, setStatus] = useState(false);
+  const toogleStatus = (status) => {
+    setStatus(status);
+  };
+
   const drpdwnCls = drpdwn
     ? "mgt-25 pd-50 group-content1"
     : "drpdwn mgt-25 pd-50 group-content1";
+
+  useEffect(() => {
+    dispatch(getAllModule());
+    dispatch(getGroupById(id));
+  }, []);
+
+  const groupDataById = useSelector((state) =>
+    state.group.groupDataById ? state.group.groupDataById.group : {}
+  );
+
+  const allModuleData = useSelector((state) => state.content.allData);
+
+  useEffect(() => {
+    if (Object.keys(groupDataById).length !== 0 && allModuleData.length !== 0) {
+      setNewgroup(groupDataById.name);
+      setItemaccess(groupDataById.accessterm);
+      setStatus(groupDataById.standardclass);
+
+      allModuleData.map((data) => {
+        groupDataById.moduleData.map((item) => {
+          if (data.id == item.module_id) {
+            if (item.type === "free") {
+              document.getElementById(`select-item${data.id}`).value = 10;
+            } else if (item.type === "schedule") {
+              data.ruleKey = 20;
+              document.getElementById(`select-item${data.id}`).value = 20;
+              document
+                .getElementById(`div-schedule${data.id}`)
+                .classList.remove("group-secttion-hide");
+
+              document.getElementById(`date-start${data.id}`).value =
+                item.fromdate;
+
+              document.getElementById(`date-end${data.id}`).value = item.todate;
+            } else if (item.type === "purchase") {
+              data.ruleKey = 30;
+              document.getElementById(`select-item${data.id}`).value = 30;
+              document
+                .getElementById(`div-purchase${data.id}`)
+                .classList.remove("group-secttion-hide");
+              document.getElementById(`access-term${data.id}`).value =
+                item.daysafter;
+            } else if (item.type === "hidden") {
+              document.getElementById(`select-item${data.id}`).value = 40;
+            } else if (item.type === "block") {
+              document.getElementById(`select-item${data.id}`).value = 50;
+            }
+          }
+        });
+      });
+    }
+  }, [groupDataById]);
+
+  let startDateRef = React.createRef();
+  let endDateRef = React.createRef();
+  let afterdays = React.createRef();
+
   return (
     <div className="container-fluid mt-5">
       <div className="row">
@@ -93,7 +257,7 @@ export default function EditContent() {
             </div>
           </div>
           <div className="mt-5 d-flex">
-            <ToogleButton />
+            <ToogleButton status={toogleStatus} buttonStatus={status} />
             <div className="ml-3">
               <div className="Edit-ft3">Turma padrão</div>
               <div className="Edit-ft5">
@@ -108,66 +272,92 @@ export default function EditContent() {
             </div>
           </div>
           <div className="group-new4 group-content">
-            <div className="group-new41">
-              <div>
-                <div className="Edit-ft1">MÓDULO 1</div>
-                <div className="mt-1 con-ft5">Introdução</div>
-              </div>
-              <div className="topmargin">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative ht-45 new_group_select">
-                  <FormControl
-                    variant="outlined"
-                    className={`${classes.formControl} mt-3`}
-                    width="100%"
-                  >
-                    <Select
-                      native
-                      defaultValue="Aula"
-                      id="grouped-native-select"
-                      onChange={Handle_Role1}
-                      label="lang"
-                    >
-                      <option value={10}>Acesso Livre</option>
-                      <option value={20}>Data programada</option>
-                      <option value={30}>Dias após compra</option>
-                      <option value={40}>Oculto</option>
-                      <option value={50}>Bloqueado</option>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
-            <div className="group-new42">
-              <div>
-                <div className="Edit-ft1">MÓDULO 2</div>
-                <div className="mt-1 con-ft5">Agora é pra Valer!</div>
-              </div>
-              <div className="topmargin">
-                <div className="Edit-ft1">SELECIONE UMA REGRA</div>
-                <div className="mt-1 position-relative new_group_select">
-                  <FormControl
-                    variant="outlined"
-                    className={`${classes.formControl} mt-3`}
-                    width="100%"
-                  >
-                    <Select
-                      native
-                      defaultValue="Aula"
-                      id="grouped-native-select"
-                      onChange={Handle_Role2}
-                      label="lang"
-                    >
-                      <option value={10}>Acesso Livre</option>
-                      <option value={20}>Data programada</option>
-                      <option value={30}>Dias após compra</option>
-                      <option value={40}>Oculto</option>
-                      <option value={50}>Bloqueado</option>
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-            </div>
+            {allModuleData &&
+              allModuleData.map((item, key) => {
+                return (
+                  <div className="group-new41" key={key}>
+                    <div>
+                      <div className="Edit-ft1">MÓDULO {key + 1}</div>
+                      <div className="mt-1 con-ft5">{item.name}</div>
+                    </div>
+                    <div className="topmargin">
+                      <div className="Edit-ft1">SELECIONE UMA REGRA</div>
+                      <div className="mt-1 position-relative ht-45 new_group_select">
+                        <FormControl
+                          variant="outlined"
+                          className={`${classes.formControl} mt-3`}
+                          width="100%"
+                        >
+                          <Select
+                            native
+                            // id="grouped-native-select"
+                            // id="select-item"
+                            id={`select-item${item.id}`}
+                            onChange={(e) => selectRule(e, item)}
+                            label="rule"
+                          >
+                            <option value={10}>Acesso Livre</option>
+                            <option value={20}>Data programada</option>
+                            <option value={30}>Dias após compra</option>
+                            <option value={40}>Oculto</option>
+                            <option value={50}>Bloqueado</option>
+                          </Select>
+                        </FormControl>
+                      </div>
+
+                      {/* {item.ruleKey == 20 && ( */}
+                      <div
+                        className="mt-5 group-secttion-hide"
+                        id={`div-schedule${item.id}`}
+                      >
+                        <div className="mb-3">
+                          <div className="Edit-ft1">DATA LIBERAÇÃO</div>
+                          <input
+                            type="date"
+                            className="input-ft2 mt-2 w-100"
+                            placeholder="05/01/2021 12:00"
+                            name={"from" + item.id}
+                            id={`date-start${item.id}`}
+                            ref={startDateRef}
+                            // value={}
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <div className="Edit-ft1">DATA FECHAMENTO</div>
+                          <input
+                            type="date"
+                            className="input-ft2 mt-2 w-100"
+                            placeholder="14/01/2021 12:00"
+                            name="to"
+                            id={`date-end${item.id}`}
+                            ref={endDateRef}
+                            // value={EndDate}
+                            // onChange={changeEndDate}
+                          />
+                        </div>
+                      </div>
+                      {/* )} */}
+                      {/* {item.ruleKey == 30 && ( */}
+                      <div
+                        className="mt-5 group-secttion-hide"
+                        id={`div-purchase${item.id}`}
+                      >
+                        <div className="position-relative">
+                          <input
+                            type="number"
+                            className="Edit-warp mt-3 Edit-ft4-1 w-100"
+                            placeholder="01"
+                            id={`access-term${item.id}`}
+                            ref={afterdays}
+                          />
+                          <div className="item-day-1 Edit-ft1">DIAS</div>
+                        </div>
+                      </div>
+                      {/* )} */}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
           <div className="group-new5">
             <div className="Edit-ft3">Regras de Liberação de Aulas</div>
@@ -273,12 +463,16 @@ export default function EditContent() {
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
-              <button type="button" className="but_cancel w-100" onClick={Back_fun}>
+              <button
+                type="button"
+                className="but_cancel w-100"
+                onClick={Back_fun}
+              >
                 Cancelar
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
-              <button type="button" className="but_delete w-100">
+              <button type="button" className="but_delete w-100" onClick={deleteData}>
                 Excluir
               </button>
             </div>

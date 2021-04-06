@@ -3,6 +3,7 @@ import {
   EDIT_GROUP,
   DELETE_GROUP,
   GET_ALLGROUP,
+  GET_GROUP_BY_ID,
 } from "../actions/types";
 
 const initialState = {};
@@ -22,6 +23,9 @@ export default function (state = initialState, action) {
 
     case GET_ALLGROUP:
       return { ...state, allData: payload.data };
+
+    case GET_GROUP_BY_ID:
+      return { ...state, groupDataById: payload.data };
 
     default:
       return state;

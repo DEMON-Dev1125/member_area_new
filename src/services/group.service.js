@@ -7,16 +7,19 @@ const getAllGroup = () => {
   return axios.get(API_URL + "/groups", { headers: authHeader() });
 };
 
-const addGroup = (groupData) => {
-  return axios.post(
-    API_URL + "/groups/add",
-    groupData,
-    { headers: authHeader() }
-  );
+const getGroupById = (id) => {
+  return axios.get(API_URL + `/groups/${id}`, { headers: authHeader() });
 };
 
-const editGroup = (id) => {
-  return axios.post(API_URL + `/groups/edit/${id}`, { headers: authHeader() });
+const addGroup = (groupData) => {
+  return axios.post(API_URL + "/groups/add", groupData, {
+    headers: authHeader(),
+  });
+};
+
+const editGroup = (id, groupData) => {
+  console.log("groupData", groupData);
+  return axios.post(API_URL + `/groups/edit/${id}`, groupData, { headers: authHeader() });
 };
 
 const deleteGroup = (id) => {
@@ -27,6 +30,7 @@ const deleteGroup = (id) => {
 
 export default {
   addGroup,
+  getGroupById,
   editGroup,
   deleteGroup,
   getAllGroup,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Toggle(props) {
   const [toggleState, setToggleState] = useState(false);
@@ -8,5 +8,13 @@ export default function Toggle(props) {
     props.status(!toggleState);
   };
 
-  return <div className={`switch ${toggleState ? "on" : "off"}`} onClick={toggle} />;
+  useEffect(() => {
+    if (props.buttonStatus == "true") {
+      setToggleState(true);
+    }
+  }, [props.buttonStatus]);
+
+  return (
+    <div className={`switch ${toggleState ? "on" : "off"}`} onClick={toggle} />
+  );
 }

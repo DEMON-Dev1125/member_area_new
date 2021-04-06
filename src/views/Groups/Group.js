@@ -24,10 +24,9 @@ export default function Group() {
   console.log("group", groupDatas);
 
   const GroupEdit = (item) => {
-    // history.push("/main/group/groupedit");
     history.push({
       pathname: "/main/group/groupedit",
-      id: item.id,
+      state: {id: item.id}
     });
   };
   return (

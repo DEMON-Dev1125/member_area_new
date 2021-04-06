@@ -30,6 +30,7 @@ export const ADD_GROUP = "ADD_GROUP";
 export const EDIT_GROUP = "EDIT_GROUP";
 export const DELETE_GROUP = "DELETE_GROUP";
 export const GET_ALLGROUP = "GET_ALLGROUP";
+export const GET_GROUP_BY_ID = "GET_GROUP_BY_ID";
 
 //certificate
 export const EDIT_CERTIFICATE = "EDIT_CERTIFICATE";

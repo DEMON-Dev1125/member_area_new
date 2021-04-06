@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Switch, Route } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { Select, FormControl, MenuItem } from "@material-ui/core";
 import SwitchDrop from "../../components/Switch";
 import "../../assets/css/login.css";
 
-import { addMember } from '../../actions/member';
+import { addMember } from "../../actions/member";
+import { getAllGroup } from "../../actions/group";
 
 const InfoIcon = "info-icon.svg";
 
 export default function Newmember() {
   const [membertype, setmembertype] = useState(false);
-  const [dropType, setDropType] = useState(10);
+  const [dropType, setDropType] = useState(0);
 
   const [name, setFullname] = useState("");
   const [email, setEmail] = useState("");
+  const [groupId, setGroupId] = useState();
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -22,21 +24,29 @@ export default function Newmember() {
   const Back_fun = () => {
     history.goBack();
   };
-  
+
   const onChangeSwitch = (type) => {
     console.log(type);
     setmembertype(type);
   };
 
   const HandleDropType = (e) => {
-    console.log(e.target.value);
     setDropType(e.target.value);
+    setGroupId(e.target.value);
   };
 
   const onSave = () => {
     let memType = membertype ? "collaborator" : "student";
-    dispatch(addMember(history, name, email, memType));
-  }
+    dispatch(addMember(history, groupId, name, email, memType));
+  };
+
+  useEffect(() => {
+    dispatch(getAllGroup());
+  }, []);
+
+  const groupDatas = useSelector((state) =>
+    state.group.allData ? state.group.allData.groups : []
+  );
 
   return (
     <div className="container-fluid mt-5">
@@ -83,10 +93,7 @@ export default function Newmember() {
             </div>
             {membertype ? (
               <div className="mt-1 position-relative ht-45 new_group_select">
-                <FormControl
-                  variant="outlined"
-                  width="100%"
-                >
+                <FormControl variant="outlined" width="100%">
                   <Select
                     native
                     defaultValue="Aula"
@@ -102,10 +109,7 @@ export default function Newmember() {
               </div>
             ) : (
               <div className="mt-1 position-relative ht-45 new_group_select">
-                <FormControl
-                  variant="outlined"
-                  width="100%"
-                >
+                <FormControl variant="outlined" width="100%">
                   <Select
                     native
                     value={dropType}
@@ -113,8 +117,13 @@ export default function Newmember() {
                     onChange={HandleDropType}
                     label="class"
                   >
-                    <option value={10}>Turma A (Padrão)</option>
-                    <option value={20}>Turma B</option>
+                    {groupDatas.map((item, index) => {
+                      return (
+                        <option key={index} value={item.id}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </div>
@@ -122,10 +131,14 @@ export default function Newmember() {
           </div>
           <div className="row mt-5 mb-5">
             <div className="col-lg-6 col-sm-12">
-              <button className="but_save w-100" onClick={onSave}>Adicionar membro</button>
+              <button className="but_save w-100" onClick={onSave}>
+                Adicionar membro
+              </button>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <button className="but_cancel w-100" onClick={Back_fun}>Cancelar</button>
+              <button className="but_cancel w-100" onClick={Back_fun}>
+                Cancelar
+              </button>
             </div>
           </div>
         </div>

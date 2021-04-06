@@ -85,7 +85,7 @@ export default function EditContent() {
     setItemAccess(e.target.value);
   };
 
-  const [status, setStatus] = useState();
+  const [status, setStatus] = useState(false);
   const toogleStatus = (status) => {
     setStatus(status);
   };

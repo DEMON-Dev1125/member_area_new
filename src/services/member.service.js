@@ -12,10 +12,10 @@ const getMemberById = (memberId) => {
   return axios.get(API_URL + `/members/${memberId}`, { headers: authHeader() });
 };
 
-const addMember = (name, email, membertype) => {
+const addMember = (group, name, email, membertype) => {
   return axios.post(
     API_URL + "/members/add",
-    { name, email, email, membertype },
+    { group, name, email, membertype },
     { headers: authHeader() }
   );
 };
@@ -26,11 +26,11 @@ const editMember = (
   email,
   password,
   confirmPassword,
-  memberType
+  membertype
 ) => {
   return axios.post(
     API_URL + `/members/edit/${memberId}`,
-    { name, email, password, confirmPassword, memberType },
+    { name, email, password, confirmPassword, membertype },
     { headers: authHeader() }
   );
 };

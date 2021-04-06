@@ -6,7 +6,8 @@ import SwitchDrop from "../../components/Switch";
 import Togglebutton from "../../components/Togglebutton";
 import "../../assets/css/login.css";
 
-import { getMemberById, editMember, deleteMember } from '../../actions/member';
+import { getMemberById, editMember, deleteMember } from "../../actions/member";
+import { getAllGroup } from "../../actions/group";
 
 const InfoIcon = "info-icon.svg";
 
@@ -15,9 +16,11 @@ export default function EditContent(props) {
   const dispatch = useDispatch();
 
   const [membertype, setmembertype] = useState(false);
-  const [dropType, setDropType] = useState(10);
+  const [dropType, setDropType] = useState(0);
 
-  const memberData = useSelector((state) => state.member.memberData ? state.member.memberData.member : {});
+  const memberData = useSelector((state) =>
+    state.member.memberData ? state.member.memberData.member : {}
+  );
   console.log(memberData);
 
   const [name, setFullname] = useState("");
@@ -42,32 +45,40 @@ export default function EditContent(props) {
 
   const onEdit = () => {
     let memberType = "";
-    if(membertype === false) memberType = "student";
-    else if(memberType === true) memberType = "collaborate";
-    else memberType = "blocker";
-    
-    dispatch(editMember(history, memberId, name, email, newPwa, confirmPwa, memberType));
-  }
+    if (membertype === false) memberType = "student";
+    else if (membertype === true) memberType = "collaborate";
+    else membertype = "blocker";
+
+    dispatch(
+      editMember(history, memberId, name, email, newPwa, confirmPwa, memberType)
+    );
+  };
 
   const onDelete = () => {
     dispatch(deleteMember(history, memberId));
-  }
+  };
 
   useEffect(() => {
+    dispatch(getAllGroup());
     dispatch(getMemberById(memberId));
   }, []);
+
+  const groupDatas = useSelector((state) =>
+    state.group.allData ? state.group.allData.groups : []
+  );
 
   useEffect(() => {
     if (Object.keys(memberData).length !== 0) {
       if (memberData.id !== memberId) return;
       setFullname(memberData.name);
       setEmail(memberData.email);
+      setDropType(memberData.group);
 
-      if(memberData.membertype === "student") setmembertype(false);
-      else if(memberData.membertype === "collaborate") setmembertype(true);
+      if (memberData.membertype === "student") setmembertype(false);
+      else if (memberData.membertype === "collaborate") setmembertype(true);
       // else set
     }
-  }, [memberData])
+  }, [memberData]);
 
   return (
     <div className="container-fluid mt-5">
@@ -160,8 +171,13 @@ export default function EditContent(props) {
                     onChange={HandleDropType}
                     label="class"
                   >
-                    <option value={10}>Turma A (Padrão)</option>
-                    <option value={20}>Turma B</option>
+                    {groupDatas.map((item, index) => {
+                      return (
+                        <option key={index} value={item.id}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </div>
@@ -183,12 +199,20 @@ export default function EditContent(props) {
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
-              <button type="button" className="but_cancel w-100" onClick={Back_fun}>
+              <button
+                type="button"
+                className="but_cancel w-100"
+                onClick={Back_fun}
+              >
                 Cancelar
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
-              <button type="button" className="but_delete w-100" onClick={onDelete}>
+              <button
+                type="button"
+                className="but_delete w-100"
+                onClick={onDelete}
+              >
                 Excluir
               </button>
             </div>

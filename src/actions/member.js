@@ -27,10 +27,10 @@ export const getMemberById = (memberId) => (dispatch) => {
   });
 };
 
-export const addMember = (history, name, email, membertype) => (
+export const addMember = (history, group, name, email, membertype) => (
   dispatch
 ) => {
-  return MemberService.addMember(name, email, membertype).then((status) => {
+  return MemberService.addMember(group, name, email, membertype).then((status) => {
     if (status.data.success === "success") {
       store.addNotification({
         title: "Success!",
@@ -62,7 +62,7 @@ export const editMember = (
   email,
   password,
   confirmPassword,
-  memberType
+  membertype
 ) => (dispatch) => {
   return MemberService.editMember(
     memberId,
@@ -70,7 +70,7 @@ export const editMember = (
     email,
     password,
     confirmPassword,
-    memberType
+    membertype
   ).then((status) => {
     if (status.data.success === "success") {
       store.addNotification({
