@@ -143,14 +143,14 @@ export default function EditContent(props) {
       standardclass: status,
       moduleData: moduleTemp,
     };
-    
-    dispatch(editGroup(id, temp));
+
+    dispatch(editGroup(history, id, temp));
     // history.push("/main/group/groupadd");
   };
 
   const deleteData = () => {
     dispatch(deleteGroup(history, id));
-  }
+  };
 
   const showLearning = () => {
     setDrpDwn(!drpdwn);
@@ -193,6 +193,9 @@ export default function EditContent(props) {
               document
                 .getElementById(`div-schedule${data.id}`)
                 .classList.remove("group-secttion-hide");
+              document
+                .getElementById(`div-purchase${data.id}`)
+                .classList.add("group-secttion-hide");
 
               document.getElementById(`date-start${data.id}`).value =
                 item.fromdate;
@@ -204,6 +207,9 @@ export default function EditContent(props) {
               document
                 .getElementById(`div-purchase${data.id}`)
                 .classList.remove("group-secttion-hide");
+              document
+                .getElementById(`div-schedule${data.id}`)
+                .classList.add("group-secttion-hide");
               document.getElementById(`access-term${data.id}`).value =
                 item.daysafter;
             } else if (item.type === "hidden") {
@@ -472,7 +478,11 @@ export default function EditContent(props) {
               </button>
             </div>
             <div className="col-xl-3 col-6 mt-2">
-              <button type="button" className="but_delete w-100" onClick={deleteData}>
+              <button
+                type="button"
+                className="but_delete w-100"
+                onClick={deleteData}
+              >
                 Excluir
               </button>
             </div>

@@ -9,6 +9,7 @@ import {
 } from "./types";
 
 import ContentService from "../services/content.service";
+import { store } from "react-notifications-component";
 
 export const addModule = (name) => (dispatch) => {
   return ContentService.addModule(name).then((data) => {
@@ -22,11 +23,11 @@ export const addModule = (name) => (dispatch) => {
 export const moduleNameEdit = (id, name, order) => (dispatch) => {
   return ContentService.editModuleName(id, name, order).then((status) => {
     // dispatch({
-    //   type: 
+    //   type:
     // })
     console.log(status);
-  })
-}
+  });
+};
 
 export const deleteModule = (id) => (dispatch) => {
   return ContentService.deleteModule(id).then((delData) => {
@@ -46,11 +47,28 @@ export const getAllModule = () => (dispatch) => {
   });
 };
 
-export const addContent = (contentData) => (dispatch) => {
-  return ContentService.addContent(contentData).then((data) => {
+export const addContent = (history, contentData) => (dispatch) => {
+  return ContentService.addContent(contentData).then((status) => {
+    if (status.data.success === "success") {
+      store.addNotification({
+        title: "Success!",
+        message: "Save Success",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+        },
+      });
+
+      history.push("/main/content");
+    }
     dispatch({
       type: ADD_MODULECONTENT,
-      payload: data,
+      payload: status,
     });
   });
 };

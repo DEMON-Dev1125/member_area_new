@@ -22,7 +22,8 @@ import { useSelector, useDispatch } from "react-redux";
 import "../../assets/css/login.css";
 import "../../assets/css/member.css";
 import StyledCheckbox from "components/Checkbox";
-import { getAllMember } from "../../actions/member";
+import { getAllMember, getFilterMember } from "../../actions/member";
+import { getAllGroup } from "../../actions/group";
 
 const MemberAvatar = "face-5.jpg";
 const MemberBack = "membro.png";
@@ -106,17 +107,27 @@ export default function Member() {
   const [dropType, setDropType] = useState(10);
 
   const HandleDropType = (e) => {
-    console.log(e.target.value);
     setDropType(e.target.value);
+    setGroupId(e.target.value);
+    dispatch(
+      getFilterMember(
+        searchName,
+        e.target.value,
+        pageNum,
+        pageCount,
+        memberType
+      )
+    );
   };
 
   const memberData = useSelector((state) =>
     state.member.allData ? state.member.allData.members : []
   );
+  const total = useSelector((state) =>
+    state.member.allData ? state.member.allData.total : 0
+  );
 
-  const [stuCount, setStuCount] = useState(0);
-  const [colCount, setColCount] = useState(0);
-  const [bloCount, setBloCount] = useState(0);
+  console.log(memberData, total);
 
   const AddMember = () => {
     history.push("/main/member/addmember");
@@ -132,6 +143,18 @@ export default function Member() {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    let memberType;
+    if (newValue === 0) {
+      setMemberType("student");
+      memberType = "student";
+    } else if (newValue === 1) {
+      setMemberType("collaborate");
+      memberType = "collaborate";
+    }
+
+    setSearchName("");
+    setGroupId("");
+    dispatch(getFilterMember("", groupId, pageNum, pageCount, memberType));
   };
 
   const [NoMember, setMember] = useState("");
@@ -154,24 +177,64 @@ export default function Member() {
     history.push("/main/member/viewmember");
   };
 
+  const [searchName, setSearchName] = useState("");
+  const [groupId, setGroupId] = useState();
+  const [pageNum, setPageNum] = useState(1);
+  const [pageCount, setPageCount] = useState(5);
+  const [memberType, setMemberType] = useState("student");
+
+  const handleSearchName = (e) => {
+    setSearchName(e.target.value);
+    dispatch(
+      getFilterMember(e.target.value, groupId, pageNum, pageCount, memberType)
+    );
+  };
+
+  const prevPage = () => {
+    if (pageNum > 1) {
+      setPageNum(pageNum - 1);
+      dispatch(
+        getFilterMember(searchName, groupId, pageNum - 1, pageCount, memberType)
+      );
+    }
+  };
+
+  const nextPage = () => {
+    if (pageNum < Math.ceil(total / 5)) {
+      setPageNum(pageNum + 1);
+      dispatch(
+        getFilterMember(searchName, groupId, pageNum + 1, pageCount, memberType)
+      );
+    }
+  };
+
   useEffect(() => {
-    dispatch(getAllMember());
+    dispatch(getAllGroup());
+    dispatch(getFilterMember("", "", 1, 5, "student"));
   }, []);
+
+  const groupDatas = useSelector((state) =>
+    state.group.allData ? state.group.allData.groups : []
+  );
+
+  const pageButton = (key) => {
+    let pageNumber = key + 1;
+    setPageNum(pageNumber);
+    dispatch(
+      getFilterMember(searchName, groupId, pageNumber, pageCount, memberType)
+    );
+  };
+
+  const [listDiv, setListDiv] = useState([]);
 
   useEffect(() => {
     if (memberData.length !== 0) {
-      let stuCount = 0;
-      let colCount = 0;
-      let bloCount = 0;
-      memberData.map((data) => {
-        if (data.membertype === "student") stuCount = stuCount + 1;
-        else if (data.membertype === "collaborator") colCount = colCount + 1;
-        else bloCount = bloCount + 1;
-      });
-
-      setStuCount(stuCount);
-      setColCount(colCount);
-      setBloCount(bloCount);
+      let numArr = [];
+      let i;
+      for (i = 1; i <= Math.ceil(total / 5); i++) {
+        numArr.push(i);
+      }
+      setListDiv(numArr);
     }
   }, [memberData]);
 
@@ -205,7 +268,7 @@ export default function Member() {
           <hr />
           {memberData.length === 0 ? (
             <div className={classes.root}>
-              <TabContext value={value}>
+              <TabContext value={value ? value : ""}>
                 <div className="d-flex justify-content-center">
                   <Tabs
                     value={value}
@@ -298,7 +361,7 @@ export default function Member() {
             </div>
           ) : (
             <div className={classes.root}>
-              <TabContext value={value}>
+              <TabContext value={value ? value : ""}>
                 <div className="d-flex justify-content-center">
                   <Tabs
                     value={value}
@@ -312,7 +375,7 @@ export default function Member() {
                         <StyledBadge
                           showZero
                           max={999}
-                          badgeContent={stuCount}
+                          badgeContent={value == 0 ? total : 0}
                           className={value == 0 ? classes.active : ""}
                         >
                           Alunos
@@ -325,7 +388,7 @@ export default function Member() {
                         <StyledBadge
                           showZero
                           max={999}
-                          badgeContent={colCount}
+                          badgeContent={value == 1 ? total : 0}
                           className={value == 1 ? classes.active : ""}
                         >
                           Colaboradores
@@ -338,7 +401,7 @@ export default function Member() {
                         <StyledBadge
                           showZero
                           max={999}
-                          badgeContent={bloCount}
+                          badgeContent={value == 2 ? total : 0}
                           className={value == 2 ? classes.redactive : ""}
                         >
                           Bloqueados
@@ -359,6 +422,8 @@ export default function Member() {
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
+                            value={searchName}
+                            onChange={handleSearchName}
                           />
                         </div>
                         <div className="col-12 col-md-4 mt-1 position-relative new_group_select">
@@ -372,8 +437,20 @@ export default function Member() {
                               onChange={HandleDropType}
                               label="class"
                             >
-                              <option value={10}>Turma A (Padrão)</option>
-                              <option value={20}>Turma B</option>
+                              {groupDatas.map((item, index) => {
+                                if (item.standardclass === "true")
+                                  return (
+                                    <option key={index} value={item.id}>
+                                      {item.name}(standard)
+                                    </option>
+                                  );
+                                else
+                                  return (
+                                    <option key={index} value={item.id}>
+                                      {item.name}
+                                    </option>
+                                  );
+                              })}
                             </Select>
                           </FormControl>
                         </div>
@@ -510,6 +587,8 @@ export default function Member() {
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
+                            value={searchName}
+                            onChange={handleSearchName}
                           />
                         </div>
                         <div className="col-12 col-md-4 mt-1 position-relative new_group_select">
@@ -568,7 +647,7 @@ export default function Member() {
                     <div className="content_body mt-5">
                       {memberData.map((data, index) => {
                         return (
-                          data.membertype === "collaborator" && (
+                          data.membertype === "collaborate" && (
                             <div key={index}>
                               <div className="row">
                                 <div className="col-sm-9 col-9 d-flex">
@@ -662,6 +741,8 @@ export default function Member() {
                           <input
                             className="input-ft2 w-100"
                             placeholder="Busque por nome"
+                            value={searchName}
+                            onChange={handleSearchName}
                           />
                         </div>
                       </div>
@@ -669,8 +750,8 @@ export default function Member() {
                     <div className="content_body mt-5">
                       {memberData.map((data, index) => {
                         return (
-                          !data.membertype && (
-                            <>
+                          data.blocked && (
+                            <div key={index}>
                               <div className="row">
                                 <div className="col-sm-9 col-9 d-flex">
                                   <div className="member_avatar avatar avatar-block">
@@ -744,7 +825,7 @@ export default function Member() {
                                 </div>
                               </div>
                               <hr />
-                            </>
+                            </div>
                           )
                         );
                       })}
@@ -755,14 +836,30 @@ export default function Member() {
                 {/*---------------------- blocked tabpan end -------------------------------------- */}
               </TabContext>
               <div className="pagination d-flex justify-content-center">
-                <div className="pagiNum">
+                <div className="pagiNum" onClick={prevPage}>
                   <i className="fa fa-chevron-left"></i>
                 </div>
-                <div className="pagiNum active ml-1">1</div>
+                {/* <div className="pagiNum active ml-1">1</div> */}
+                {listDiv.map((item, key) => {
+                  return (
+                    <div
+                      key={key}
+                      className={
+                        pageNum == key + 1
+                          ? "pagiNum ml-1 active"
+                          : "pagiNum ml-1"
+                      }
+                      onClick={() => pageButton(key)}
+                      id={`page-number${key + 1}`}
+                    >
+                      {item}
+                    </div>
+                  );
+                })}
                 {/* <div className="pagiNum ml-1">2</div>
                 <div className="pagiNum ml-1">...</div>
                 <div className="pagiNum ml-1">16</div> */}
-                <div className="pagiNum ml-1">
+                <div className="pagiNum ml-1" onClick={nextPage}>
                   <i className="fa fa-chevron-right"></i>
                 </div>
               </div>

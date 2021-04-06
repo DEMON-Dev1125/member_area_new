@@ -27,8 +27,25 @@ export const getGroupById = (id) => (dispatch) => {
   });
 };
 
-export const addGroupData = (groupData) => (dispatch) => {
+export const addGroupData = (history, groupData) => (dispatch) => {
   return GroupService.addGroup(groupData).then((data) => {
+    if (data.data.success === "success") {
+      store.addNotification({
+        title: "Success!",
+        message: "Save Success",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+        },
+      });
+
+      history.push("/main/group");
+    }
     dispatch({
       type: ADD_GROUP,
       payload: data,
@@ -36,8 +53,25 @@ export const addGroupData = (groupData) => (dispatch) => {
   });
 };
 
-export const editGroup = (id, groupData) => (dispatch) => {
+export const editGroup = (history, id, groupData) => (dispatch) => {
   return GroupService.editGroup(id, groupData).then((data) => {
+    if (data.data.success === "success") {
+      store.addNotification({
+        title: "Success!",
+        message: "Update Success",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+        },
+      });
+
+      history.push("/main/group");
+    }
     dispatch({
       type: EDIT_GROUP,
       payload: data,

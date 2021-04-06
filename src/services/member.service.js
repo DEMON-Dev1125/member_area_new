@@ -21,16 +21,18 @@ const addMember = (group, name, email, membertype) => {
 };
 
 const editMember = (
+  group,
   memberId,
   name,
   email,
   password,
   confirmPassword,
-  membertype
+  membertype,
+  blocked
 ) => {
   return axios.post(
     API_URL + `/members/edit/${memberId}`,
-    { name, email, password, confirmPassword, membertype },
+    { group, name, email, password, confirmPassword, membertype, blocked },
     { headers: authHeader() }
   );
 };
@@ -41,10 +43,19 @@ const deleteMember = (id) => {
   });
 };
 
+const filterMember = (name, group, pageNum, count, membertype) => {
+  return axios.post(
+    API_URL + "/members/filter",
+    { name, group, pageNum, count, membertype },
+    { headers: authHeader() }
+  );
+};
+
 export default {
   addMember,
   editMember,
   deleteMember,
   getAllMember,
   getMemberById,
+  filterMember,
 };

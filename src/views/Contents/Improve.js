@@ -56,7 +56,8 @@ export default function NewContent(props) {
     setSubTitle(`AULA ${data.order}`);
     // setText(convertFromHTML(data.text));
     setText(data.text);
-    setConvertText(convertFromHTML(data.text));
+    // setConvertText(convertFromHTML(data.text));
+    setConvertText(data.text);
     setItemStatusId(data.id);
     if(data.status === "read") setClasscomplete(false);
     else setClasscomplete(true);

@@ -36,7 +36,7 @@ export default function Newmember() {
   };
 
   const onSave = () => {
-    let memType = membertype ? "collaborator" : "student";
+    let memType = membertype ? "collaborate" : "student";
     dispatch(addMember(history, groupId, name, email, memType));
   };
 
@@ -118,11 +118,18 @@ export default function Newmember() {
                     label="class"
                   >
                     {groupDatas.map((item, index) => {
-                      return (
-                        <option key={index} value={item.id}>
-                          {item.name}
-                        </option>
-                      );
+                      if (item.standardclass === "true")
+                        return (
+                          <option key={index} value={item.id}>
+                            {item.name}(standard)
+                          </option>
+                        );
+                      else
+                        return (
+                          <option key={index} value={item.id}>
+                            {item.name}
+                          </option>
+                        );
                     })}
                   </Select>
                 </FormControl>

@@ -28,6 +28,8 @@ export default function EditContent(props) {
   const [newPwa, setNewPwa] = useState("");
   const [confirmPwa, setConfirmPwa] = useState("");
 
+  const [groupId, setGroupId] = useState();
+
   const memberId = props.location.state.id;
 
   const Back_fun = () => {
@@ -39,24 +41,40 @@ export default function EditContent(props) {
   };
 
   const HandleDropType = (e) => {
-    console.log(e.target.value);
     setDropType(e.target.value);
+    setGroupId(e.target.value);
   };
 
   const onEdit = () => {
     let memberType = "";
     if (membertype === false) memberType = "student";
     else if (membertype === true) memberType = "collaborate";
-    else membertype = "blocker";
+    // else membertype = "blocker";
 
     dispatch(
-      editMember(history, memberId, name, email, newPwa, confirmPwa, memberType)
+      editMember(
+        history,
+        groupId,
+        memberId,
+        name,
+        email,
+        newPwa,
+        confirmPwa,
+        memberType,
+        status
+      )
     );
   };
 
   const onDelete = () => {
     dispatch(deleteMember(history, memberId));
   };
+
+  const [status, setStatus] = useState(false);
+  const toogleStatus = (status) => {
+    setStatus(status);
+  };
+  console.log(status);
 
   useEffect(() => {
     dispatch(getAllGroup());
@@ -172,11 +190,18 @@ export default function EditContent(props) {
                     label="class"
                   >
                     {groupDatas.map((item, index) => {
-                      return (
-                        <option key={index} value={item.id}>
-                          {item.name}
-                        </option>
-                      );
+                      if (item.standardclass === "true")
+                        return (
+                          <option key={index} value={item.id}>
+                            {item.name}(standard)
+                          </option>
+                        );
+                      else
+                        return (
+                          <option key={index} value={item.id}>
+                            {item.name}
+                          </option>
+                        );
                     })}
                   </Select>
                 </FormControl>
@@ -184,7 +209,7 @@ export default function EditContent(props) {
             )}
           </div>
           <div className="mt-5 d-flex">
-            <Togglebutton />
+            <Togglebutton status={toogleStatus} buttonStatus={status} />
             <div className="ml-4">
               <div className="Edit-ft3">Bloquear membro</div>
               <div className="Edit-ft5 mt-1">

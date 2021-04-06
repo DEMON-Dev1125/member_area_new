@@ -18,8 +18,9 @@ const addGroup = (groupData) => {
 };
 
 const editGroup = (id, groupData) => {
-  console.log("groupData", groupData);
-  return axios.post(API_URL + `/groups/edit/${id}`, groupData, { headers: authHeader() });
+  return axios.post(API_URL + `/groups/edit/${id}`, groupData, {
+    headers: authHeader(),
+  });
 };
 
 const deleteGroup = (id) => {

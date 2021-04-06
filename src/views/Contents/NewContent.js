@@ -103,7 +103,7 @@ export default function NewContent() {
       data.append('text', contentDetail);
       data.append('videolink', link);
       data.append('comment', status);
-      dispatch(addContent(data));
+      dispatch(addContent(history, data));
     }
   };
 

@@ -157,7 +157,7 @@ export default function EditContent() {
       moduleData: moduleTemp,
     };
     
-    dispatch(addGroupData(temp));
+    dispatch(addGroupData(history, temp));
   };
 
   let startDateRef = React.createRef();

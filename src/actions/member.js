@@ -30,47 +30,53 @@ export const getMemberById = (memberId) => (dispatch) => {
 export const addMember = (history, group, name, email, membertype) => (
   dispatch
 ) => {
-  return MemberService.addMember(group, name, email, membertype).then((status) => {
-    if (status.data.success === "success") {
-      store.addNotification({
-        title: "Success!",
-        message: "Save Success",
-        type: "success",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 2000,
-          onScreen: true,
-        },
-      });
+  return MemberService.addMember(group, name, email, membertype).then(
+    (status) => {
+      if (status.data.success === "success") {
+        store.addNotification({
+          title: "Success!",
+          message: "Save Success",
+          type: "success",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 2000,
+            onScreen: true,
+          },
+        });
 
-      history.push("/main/member");
+        history.push("/main/member");
+      }
+      dispatch({
+        type: ADD_MEMBER,
+        payload: status,
+      });
     }
-    dispatch({
-      type: ADD_MEMBER,
-      payload: status,
-    });
-  });
+  );
 };
 
 export const editMember = (
   history,
+  groupId,
   memberId,
   name,
   email,
   password,
   confirmPassword,
-  membertype
+  membertype,
+  blocked
 ) => (dispatch) => {
   return MemberService.editMember(
+    groupId,
     memberId,
     name,
     email,
     password,
     confirmPassword,
-    membertype
+    membertype,
+    blocked
   ).then((status) => {
     if (status.data.success === "success") {
       store.addNotification({
@@ -118,6 +124,15 @@ export const deleteMember = (history, id) => (dispatch) => {
     dispatch({
       type: DELETE_MEMBER,
       payload: status,
+    });
+  });
+};
+
+export const getFilterMember = (name, group, pageNum, count, memberType) => (dispatch) => {
+  return MemberService.filterMember(name, group, pageNum, count, memberType).then((data) => {
+    dispatch({
+      type: GET_ALLMEMBER,
+      payload: data,
     });
   });
 };
